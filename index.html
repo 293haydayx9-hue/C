@@ -1061,20 +1061,28 @@
             document.getElementById('checkout-total').innerText = totalPrice.toLocaleString() + '.-';
         }
 
-        function sendBillToChat() {
+                function sendBillToChat() {
             let billText = "🧾 สรุปรายการสั่งซื้อ (Bebby)\n";
             billText += "------------------------\n";
             cart.forEach(item => {
-                billText += `${item.qty}x ${item.name} (${item.price * item.qty}.-)\n`;
+                billText += `${item.qty}x ${item.name} (${(item.price * item.qty).toLocaleString()}.-)\n`;
             });
             billText += "------------------------\n";
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             billText += `ยอดโอนทั้งหมด: ${totalPrice.toLocaleString()} บาท\n`;
             
-            const encodedText = encodeURIComponent(billText);
-            const lineUrl = `https://line.me/R/msg/text/?${encodedText}`;
-            window.open(lineUrl, '_blank');
+            // ใช้ระบบคัดลอกข้อความอัตโนมัติ (Copy to Clipboard)
+            navigator.clipboard.writeText(billText).then(() => {
+                alert("✅ คัดลอกรายการสั่งซื้อเรียบร้อยแล้ว!\n\nระบบกำลังพาไปที่ Line ของร้าน\nลูกค้ารอ 'กดวาง (Paste)' ข้อความในแชทได้เลยค่ะ");
+                // เปลี่ยนเป็นลิงก์ Line ของร้านคุณ
+                window.open('https://lin.ee/NExzPdE', '_blank');
+            }).catch(err => {
+                // กรณีมือถือบางรุ่นไม่รองรับการคัดลอกอัตโนมัติ
+                alert("ระบบจะพาไปที่ Line ของร้าน กรุณาพิมพ์แจ้งรายการสินค้าที่ต้องการได้เลยค่ะ");
+                window.open('https://lin.ee/NExzPdE', '_blank');
+            });
         }
+
     </script>
 </body>
 </html>
