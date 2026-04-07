@@ -3,244 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebby - รับออกแบบ & แอปพรีเมียม</title>
+    <title>BEBBY - รับออกแบบ & แอพพรีเมียม</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mitr:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Prompt', 'sans-serif'],
+                        sans: ['Mitr', 'sans-serif'], /* ฟอนต์หลัก อ่านง่าย โค้งมน */
+                        cute: ['Itim', 'cursive'],    /* ฟอนต์หัวข้อ น่ารักปุ๊กปิ๊ก */
                         outfit: ['Outfit', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            main: '#FF8DAF',     
-                            light: '#FFD1E0',    
-                            cream: '#FFF8F0',    
-                            dark: '#D9779B',     
-                            text: '#5A463F',     
-                            subtext: '#8F7A74'   
+                            dark: '#E5989B',     
+                            main: '#FFB5A7',     
+                            light: '#FFF0ED',    
+                            cream: '#FDF0D5',    
+                            text: '#6D6875',     
+                            subtext: '#B5838D'   
                         }
+                    },
+                    boxShadow: {
+                        'app': '0 -10px 40px -15px rgba(255, 181, 167, 0.2), 0 10px 40px -15px rgba(255, 181, 167, 0.2)',
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #FAFAFA; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
-        .app-container { max-width: 430px; margin: 0 auto; min-height: 100vh; background-color: #FFF8F0; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; }
-        .gradient-bg { background: linear-gradient(180deg, #FFB6C1 0%, #FFF8F0 100%); }
-        .confetti-bg { background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="%23FF8DAF" opacity="0.5"/><rect x="40" y="20" width="4" height="4" fill="%23FFD1E0" transform="rotate(45 42 22)"/><circle cx="80" cy="40" r="3" fill="%23FF8DAF" opacity="0.3"/><rect x="20" y="70" width="3" height="6" fill="%23FFD1E0" transform="rotate(30 21 73)"/><circle cx="60" cy="80" r="2" fill="%23FF8DAF" opacity="0.6"/></svg>'); background-size: 150px 150px; }
+        body {
+            background-color: #FAFAFA;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #FFF0ED;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFB5A7 0%, #FDF0D5 100%);
+        }
         
-        .page { display: none; animation: fadeIn 0.3s ease-out forwards; padding-bottom: 90px; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-jelly {
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s;
+        }
+        .btn-jelly:active {
+            transform: scale(0.92);
+        }
 
-        .btn-jelly { transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
-        .btn-jelly:active { transform: scale(0.92); }
+        .page {
+            display: none;
+            animation: fadeInSparkle 0.4s ease-out forwards;
+            padding-bottom: 90px;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeInSparkle {
+            0% { opacity: 0; transform: scale(0.98); filter: brightness(1.2) contrast(1.1); }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1) contrast(1); }
+        }
 
-        .floating-emoji { position: fixed; pointer-events: none; z-index: 9999; font-size: 24px; animation: floatUp 1s ease-out forwards; transform: translate(-50%, -50%); }
-        @keyframes floatUp { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 50% { transform: translate(-50%, -100%) scale(1.2); opacity: 0.8; } 100% { transform: translate(-50%, -150%) scale(1); opacity: 0; } }
+        @keyframes floatUp {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            50% { transform: translate(-50%, -100px) scale(1.2) rotate(10deg); opacity: 0.8; }
+            100% { transform: translate(-50%, -150px) scale(1.5) rotate(-10deg); opacity: 0; }
+        }
+        .floating-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 24px;
+            animation: floatUp 0.8s ease-out forwards;
+        }
 
-        .sparkle-effect { position: fixed; pointer-events: none; z-index: 9998; font-size: 30px; animation: sparklePop 0.6s ease-out forwards; }
-        @keyframes sparklePop { 0% { transform: scale(0) rotate(0deg); opacity: 1; } 50% { transform: scale(1.5) rotate(180deg); opacity: 1; } 100% { transform: scale(0) rotate(360deg); opacity: 0; } }
+        .bounce-badge {
+            animation: popBounce 2s infinite;
+        }
+        @keyframes popBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-4px) scale(1.05); }
+        }
 
-        .pop-badge { animation: popBounce 1s infinite alternate; }
-        @keyframes popBounce { 0% { transform: scale(1); } 100% { transform: scale(1.1) translateY(-2px); } }
-
-        /* อนิเมชันเด้งตอนกดเพิ่มลงตะกร้า */
-        .cart-bump { animation: bump 0.3s ease-out; }
-        @keyframes bump { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #FF9EBB; border-radius: 10px; }
+        .confetti-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23FFB5A7" opacity="0.5"/><rect x="70" y="30" width="4" height="8" transform="rotate(45 70 30)" fill="%23E5989B" opacity="0.5"/><polygon points="40,80 45,70 35,70" fill="%23FDF0D5" opacity="0.6"/></svg>');
+        }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
 
-    <div class="app-container flex flex-col relative">
+    <div class="app-container flex flex-col">
         
-        <div class="fixed bottom-24 right-5 z-40 btn-jelly cursor-pointer max-w-[430px]" onclick="switchTab('page-cart', -1)">
-            <div id="floating-cart" class="w-14 h-14 bg-brand-main rounded-full flex items-center justify-center text-white text-2xl shadow-[0_5px_15px_rgba(255,141,175,0.4)] border-2 border-white relative">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span id="cart-badge" class="absolute -top-1 -right-1 bg-[#FF4757] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border border-white hidden">0</span>
-            </div>
-        </div>
-
         <div id="page-home" class="page active">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px] overflow-hidden border-b-4 border-white shadow-sm">
-                <div class="confetti-bg absolute inset-0 opacity-60"></div>
-                <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-white font-outfit text-3xl font-extrabold tracking-widest drop-shadow-md">
-                        BEBBY<span class="text-brand-main ml-1">✿</span>
+            <div class="gradient-bg pt-10 px-6 pb-24 relative rounded-b-[40px] confetti-bg">
+                <div class="flex justify-between items-center mb-4 relative z-10">
+                    <div class="text-brand-text font-outfit text-3xl font-bold tracking-wide drop-shadow-sm">
+                        BEBBY <span class="text-sm font-cute ml-1">˚꒰ welcome ꒱</span>
                     </div>
                 </div>
-                <div class="text-center mb-2 z-10 relative bg-white/40 backdrop-blur-md rounded-2xl p-4 border border-white shadow-sm btn-jelly">
-                    <h1 class="text-lg font-bold text-brand-text flex justify-center items-center gap-2">🪿💖 ˚꒰ welcome to bebby ꒱</h1>
-                    <p class="text-[11px] font-medium text-brand-text mt-1">รับออกแบบทุกอย่างบนโลก | แอปพรีเมียม | ลายน้ำ | เว็บร้าน</p>
+                <div class="text-center mb-2 z-10 relative">
+                    <h1 class="text-xl font-cute text-brand-text">รับออกแบบทุกอย่างบนโลก 🎨</h1>
+                    <p class="text-xs font-medium text-brand-subtext mt-1">แอพพรีเมี่ยม | ลายน้ำ | สติกเกอร์ไลน์ | ทำเว็บ</p>
                 </div>
             </div>
 
-            <div class="px-5 -mt-6 relative z-10 space-y-4 pb-6">
-                <div class="grid grid-cols-4 gap-3 mt-4">
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group btn-jelly" onclick="switchTab('page-design', 1)">
-                        <div class="w-14 h-14 rounded-[20px] bg-white text-brand-main text-2xl shadow-sm border border-brand-light flex justify-center items-center"><i class="fa-solid fa-palette"></i></div>
-                        <span class="text-[10px] font-semibold text-brand-text">งานออกแบบ</span>
+            <div class="bg-white rounded-t-[35px] -mt-16 relative z-10 pt-8 px-5 shadow-app pb-6">
+                
+                <div class="bg-brand-cream/40 border border-brand-light rounded-2xl p-4 mb-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-base font-cute text-brand-text"><i class="fa-solid fa-clipboard-list text-brand-main mr-1"></i> สถานะคิววันนี้</h3>
+                        <span class="text-[10px] bg-white px-2 py-1 rounded-full text-brand-subtext border border-brand-light">อัปเดต Real-time</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group btn-jelly" onclick="switchTab('page-apps', 2)">
-                        <div class="w-14 h-14 rounded-[20px] bg-white text-[#5D9CEC] text-2xl shadow-sm border border-[#E1EAF7] flex justify-center items-center"><i class="fa-solid fa-play"></i></div>
-                        <span class="text-[10px] font-semibold text-brand-text">แอปพรีเมียม</span>
+                    <div class="grid grid-cols-3 gap-2 text-center mb-3">
+                        <div class="bg-white rounded-xl p-2 border border-brand-light">
+                            <p class="text-[10px] text-brand-subtext">คิวถัดไป</p>
+                            <p class="text-xl font-cute text-brand-main">#14</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-2 border border-brand-light">
+                            <p class="text-[10px] text-brand-subtext">รอคิว</p>
+                            <p class="text-xl font-cute text-brand-text">5</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-2 border border-brand-light">
+                            <p class="text-[10px] text-brand-subtext">สำเร็จ</p>
+                            <p class="text-xl font-cute text-green-500">13</p>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group btn-jelly" onclick="switchTab('page-cart', -1)">
-                        <div class="w-14 h-14 rounded-[20px] bg-white text-[#48C774] text-2xl shadow-sm border border-[#DCF2E3] flex justify-center items-center"><i class="fa-solid fa-basket-shopping"></i></div>
-                        <span class="text-[10px] font-semibold text-brand-text">ตะกร้าสินค้า</span>
+                    <div class="w-full bg-brand-light rounded-full h-2.5">
+                        <div class="bg-brand-main h-2.5 rounded-full" style="width: 70%"></div>
                     </div>
-                    <a href="https://drive.google.com/drive/folders/1x3qtzrZDN9xQmhgP2O4LZGkTSUWg92kG" target="_blank" class="flex flex-col items-center gap-2 cursor-pointer group btn-jelly">
-                        <div class="w-14 h-14 rounded-[20px] bg-white text-[#F6B93B] text-2xl shadow-sm border border-[#FBEAC4] flex justify-center items-center"><i class="fa-solid fa-folder-open"></i></div>
-                        <span class="text-[10px] font-semibold text-brand-text">ดูผลงาน</span>
-                    </a>
+                    <p class="text-[10px] text-right mt-1 text-brand-subtext">ความคืบหน้า 70%</p>
+                </div>
+
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-base font-cute text-brand-text">ตารางงานของร้าน 📓</h3>
+                    <div class="flex bg-brand-light rounded-lg p-1">
+                        <button onclick="toggleView('list')" id="btn-view-list" class="btn-jelly bg-white text-brand-main px-3 py-1 rounded-md text-[11px] font-medium shadow-sm">List</button>
+                        <button onclick="toggleView('calendar')" id="btn-view-cal" class="btn-jelly text-brand-subtext px-3 py-1 rounded-md text-[11px] font-medium">Calendar</button>
+                    </div>
+                </div>
+
+                <div id="view-list" class="space-y-2 mb-6">
+                    <div class="p-3 border border-brand-light rounded-xl flex justify-between items-center">
+                        <div>
+                            <p class="text-sm font-medium text-brand-text">งานป้ายบัญชี (K.Aom)</p>
+                            <p class="text-[11px] text-brand-subtext">กำลังดำเนินการ 🎨</p>
+                        </div>
+                        <span class="text-[11px] bg-brand-light px-2 py-1 rounded text-brand-main font-medium">คิว #14</span>
+                    </div>
+                    <div class="p-3 border border-brand-light rounded-xl flex justify-between items-center opacity-60">
+                        <div>
+                            <p class="text-sm font-medium text-brand-text">ออกแบบเว็บ (K.Mint)</p>
+                            <p class="text-[11px] text-brand-subtext">รอเริ่มงาน ⏳</p>
+                        </div>
+                        <span class="text-[11px] bg-gray-100 px-2 py-1 rounded font-medium">คิว #15</span>
+                    </div>
+                </div>
+
+                <div id="view-calendar" class="hidden mb-6 bg-white border border-brand-light rounded-xl p-3 font-medium">
+                    <p class="text-center text-sm font-cute text-brand-main mb-2">เมษายน 2026</p>
+                    <div class="grid grid-cols-7 gap-1 text-center text-[11px] text-brand-subtext mb-1">
+                        <div>อา</div><div>จ</div><div>อ</div><div>พ</div><div>พฤ</div><div>ศ</div><div>ส</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                        <div class="p-1 opacity-30">29</div><div class="p-1 opacity-30">30</div><div class="p-1 opacity-30">31</div>
+                        <div class="p-1">1</div><div class="p-1">2</div><div class="p-1">3</div><div class="p-1">4</div>
+                        <div class="p-1">5</div><div class="p-1">6</div><div class="p-1 bg-brand-main text-white rounded-full shadow-sm">7</div>
+                        <div class="p-1">8</div><div class="p-1 relative">9<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand-dark rounded-full"></div></div><div class="p-1">10</div><div class="p-1">11</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light/50 rounded-2xl p-4 border border-brand-light">
+                    <h3 class="text-base font-cute text-brand-text mb-2">วิธีสั่งงานร้านเบ้บบบ 📝</h3>
+                    <ul class="text-[12px] text-brand-text space-y-2 leading-relaxed">
+                        <li><span class="bg-brand-main text-white rounded-full w-5 h-5 inline-flex items-center justify-center mr-1 text-[10px]">1</span> บรีฟเป็นข้อความเท่านั้น สรุปให้ครบถ้วน</li>
+                        <li><span class="bg-brand-main text-white rounded-full w-5 h-5 inline-flex items-center justify-center mr-1 text-[10px]">2</span> หากเพิ่มรายละเอียดทีหลัง +เพิ่มจุดละ 10฿</li>
+                        <li><span class="bg-brand-main text-white rounded-full w-5 h-5 inline-flex items-center justify-center mr-1 text-[10px]">3</span> โอน = จองคิว ไม่ทำก่อนโอนทุกกรณี</li>
+                        <li><span class="bg-brand-main text-white rounded-full w-5 h-5 inline-flex items-center justify-center mr-1 text-[10px]">4</span> โอนแล้วไม่มียกเลิก/คืนเงิน ทุกกรณี</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div id="page-apps" class="page">
-            <div class="gradient-bg pt-8 px-6 pb-12 relative rounded-b-[30px] shadow-sm">
-                <div class="text-center z-10 relative">
-                    <h1 class="text-xl font-bold text-white drop-shadow-md">แอปพรีเมียม 🍿🎶</h1>
-                    <p class="text-[11px] text-white/90 mt-1">กดเครื่องหมาย <i class="fa-solid fa-plus bg-white text-brand-main rounded-full w-3 h-3 inline-flex justify-center items-center text-[8px]"></i> เพื่อเพิ่มลงตะกร้าได้เลย!</p>
+        <div id="page-shop" class="page">
+            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
+                <div class="text-center mb-2 z-10 relative">
+                    <h1 class="text-3xl font-cute mt-1 text-brand-text drop-shadow-sm">SHOP BEBBY 🛒</h1>
+                    <p class="text-xs text-brand-text mt-1 font-medium">แอพดูหนัง ฟังเพลง ทำงาน ครบจบ!</p>
                 </div>
             </div>
 
-            <div class="px-4 -mt-6 relative z-10 pb-8 space-y-4">
-                
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-brand-light/50">
-                    <h3 class="font-bold text-[#E50914] text-xs mb-2 flex items-center gap-1"><i class="fa-solid fa-tv"></i> Netflix (ห้ามเข้าทีวี)</h3>
-                    <ul class="text-[11px] text-brand-text space-y-2">
-                        <li class="flex justify-between items-center border-b border-brand-light/30 pb-1">
-                            <span>01 วัน</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">15฿</span>
-                                <button onclick="addToCart('Netflix 01 วัน (ห้ามทีวี)', 15)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
+            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-6">
+                <div>
+                    <h2 class="text-lg font-cute text-brand-text mb-3 flex items-center"><i class="fa-solid fa-film mr-2 text-brand-main text-sm"></i> Netflix (รับเคลม)</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-white border border-brand-light rounded-xl p-3 shadow-sm relative">
+                            <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[9px] font-medium px-2 py-1 rounded-full bounce-badge">ยอดนิยม!</div>
+                            <h3 class="text-sm font-medium text-brand-text">Netflix จอเสริม</h3>
+                            <p class="text-[10px] text-brand-subtext mb-2">30 วัน • เข้าได้ทุกอุปกรณ์</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-brand-main text-sm">165 ฿</span>
+                                <button onclick="addToCart('Netflix จอเสริม 30วัน', 165)" class="btn-jelly bg-brand-cream text-brand-text px-2 py-1.5 rounded-lg text-[10px] font-medium"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-brand-light/30 pb-1">
-                            <span>07 วัน</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">45฿</span>
-                                <button onclick="addToCart('Netflix 07 วัน (ห้ามทีวี)', 45)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                        </div>
+                        <div class="bg-white border border-brand-light rounded-xl p-3 shadow-sm">
+                            <h3 class="text-sm font-medium text-brand-text">Netflix 4K</h3>
+                            <p class="text-[10px] text-brand-subtext mb-2">จอส่วนตัว • ปิดเคลมตลอดชีพ</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-brand-main text-sm">รอราคา</span>
+                                <button class="btn-jelly bg-gray-100 text-gray-400 px-2 py-1.5 rounded-lg text-[10px] font-medium"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                        </li>
-                        <li class="flex justify-between items-center pb-1 relative">
-                            <span>30 วัน <span class="text-[8px] bg-[#FF4757] text-white px-1.5 py-0.5 rounded-full ml-1 pop-badge inline-block">ยอดนิยม</span></span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-brand-dark">115฿</span>
-                                <button onclick="addToCart('Netflix 30 วัน (ห้ามทีวี)', 115)" class="bg-brand-main text-white w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-brand-light/50">
-                    <h3 class="font-bold text-[#00DC5A] text-xs mb-2 flex items-center gap-1"><i class="fa-solid fa-play"></i> IQIYI Gold</h3>
-                    <ul class="text-[11px] text-brand-text space-y-2">
-                        <li class="flex justify-between items-center border-b border-brand-light/30 pb-1">
-                            <span>30 วัน (หาร 4)</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">25฿</span>
-                                <button onclick="addToCart('IQIYI Gold 30 วัน (÷4)', 25)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                <div>
+                    <h2 class="text-lg font-cute text-brand-text mb-3 flex items-center"><i class="fa-solid fa-play mr-2 text-green-500 text-sm"></i> IQIYI GOLD</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-white border border-brand-light rounded-xl p-3 shadow-sm relative">
+                            <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[9px] font-medium px-2 py-1 rounded-full bounce-badge">ยอดนิยม!</div>
+                            <h3 class="text-sm font-medium text-brand-text">30 วัน (หาร 2)</h3>
+                            <p class="text-[10px] text-brand-subtext mb-2 line-clamp-1">ห้ามอัพเกรด/ทีวี</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-brand-main text-sm">48 ฿</span>
+                                <button onclick="addToCart('IQIYI GOLD 30วัน(หาร2)', 48)" class="btn-jelly bg-brand-cream text-brand-text px-2 py-1.5 rounded-lg text-[10px] font-medium"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-brand-light/30 pb-1">
-                            <span>30 วัน (หาร 2) <span class="text-[8px] bg-brand-main text-white px-1.5 py-0.5 rounded-full ml-1 pop-badge inline-block">Hit</span></span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-brand-dark">48฿</span>
-                                <button onclick="addToCart('IQIYI Gold 30 วัน (÷2)', 48)" class="bg-brand-main text-white w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                        </div>
+                        <div class="bg-white border border-brand-light rounded-xl p-3 shadow-sm">
+                            <h3 class="text-sm font-medium text-brand-text">30 วัน (ส่วนตัว)</h3>
+                            <p class="text-[10px] text-brand-subtext mb-2 line-clamp-1">ห้ามอัพเกรด/ทีวี</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-brand-main text-sm">90 ฿</span>
+                                <button onclick="addToCart('IQIYI GOLD 30วัน(ส่วนตัว)', 90)" class="btn-jelly bg-brand-cream text-brand-text px-2 py-1.5 rounded-lg text-[10px] font-medium"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
-                        </li>
-                        <li class="flex justify-between items-center pb-1">
-                            <span>ส่วนตัว 30 วัน</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">90฿</span>
-                                <button onclick="addToCart('IQIYI Gold ส่วนตัว 30 วัน', 90)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="bg-white p-3 rounded-2xl shadow-sm border border-brand-light/50">
-                    <h3 class="font-bold text-brand-dark text-xs mb-2 flex items-center gap-1"><i class="fa-solid fa-headphones"></i> ฟังเพลง / YouTube</h3>
-                    <ul class="text-[11px] text-brand-text space-y-2">
-                        <li class="flex justify-between items-center border-b border-brand-light/30 pb-1">
-                            <span>YouTube Prem. (เมลร้าน)</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">35฿</span>
-                                <button onclick="addToCart('YouTube Prem. (เมลร้าน)', 35)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
-                            </div>
-                        </li>
-                        <li class="flex justify-between items-center pb-1">
-                            <span>Spotify ต่อเมล (เมลร้าน)</span>
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold">80฿</span>
-                                <button onclick="addToCart('Spotify ต่อเมล (เมลร้าน)', 80)" class="bg-brand-light text-brand-main w-6 h-6 rounded-full flex justify-center items-center btn-jelly"><i class="fa-solid fa-plus text-[10px]"></i></button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
         </div>
 
         <div id="page-cart" class="page">
-            <div class="gradient-bg pt-8 px-6 pb-12 relative rounded-b-[30px] shadow-sm">
-                <div class="flex justify-between items-center z-10 relative text-white">
-                    <button onclick="switchTab('page-apps', 2)" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center btn-jelly"><i class="fa-solid fa-chevron-left text-sm"></i></button>
-                    <h1 class="text-xl font-bold drop-shadow-md">ตะกร้าสินค้า 🛒</h1>
-                    <div class="w-8"></div>
+            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
+                <div class="text-center mb-2 z-10 relative">
+                    <h1 class="text-3xl font-cute mt-1 text-brand-text drop-shadow-sm">ตะกร้าสินค้า 🛍️</h1>
+                    <p class="text-xs text-brand-text mt-1 font-medium">สรุปยอดชำระเงิน</p>
                 </div>
             </div>
 
-            <div class="px-5 -mt-6 relative z-10 pb-8 flex flex-col min-h-[60vh]">
-                <div id="cart-container" class="flex-grow space-y-2 mb-6">
+            <div class="px-5 -mt-10 relative z-10 pb-8">
+                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5 min-h-[300px] flex flex-col">
+                    
+                    <div id="cart-items" class="space-y-3 flex-1 mt-2">
+                        <div class="text-center text-brand-subtext text-sm mt-10" id="empty-cart-msg">
+                            <i class="fa-solid fa-basket-shopping text-4xl mb-3 opacity-50"></i><br>
+                            ยังไม่มีสินค้าในตะกร้า
+                        </div>
                     </div>
 
-                <div class="bg-white p-4 rounded-2xl shadow-[0_-5px_20px_rgba(255,158,187,0.15)] border border-brand-light mt-auto">
-                    <div class="flex justify-between items-center mb-1 text-sm text-brand-subtext">
-                        <span>จำนวนสินค้า</span>
-                        <span id="summary-qty">0 รายการ</span>
+                    <div class="border-t border-brand-light mt-4 pt-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-base font-medium text-brand-text">ยอดรวมทั้งหมด</span>
+                            <span class="text-2xl font-cute text-brand-main" id="cart-total">0 ฿</span>
+                        </div>
+                        <button onclick="checkout()" class="btn-jelly w-full bg-brand-main text-white font-medium py-3.5 rounded-xl shadow-md text-base">
+                            ยืนยันและชำระเงิน
+                        </button>
                     </div>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-brand-text font-bold text-base">ยอดรวมทั้งสิ้น</span>
-                        <span class="text-brand-main font-extrabold text-xl"><span id="summary-total">0</span> ฿</span>
-                    </div>
-                    
-                    <button onclick="checkoutToLine()" class="w-full bg-brand-main text-white font-bold py-3.5 rounded-xl shadow-lg shadow-pink-200 btn-jelly flex justify-center items-center gap-2 text-sm">
-                        <i class="fa-brands fa-line text-lg"></i> สั่งซื้อผ่านทาง LINE
-                    </button>
-                    <p class="text-center text-[9px] text-brand-subtext mt-2">*ระบบจะสร้างข้อความสรุปรายการไปที่ไลน์แอดมินอัตโนมัติ</p>
                 </div>
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-30 max-w-[430px] mx-auto rounded-t-3xl shadow-[0_-5px_20px_rgba(255,158,187,0.15)]">
+        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 max-w-[430px] mx-auto rounded-t-3xl shadow-[0_-5px_20px_rgba(255,181,167,0.2)]">
             <div class="flex justify-between items-end pb-2">
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-main btn-jelly" onclick="switchTab('page-home', 0)" id="nav-item-0">
+                <div class="btn-jelly flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
                     <i class="fa-solid fa-house text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-bold">หน้าแรก</span>
+                    <span class="text-[11px] font-medium">หน้าแรก</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-main transition-colors btn-jelly" onclick="switchTab('page-apps', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-ticket text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">สินค้า/แอป</span>
+                <div class="btn-jelly flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext" onclick="switchTab('page-shop', 1)" id="nav-item-1">
+                    <i class="fa-solid fa-store text-xl mb-0.5"></i>
+                    <span class="text-[11px] font-medium">สั่งซื้อสินค้า</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-main transition-colors btn-jelly" onclick="switchTab('page-cart', -1)" id="nav-item-cart">
-                    <i class="fa-solid fa-clipboard-list text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">สรุปยอด</span>
+                <div class="btn-jelly flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext relative" onclick="switchTab('page-cart', 2)" id="nav-item-2">
+                    <div class="relative">
+                        <i class="fa-solid fa-basket-shopping text-xl mb-0.5"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-2 bg-red-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-medium hidden bounce-badge">0</span>
+                    </div>
+                    <span class="text-[11px] font-medium">ตะกร้า (<span id="cart-count-text">0</span>)</span>
                 </div>
             </div>
         </div>
@@ -248,183 +304,129 @@
     </div>
 
     <script>
-        // --- ระบบตะกร้าสินค้า (Cart System) ---
+        const emojis = ['🌥️', '⭐️', '🫯', '🫧', '🪼', '🧸', '🩷'];
+        document.addEventListener('click', function(e) {
+            if(e.target.closest('button')) return;
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const el = document.createElement('div');
+            el.className = 'floating-emoji';
+            el.textContent = emoji;
+            el.style.left = e.clientX + 'px';
+            el.style.top = e.clientY + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
+        });
+
+        function switchTab(pageId, navIndex) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+                void page.offsetWidth; 
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+
+            for (let i = 0; i <= 2; i++) {
+                const item = document.getElementById(`nav-item-${i}`);
+                if (i === navIndex) {
+                    item.classList.remove('text-brand-subtext');
+                    item.classList.add('text-brand-main');
+                } else {
+                    item.classList.remove('text-brand-main');
+                    item.classList.add('text-brand-subtext');
+                }
+            }
+        }
+
+        function toggleView(type) {
+            if(type === 'list') {
+                document.getElementById('view-list').classList.remove('hidden');
+                document.getElementById('view-calendar').classList.add('hidden');
+                document.getElementById('btn-view-list').classList.replace('text-brand-subtext', 'text-brand-main');
+                document.getElementById('btn-view-list').classList.replace('bg-transparent', 'bg-white');
+                document.getElementById('btn-view-cal').classList.replace('text-brand-main', 'text-brand-subtext');
+                document.getElementById('btn-view-cal').classList.replace('bg-white', 'bg-transparent');
+            } else {
+                document.getElementById('view-calendar').classList.remove('hidden');
+                document.getElementById('view-list').classList.add('hidden');
+                document.getElementById('btn-view-cal').classList.replace('text-brand-subtext', 'text-brand-main');
+                document.getElementById('btn-view-cal').classList.replace('bg-transparent', 'bg-white');
+                document.getElementById('btn-view-list').classList.replace('text-brand-main', 'text-brand-subtext');
+                document.getElementById('btn-view-list').classList.replace('bg-white', 'bg-transparent');
+            }
+        }
+
         let cart = [];
 
         function addToCart(name, price) {
-            // เช็คว่ามีสินค้านี้ในตะกร้าหรือยัง
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ name: name, price: price, qty: 1 });
-            }
-            
-            // อนิเมชันปุ่มลอย
-            const cartIcon = document.getElementById('floating-cart');
-            cartIcon.classList.remove('cart-bump');
-            void cartIcon.offsetWidth; // trigger reflow
-            cartIcon.classList.add('cart-bump');
-
+            cart.push({ name, price });
             updateCartUI();
-            
-            // สร้างเอฟเฟกต์พลุเล็กๆ ตอนกด
-            createSparkles(true);
+            const badge = document.getElementById('cart-badge');
+            badge.classList.remove('bounce-badge');
+            void badge.offsetWidth; 
+            badge.classList.add('bounce-badge');
+            alert(`เพิ่ม "${name}" ลงตะกร้าแล้ว 💖`);
         }
 
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1); // ลบออกถ้าจำนวนเป็น 0
-            }
+        function removeFromCart(index) {
+            cart.splice(index, 1);
             updateCartUI();
         }
 
         function updateCartUI() {
-            const cartContainer = document.getElementById('cart-container');
-            const badge = document.getElementById('cart-badge');
-            
-            let html = '';
-            let total = 0;
-            let totalQty = 0;
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartCountText = document.getElementById('cart-count-text');
+            const emptyMsg = document.getElementById('empty-cart-msg');
 
-            if (cart.length === 0) {
-                html = `
-                    <div class="bg-white rounded-2xl p-8 text-center border border-brand-light shadow-sm flex flex-col items-center justify-center mt-4">
-                        <div class="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center text-brand-light text-3xl mb-3">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                        </div>
-                        <h3 class="text-brand-dark font-bold text-sm">ตะกร้ายังว่างเปล่า</h3>
-                        <p class="text-[10px] text-brand-subtext mt-1">แวะไปเลือกแอปพรีเมียมก่อนน้า 💖</p>
-                        <button onclick="switchTab('page-apps', 2)" class="mt-4 bg-brand-light text-brand-main px-4 py-2 rounded-full text-xs font-bold btn-jelly">ช้อปเลย</button>
-                    </div>`;
-                badge.classList.add('hidden');
+            cartBadge.textContent = cart.length;
+            cartCountText.textContent = cart.length;
+            if(cart.length > 0) {
+                cartBadge.classList.remove('hidden');
+                emptyMsg.style.display = 'none';
             } else {
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.qty;
-                    total += itemTotal;
-                    totalQty += item.qty;
-                    
-                    html += `
-                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-brand-light/50 flex justify-between items-center">
-                        <div class="flex-grow pr-2">
-                            <div class="text-xs font-bold text-brand-text leading-tight mb-1">${item.name}</div>
-                            <div class="text-[10px] text-brand-main font-bold">${item.price} ฿ / รายการ</div>
-                        </div>
-                        <div class="flex items-center gap-2 bg-brand-cream p-1 rounded-xl border border-brand-light/50">
-                            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-white rounded-lg text-brand-subtext shadow-sm flex items-center justify-center font-bold btn-jelly">-</button>
-                            <span class="text-xs font-bold w-4 text-center text-brand-dark">${item.qty}</span>
-                            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-brand-main text-white rounded-lg shadow-sm flex items-center justify-center font-bold btn-jelly">+</button>
-                        </div>
-                    </div>`;
-                });
-                badge.innerText = totalQty;
-                badge.classList.remove('hidden');
+                cartBadge.classList.add('hidden');
+                emptyMsg.style.display = 'block';
             }
 
-            cartContainer.innerHTML = html;
-            document.getElementById('summary-total').innerText = total;
-            document.getElementById('summary-qty').innerText = totalQty + ' รายการ';
-        }
-
-        function checkoutToLine() {
-            if (cart.length === 0) {
-                alert("ตะกร้าว่างเปล่า กรุณาเลือกสินค้าก่อนนะค้าบ 💖");
-                return;
-            }
-
-            let orderText = "🛒 สรุปรายการสั่งซื้อจาก Bebby Website\n====================\n";
+            cartItemsEl.innerHTML = '';
             let total = 0;
             
             cart.forEach((item, index) => {
-                const itemTotal = item.price * item.qty;
-                orderText += `${index + 1}. ${item.name}\n   จำนวน: ${item.qty} | ราคา: ${itemTotal}฿\n`;
-                total += itemTotal;
+                total += item.price;
+                cartItemsEl.innerHTML += `
+                    <div class="flex justify-between items-center p-3 border border-brand-light rounded-xl bg-brand-light/20">
+                        <div>
+                            <p class="text-sm font-medium text-brand-text">${item.name}</p>
+                            <p class="text-xs font-cute text-brand-main mt-0.5">${item.price} ฿</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="btn-jelly text-red-400 p-2"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
             });
-            
-            orderText += "====================\n";
-            orderText += `💰 ยอดรวมทั้งสิ้น: ${total} ฿\n\n(แจ้งแอดมินเพื่อขอคิวหรือชำระเงินได้เลยค่ะ ✨)`;
-            
-            // เปิดแอป LINE พร้อมส่งข้อความ (เปลี่ยนเป็น URL ของ Line OA ร้านคุณได้เลย)
-            const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(orderText)}`;
-            window.open(lineUrl, '_blank');
+
+            if(cart.length === 0) cartItemsEl.appendChild(emptyMsg);
+            cartTotalEl.textContent = total + ' ฿';
         }
 
-        // --- 💖 Floating Click Effect ---
-        document.body.addEventListener('click', function(e) {
-            if(e.clientY > window.innerHeight - 80) return; 
-            const emojis = ['🌥️', '⭐️', '🫯', '🫧', '🪼', '🧸', '🩷', '✨', '🎀'];
-            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-            const el = document.createElement('div');
-            el.innerText = randomEmoji;
-            el.className = 'floating-emoji';
-            el.style.left = e.clientX + 'px';
-            el.style.top = e.clientY + 'px';
-            document.body.appendChild(el);
-            setTimeout(() => { el.remove(); }, 1000);
-        });
-
-        // --- ✨ Sparkle Effect ตอนเปลี่ยนหน้าหรือกดตะกร้า ---
-        function createSparkles(isCart = false) {
-            const sparkles = ['✨', '🌟', '💫'];
-            for(let i=0; i < (isCart ? 3 : 5); i++) {
-                setTimeout(() => {
-                    const el = document.createElement('div');
-                    el.innerText = sparkles[Math.floor(Math.random() * sparkles.length)];
-                    el.className = 'sparkle-effect';
-                    if (isCart) {
-                        el.style.left = (window.innerWidth - 60 + Math.random() * 40) + 'px';
-                        el.style.top = (window.innerHeight - 100 + Math.random() * 40) + 'px';
-                    } else {
-                        el.style.left = (Math.random() * window.innerWidth) + 'px';
-                        el.style.top = (Math.random() * (window.innerHeight / 2) + 50) + 'px';
-                    }
-                    document.body.appendChild(el);
-                    setTimeout(() => el.remove(), 600);
-                }, i * 50);
+        function checkout() {
+            if(cart.length === 0) {
+                alert('ตะกร้าว่างเปล่าค่ะ เลือกสินค้าก่อนน้า 🧸');
+                return;
             }
-        }
-
-        // --- ระบบสลับแท็บ ---
-        function switchTab(pageId, navIndex) {
-            createSparkles(); 
-
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+            let summary = '📝 สรุปรายการสั่งซื้อ:\n';
+            let total = 0;
+            cart.forEach(item => {
+                summary += `- ${item.name} (${item.price}฿)\n`;
+                total += item.price;
             });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // อัปเดตสีเมนูบาร์ด้านล่าง
-            const navIds = ['nav-item-0', 'nav-item-1', 'nav-item-2', 'nav-item-cart'];
-            navIds.forEach((id, idx) => {
-                const item = document.getElementById(id);
-                if(item) {
-                    item.classList.remove('text-brand-main');
-                    item.classList.add('text-brand-subtext');
-                    item.querySelector('span').classList.replace('font-bold', 'font-medium');
-                }
-            });
-
-            if (navIndex >= 0) {
-                const activeItem = document.getElementById(`nav-item-${navIndex}`);
-                if(activeItem) {
-                    activeItem.classList.remove('text-brand-subtext');
-                    activeItem.classList.add('text-brand-main');
-                    activeItem.querySelector('span').classList.replace('font-medium', 'font-bold');
-                }
-            } else if (pageId === 'page-cart') {
-                const activeItem = document.getElementById('nav-item-cart');
-                if(activeItem) {
-                    activeItem.classList.remove('text-brand-subtext');
-                    activeItem.classList.add('text-brand-main');
-                    activeItem.querySelector('span').classList.replace('font-medium', 'font-bold');
-                }
-            }
+            summary += `\n💰 ยอดรวมทั้งหมด: ${total}฿\n\nโอน = ยอมรับข้อตกลงร้านค้าแล้วค่ะ 💖`;
+            
+            alert(summary);
+            cart = [];
+            updateCartUI();
+            switchTab('page-home', 0);
         }
-
-        // Initialize UI
-        updateCartUI();
     </script>
 </body>
 </html>
