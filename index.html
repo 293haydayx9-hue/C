@@ -22,7 +22,7 @@
                             dark: '#E8A0BF',     
                             main: '#FFB6C1',     /* Pink */
                             light: '#FEF5E7',    /* Cream */
-                            text: '#5C4033',     /* Brown for better contrast with Pink/Cream */
+                            text: '#5C4033',     /* Brown */
                             subtext: '#8C736D'   
                         }
                     },
@@ -50,7 +50,6 @@
             overflow-x: hidden;
         }
         .gradient-bg {
-            /* โทนชมพู ครีม */
             background: linear-gradient(180deg, #FFB6C1 0%, #FEF5E7 100%);
         }
         .stars-bg {
@@ -88,7 +87,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom Scrollbar */
         #template-list::-webkit-scrollbar {
             width: 4px;
         }
@@ -99,7 +97,6 @@
             background: #FFB6C1;
             border-radius: 10px;
         }
-        /* Dashboard Badges top right */
         .header-badges {
             display: flex;
             gap: 8px;
@@ -111,7 +108,6 @@
             background-color: #FFB6C1;
             box-shadow: 0 0 0 2px white;
         }
-        /* Interactive Emoji Animation */
         .click-emoji {
             position: fixed;
             pointer-events: none;
@@ -124,6 +120,17 @@
             0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
             50% { transform: translate(-50%, -100%) scale(1.2); }
             100% { opacity: 0; transform: translate(-50%, -150%) scale(1); }
+        }
+        /* Style ป้ายยอดนิยม */
+        .badge-popular {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(255, 107, 107, 0.4);
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -229,6 +236,7 @@
                         <div id="calendar-container" class="bg-white rounded-xl p-3 shadow-sm border border-brand-light text-xs mx-auto"></div>
                     </div>
                 </div>
+
                 <div class="space-y-3 mb-8">
                     <div class="border border-brand-light rounded-2xl bg-white shadow-sm overflow-hidden">
                         <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text bg-brand-light/50">
@@ -407,7 +415,10 @@
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </div>
                     <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
+                    <div class="w-8 h-8 bg-white/40 rounded-full flex items-center justify-center text-brand-text backdrop-blur-sm cursor-pointer relative" onclick="toggleCart()">
+                        <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        <span id="cart-badge-header" class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full min-w-[16px] text-center shadow-sm">0</span>
+                    </div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
                     <h1 class="font-outfit text-sm font-medium text-brand-subtext">Premium Apps</h1>
@@ -416,20 +427,264 @@
                     </div>
                 </div>
             </div>
+
             <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5">
-                    <p class="text-xs text-brand-subtext text-center mb-4">บริการปลดล็อคแอพพรีเมี่ยม <i class="fa-solid fa-heart text-brand-main ml-1"></i></p>
-                    <div class="space-y-3">
-                        <div class="border border-brand-light rounded-xl p-3 flex items-center justify-between bg-white hover:bg-brand-light/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-brand-light flex items-center justify-center text-brand-main text-lg"><i class="fa-solid fa-crown"></i></div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">บริการแอพพรีเมี่ยมครบชุด</div>
-                                    <div class="text-[10px] text-brand-subtext">สอบถามแอพที่ต้องการได้เลย</div>
-                                </div>
-                            </div>
-                            <button onclick="switchTab('page-contact', 3)" class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-md mt-1 font-bold">สอบถามราคา</button>
+                <div class="bg-brand-text text-white py-2 px-4 rounded-xl text-center text-sm font-bold shadow-md">
+                    <i class="fa-solid fa-film mr-2"></i> หมวดหมู่ แอพดูหนัง / ซีรีย์
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center gap-3 mb-2 border-b border-brand-light pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600 text-xl shadow-sm"><i class="fa-solid fa-n"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-brand-text text-sm">Netflix (เข้าได้ทุกอุปกรณ์)</h3>
+                            <p class="text-[10px] text-red-400 leading-tight">ยกเว้นทีวี • สินค้ารับเคลมกรณีโดนปิด</p>
                         </div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text"><i class="fa-regular fa-clock mr-1 text-[#FFB6C1]"></i> 01 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">15.-</span>
+                                <button onclick="addToCart('nf_1', 'Netflix (ทุกอุปกรณ์ยกเว้นทีวี) 01 วัน', 15)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text"><i class="fa-regular fa-clock mr-1 text-[#FFB6C1]"></i> 07 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">45.-</span>
+                                <button onclick="addToCart('nf_7', 'Netflix (ทุกอุปกรณ์ยกเว้นทีวี) 07 วัน', 45)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-red-50 p-2 rounded-lg border border-red-100 relative">
+                            <span class="absolute -top-2.5 left-2 badge-popular animate-bounce">ยอดนิยม</span>
+                            <span class="text-xs font-bold text-red-600"><i class="fa-regular fa-clock mr-1"></i> 30 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-red-600">115.-</span>
+                                <button onclick="addToCart('nf_30', 'Netflix (ทุกอุปกรณ์ยกเว้นทีวี) 30 วัน', 115)" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center gap-3 mb-2 border-b border-brand-light pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 text-xl shadow-sm"><i class="fa-solid fa-tv"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-brand-text text-sm">Netflix TV</h3>
+                            <p class="text-[10px] text-red-400 leading-tight">เข้าได้เฉพาะทีวีเท่านั้น • รับเคลมกรณีโดนปิด</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text"><i class="fa-regular fa-clock mr-1 text-gray-400"></i> 01 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">20.-</span>
+                                <button onclick="addToCart('nftv_1', 'Netflix TV 01 วัน', 20)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-red-50 p-2 rounded-lg border border-red-100 relative">
+                            <span class="absolute -top-2.5 left-2 badge-popular animate-bounce">ยอดนิยม</span>
+                            <span class="text-xs font-bold text-red-600"><i class="fa-regular fa-clock mr-1"></i> 07 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-red-600">55.-</span>
+                                <button onclick="addToCart('nftv_7', 'Netflix TV 07 วัน', 55)" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text"><i class="fa-regular fa-clock mr-1 text-gray-400"></i> 30 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">145.-</span>
+                                <button onclick="addToCart('nftv_30', 'Netflix TV 30 วัน', 145)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center gap-3 mb-2 border-b border-brand-light pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#FEF5E7] flex items-center justify-center text-brand-text text-xl shadow-sm"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-brand-text text-sm">Netflix จอเสริม</h3>
+                            <p class="text-[10px] text-red-400 leading-tight">เข้าได้ทุกอุปกรณ์ • รับเคลมกรณีโดนปิด</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">01 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">35.-</span>
+                                <button onclick="addToCart('nfsub_1', 'Netflix จอเสริม 01 วัน', 35)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">07 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">65.-</span>
+                                <button onclick="addToCart('nfsub_7', 'Netflix จอเสริม 07 วัน', 65)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">30 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">165.-</span>
+                                <button onclick="addToCart('nfsub_30', 'Netflix จอเสริม 30 วัน', 165)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-white text-lg shadow-sm font-bold">4K</div>
+                            <div>
+                                <h3 class="font-bold text-brand-text text-sm">Netflix 4K จอส่วนตัว</h3>
+                                <p class="text-[9px] text-red-400 mt-0.5 leading-tight">ปิดเคลมตลอดการใช้งาน<br>โดนปิดรับเคลมตลอดการใช้งาน (รอเคลมไม่เกิน 48 ชม.)</p>
+                            </div>
+                        </div>
+                        <button onclick="switchTab('page-contact', 3)" class="text-[10px] bg-brand-light text-brand-text px-3 py-1.5 rounded-lg font-bold border border-brand-main/30 hover:bg-[#FDE2CD]">สอบถาม</button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center gap-3 mb-2 border-b border-brand-light pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 text-xl shadow-sm font-bold">iQ</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-brand-text text-sm">IQIYI GOLD</h3>
+                            <p class="text-[10px] text-red-400 leading-tight">ห้ามกดอัพเกรด ห้ามเข้าทีวี ร้านไม่รับเคลม</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">7 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷4)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">15.-</span>
+                                <button onclick="addToCart('iqg_7_4', 'IQIYI GOLD 7 วัน (÷4)', 15)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">30 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷4)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">25.-</span>
+                                <button onclick="addToCart('iqg_30_4', 'IQIYI GOLD 30 วัน (÷4)', 25)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">30 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷3)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">35.-</span>
+                                <button onclick="addToCart('iqg_30_3', 'IQIYI GOLD 30 วัน (÷3)', 35)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-red-50 p-2 rounded-lg border border-red-100 relative">
+                            <span class="absolute -top-2.5 left-2 badge-popular animate-bounce">ยอดนิยม</span>
+                            <span class="text-xs font-bold text-red-600">30 วัน <span class="text-[9px] text-red-400 ml-1">(÷2)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-red-600">48.-</span>
+                                <button onclick="addToCart('iqg_30_2', 'IQIYI GOLD 30 วัน (÷2)', 48)" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">ส่วนตัว 30 วัน</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">90.-</span>
+                                <button onclick="addToCart('iqg_30_pvt', 'IQIYI GOLD ส่วนตัว 30 วัน', 90)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">90 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷4)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">70.-</span>
+                                <button onclick="addToCart('iqg_90_4', 'IQIYI GOLD 90 วัน (÷4)', 70)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-red-50 p-2 rounded-lg border border-red-100 relative">
+                            <span class="absolute -top-2.5 left-2 badge-popular animate-bounce">ยอดนิยม</span>
+                            <span class="text-xs font-bold text-red-600">90 วัน <span class="text-[9px] text-red-400 ml-1">(÷2)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-red-600">145.-</span>
+                                <button onclick="addToCart('iqg_90_2', 'IQIYI GOLD 90 วัน (÷2)', 145)" class="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">365 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷4)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">200.-</span>
+                                <button onclick="addToCart('iqg_365_4', 'IQIYI GOLD 365 วัน (÷4)', 200)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-app border border-brand-light p-4">
+                    <div class="flex items-center gap-3 mb-2 border-b border-brand-light pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-50 flex items-center justify-center text-yellow-600 text-xl shadow-sm font-bold">iQ<i class="fa-solid fa-star text-[10px] ml-0.5"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-brand-text text-sm">IQIYI พรีเมียม</h3>
+                            <p class="text-[10px] text-green-600 leading-tight">แพ็คสูงสุด เข้าทีวีได้</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">30 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷5)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">50.-</span>
+                                <button onclick="addToCart('iqp_30_5', 'IQIYI พรีเมียม 30 วัน (÷5)', 50)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center bg-brand-light/30 p-2 rounded-lg">
+                            <span class="text-xs font-medium text-brand-text">30 วัน <span class="text-[9px] text-brand-subtext ml-1">(÷4)</span></span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-brand-main">60.-</span>
+                                <button onclick="addToCart('iqp_30_4', 'IQIYI พรีเมียม 30 วัน (÷4)', 60)" class="w-7 h-7 bg-brand-main text-white rounded-full flex items-center justify-center hover:bg-[#E8A0BF] text-xs shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="toggleCart()" class="w-full bg-brand-text hover:bg-[#4A332A] text-white font-bold py-3.5 rounded-xl shadow-md flex justify-center items-center gap-2 transition-colors mt-4">
+                    <i class="fa-solid fa-basket-shopping"></i> เปิดตะกร้าสินค้าของฉัน
+                </button>
+
+            </div>
+        </div>
+
+        <div id="page-checkout" class="page">
+            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-goodnotes', 2)">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </div>
+                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
+                    <div class="w-8"></div>
+                </div>
+                <div class="text-center mb-2 z-10 relative">
+                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">Checkout</h1>
+                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
+                        สรุปรายการสั่งซื้อ <i class="fa-solid fa-receipt ml-2 text-white drop-shadow-sm"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
+                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6">
+                    <h3 class="text-sm font-bold text-brand-text mb-3 border-b border-brand-light pb-2">รายการของคุณ</h3>
+                    
+                    <div id="checkout-items" class="space-y-2 mb-4 max-h-[300px] overflow-y-auto pr-2"></div>
+                    
+                    <div class="border-t border-brand-light pt-3 mb-4">
+                        <div class="flex justify-between items-center text-brand-text font-bold">
+                            <span>ยอดรวมทั้งสิ้น</span>
+                            <span id="checkout-total" class="text-xl text-brand-main">0.-</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#FEF5E7] rounded-xl p-4 text-center border border-[#FFB6C1]/30 mb-4">
+                        <p class="text-[11px] text-brand-subtext mb-3">กดส่งบิลเพื่อดำเนินการสั่งซื้อและชำระเงินผ่านแชท Line ค่ะ</p>
+                        <button onclick="sendBillToChat()" class="w-full bg-[#00B900] text-white font-bold py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 text-sm hover:bg-green-600 transition-colors">
+                            <i class="fa-brands fa-line text-lg"></i> ยืนยันและส่งบิลทาง Line
+                        </button>
                     </div>
                 </div>
             </div>
@@ -530,10 +785,38 @@
             </div>
         </div>
 
+        <div id="cart-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex-col justify-end max-w-[430px] mx-auto opacity-0 transition-opacity duration-300">
+            <div id="cart-modal-content" class="bg-white rounded-t-3xl h-[70vh] flex flex-col transform translate-y-full transition-transform duration-300 shadow-2xl">
+                <div class="flex justify-between items-center p-5 border-b border-brand-light">
+                    <div class="font-bold text-brand-text flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-[#FEF5E7] flex items-center justify-center text-brand-main">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        ตะกร้าสินค้าของฉัน
+                    </div>
+                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 cursor-pointer hover:bg-gray-200" onclick="toggleCart()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3 bg-[#FAFAFA]">
+                    </div>
+                
+                <div class="p-5 border-t border-brand-light bg-white rounded-t-2xl shadow-[0_-5px_15px_rgba(0,0,0,0.05)] z-10">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-bold text-brand-subtext">ยอดชำระทั้งหมด</span>
+                        <span id="cart-modal-total" class="text-2xl font-bold text-brand-main">0.-</span>
+                    </div>
+                    <button onclick="goToCheckout()" class="w-full bg-brand-text hover:bg-[#4A332A] text-white font-bold py-3.5 rounded-xl shadow-lg flex justify-center items-center gap-2 transition-colors">
+                        ดำเนินการสั่งซื้อและชำระเงิน <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // คงโครงสร้างข้อมูลเดิมไว้
         const templates = {
             bright: [
                 { name: "✨ ตัวอย่างลายน้ำ 1", url: "https://drive.google.com/drive/folders/1x3qtzrZDN9xQmhgP2O4LZGkTSUWg92kG" },
@@ -595,37 +878,27 @@
             const container = document.getElementById('template-links-container');
             const titleEl = document.getElementById('template-title');
             const listEl = document.getElementById('template-list');
-
             if (!container || !titleEl || !listEl) return;
-
             titleEl.innerHTML = titles[cat];
             listEl.innerHTML = '';
-
             templates[cat].forEach(tmpl => {
                 const a = document.createElement('a');
                 a.href = tmpl.url;
                 a.target = '_blank';
                 a.className = 'block w-full p-3 mb-2 rounded-xl bg-brand-light/50 border border-brand-light hover:bg-[#FDE2CD] hover:border-[#FFB6C1] transition-colors text-xs font-medium text-brand-text flex justify-between items-center group';
-                a.innerHTML = `
-                    <span>${tmpl.name}</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-brand-main opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                `;
+                a.innerHTML = `<span>${tmpl.name}</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-brand-main opacity-50 group-hover:opacity-100 transition-opacity"></i>`;
                 listEl.appendChild(a);
             });
-
             container.classList.remove('hidden');
             container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // ==================== สคริปต์ใหม่ตามบรีฟ ====================
-
-        // ฟังก์ชันสลับมุมมอง คิวงาน / ปฏิทิน
+        // --- ระบบสลับมุมมอง รายการ/ปฏิทิน ---
         function toggleQueueView(view) {
             const listBtn = document.getElementById('btn-list-view');
             const calBtn = document.getElementById('btn-cal-view');
             const listView = document.getElementById('queue-list-view');
             const calView = document.getElementById('queue-cal-view');
-
             if(view === 'list') {
                 listBtn.className = 'bg-brand-main text-white px-5 py-1.5 rounded-full text-xs font-semibold shadow-sm transition-all duration-300';
                 calBtn.className = 'text-brand-subtext hover:text-brand-text px-5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300';
@@ -636,32 +909,24 @@
                 listBtn.className = 'text-brand-subtext hover:text-brand-text px-5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300';
                 listView.classList.add('hidden');
                 calView.classList.remove('hidden');
-                renderCalendar(); // โหลดปฏิทินแบบเรียลไทม์
+                renderCalendar(); 
             }
         }
 
-        // ฟังก์ชันสร้างปฏิทินปัจจุบัน (Real-time)
         function renderCalendar() {
             const container = document.getElementById('calendar-container');
-            if(container.innerHTML !== '') return; // สร้างแล้วไม่ต้องสร้างซ้ำ
-
+            if(container.innerHTML !== '') return; 
             const today = new Date();
             const currentMonth = today.getMonth();
             const currentYear = today.getFullYear();
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
             const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
-
             const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
             
             let html = `<div class="font-bold text-brand-text mb-3 text-center text-sm border-b border-brand-light pb-2"><i class="fa-regular fa-calendar text-[#FFB6C1] mr-1"></i> ${monthNames[currentMonth]} ${currentYear}</div>`;
-            html += `<div class="grid grid-cols-7 gap-1 text-center font-bold text-[10px] text-brand-subtext mb-2">
-                        <div class="text-red-400">อา</div><div>จ</div><div>อ</div><div>พ</div><div>พฤ</div><div>ศ</div><div class="text-[#FFB6C1]">ส</div>
-                     </div>`;
+            html += `<div class="grid grid-cols-7 gap-1 text-center font-bold text-[10px] text-brand-subtext mb-2"><div class="text-red-400">อา</div><div>จ</div><div>อ</div><div>พ</div><div>พฤ</div><div>ศ</div><div class="text-[#FFB6C1]">ส</div></div>`;
             html += `<div class="grid grid-cols-7 gap-1 text-center text-xs">`;
-
-            for (let i = 0; i < firstDayIndex; i++) {
-                html += `<div></div>`;
-            }
+            for (let i = 0; i < firstDayIndex; i++) { html += `<div></div>`; }
             for (let i = 1; i <= daysInMonth; i++) {
                 if (i === today.getDate()) {
                     html += `<div class="bg-brand-main text-white rounded-md py-1.5 font-bold shadow-sm relative">${i}<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-green-300 rounded-full"></span></div>`;
@@ -673,23 +938,143 @@
             container.innerHTML = html;
         }
 
-        // เอฟเฟกต์ลูกเล่นจิ้มจอ (สุ่มอีโมจิ)
+        // --- เอฟเฟกต์ลูกเล่นจิ้มจอ ---
         const clickEmojis = ['🌥️', '⭐️', '🫯', '🫧', '🪼', '🧸', '🩷'];
         document.addEventListener('click', function(e) {
-            // ไม่ให้เกิด effect ถ้าคลิกปุ่มหรือลิงก์ เพื่อไม่ให้รกจนเกินไป (ปรับแต่งได้)
             if(e.target.closest('button') || e.target.closest('a')) return;
-
             const emoji = document.createElement('div');
             emoji.innerText = clickEmojis[Math.floor(Math.random() * clickEmojis.length)];
             emoji.className = 'click-emoji';
             emoji.style.left = e.clientX + 'px';
             emoji.style.top = e.clientY + 'px';
             document.body.appendChild(emoji);
-
-            setTimeout(() => {
-                emoji.remove();
-            }, 1000);
+            setTimeout(() => { emoji.remove(); }, 1000);
         });
+
+        // ==================== ระบบตะกร้าสินค้าแบบใหม่ ====================
+        let cart = []; 
+
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ id, name, price, qty: 1 });
+            }
+            updateCartUI();
+            
+            // เอฟเฟกต์เด้งเตือนตรงปุ่ม Header ตะกร้า
+            const badge = document.getElementById('cart-badge-header');
+            badge.classList.remove('animate-bounce');
+            void badge.offsetWidth; // trigger reflow
+            badge.classList.add('animate-bounce');
+        }
+
+        function removeFromCart(id) {
+            const index = cart.findIndex(item => item.id === id);
+            if(index !== -1) {
+                if(cart[index].qty > 1) {
+                    cart[index].qty -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            // อัปเดต Badge บน Header
+            document.getElementById('cart-badge-header').innerText = totalQty;
+            document.getElementById('cart-modal-total').innerText = totalPrice.toLocaleString() + '.-';
+            
+            const container = document.getElementById('cart-items-container');
+            if(cart.length === 0) {
+                container.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-12 text-brand-subtext opacity-60">
+                    <i class="fa-solid fa-basket-shopping text-5xl mb-3"></i>
+                    <p class="text-sm font-medium">ยังไม่มีสินค้าในตะกร้า</p>
+                </div>`;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex justify-between items-center p-3 border border-brand-light rounded-2xl bg-white shadow-sm">
+                        <div class="flex-1 pr-2">
+                            <div class="text-[11px] font-bold text-brand-text mb-0.5">${item.name}</div>
+                            <div class="text-[10px] text-brand-main font-semibold">${item.price} ฿</div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-[#FEF5E7] p-1 rounded-full border border-brand-light">
+                            <button onclick="removeFromCart('${item.id}')" class="w-6 h-6 bg-white text-brand-text rounded-full flex items-center justify-center text-xs font-bold shadow-sm">-</button>
+                            <span class="text-xs font-bold w-4 text-center text-brand-text">${item.qty}</span>
+                            <button onclick="addToCart('${item.id}', '${item.name}', ${item.price})" class="w-6 h-6 bg-brand-main text-white rounded-full flex items-center justify-center text-xs font-bold shadow-sm">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            const content = document.getElementById('cart-modal-content');
+            
+            if(modal.classList.contains('hidden')) {
+                updateCartUI();
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('translate-y-full');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                content.classList.add('translate-y-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function goToCheckout() {
+            if(cart.length === 0) {
+                alert("กรุณาเลือกสินค้าอย่างน้อย 1 รายการค่ะ");
+                return;
+            }
+            toggleCart(); 
+            switchTab('page-checkout', -1); 
+            renderCheckout();
+        }
+
+        function renderCheckout() {
+            const container = document.getElementById('checkout-items');
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            container.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center text-xs py-2.5 border-b border-dashed border-brand-light/50">
+                    <div class="flex-1 pr-3">
+                        <span class="font-bold text-brand-main mr-1">${item.qty}x</span> 
+                        <span class="text-brand-text">${item.name}</span>
+                    </div>
+                    <span class="font-bold text-brand-text whitespace-nowrap">${(item.price * item.qty).toLocaleString()}.-</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('checkout-total').innerText = totalPrice.toLocaleString() + '.-';
+        }
+
+        function sendBillToChat() {
+            let billText = "🧾 สรุปรายการสั่งซื้อ (Bebby)\n";
+            billText += "------------------------\n";
+            cart.forEach(item => {
+                billText += `${item.qty}x ${item.name} (${item.price * item.qty}.-)\n`;
+            });
+            billText += "------------------------\n";
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            billText += `ยอดโอนทั้งหมด: ${totalPrice.toLocaleString()} บาท\n`;
+            
+            const encodedText = encodeURIComponent(billText);
+            const lineUrl = `https://line.me/R/msg/text/?${encodedText}`;
+            window.open(lineUrl, '_blank');
+        }
     </script>
 </body>
 </html>
