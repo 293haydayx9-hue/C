@@ -20,10 +20,10 @@
                     colors: {
                         brand: {
                             dark: '#D9779B',     
-                            main: '#E8B4B8', /* ชมพู */     
-                            light: '#FDF6F5', /* ครีม */   
-                            text: '#6B4C3A', /* น้ำตาลเข้ม */    
-                            subtext: '#8C6B5D' /* น้ำตาลอ่อน */  
+                            main: '#E8B4B8',     
+                            light: '#FDF6F5',    
+                            text: '#6B4C3A',     
+                            subtext: '#8C6B5D'   
                         }
                     },
                     boxShadow: {
@@ -35,84 +35,18 @@
         }
     </script>
     <style>
-        body {
-            background-color: #FAFAFA;
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-        }
-        .app-container {
-            max-width: 430px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background-color: #FDF6F5;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            overflow-x: hidden;
-        }
-        .gradient-bg {
-            background: linear-gradient(180deg, #E8B4B8 0%, #fbe4e7 100%);
-        }
-        .stars-bg {
-            background-image: 
-                radial-gradient(circle at 15% 30%, white 1px, transparent 1.5px),
-                radial-gradient(circle at 85% 20%, white 1px, transparent 1.5px),
-                radial-gradient(circle at 30% 60%, white 2px, transparent 2.5px),
-                radial-gradient(circle at 75% 70%, white 1.5px, transparent 2px);
-            background-size: 100% 100%;
-        }
-        .hero-image-placeholder {
-            width: 190px;
-            height: 190px;
-            background-color: white;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4);
-            margin: 0 auto;
-            position: relative;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease-out forwards;
-            padding-bottom: 90px;
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Custom Scrollbar for template list */
-        #template-list::-webkit-scrollbar {
-            width: 4px;
-        }
-        #template-list::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        #template-list::-webkit-scrollbar-thumb {
-            background: #E8B4B8;
-            border-radius: 10px;
-        }
-        
-        /* Effect อีโมจิลอยตอนคลิก */
-        .floating-emoji {
-            position: absolute;
-            pointer-events: none;
-            z-index: 9999;
-            animation: floatUp 1s ease-out forwards;
-            font-size: 24px;
-            transform: translate(-50%, -50%);
-        }
-        @keyframes floatUp {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
-            50% { transform: translate(-50%, -100%) scale(1.2); opacity: 1; }
-            100% { transform: translate(-50%, -150%) scale(1); opacity: 0; }
-        }
+        body { background-color: #FAFAFA; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
+        .app-container { max-width: 430px; margin: 0 auto; min-height: 100vh; background-color: #FDF6F5; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; }
+        .gradient-bg { background: linear-gradient(180deg, #E8B4B8 0%, #fbe4e7 100%); }
+        .stars-bg { background-image: radial-gradient(circle at 15% 30%, white 1px, transparent 1.5px), radial-gradient(circle at 85% 20%, white 1px, transparent 1.5px), radial-gradient(circle at 30% 60%, white 2px, transparent 2.5px), radial-gradient(circle at 75% 70%, white 1.5px, transparent 2px); background-size: 100% 100%; }
+        .hero-image-placeholder { width: 190px; height: 190px; background-color: white; border-radius: 50%; border: 4px solid white; box-shadow: 0 10px 20px rgba(232, 180, 184, 0.4); margin: 0 auto; position: relative; z-index: 20; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .page { display: none; animation: fadeIn 0.3s ease-out forwards; padding-bottom: 100px; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .floating-emoji { position: absolute; pointer-events: none; z-index: 9999; animation: floatUp 1s ease-out forwards; font-size: 24px; transform: translate(-50%, -50%); }
+        @keyframes floatUp { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; } 50% { transform: translate(-50%, -100%) scale(1.2); opacity: 1; } 100% { transform: translate(-50%, -150%) scale(1); opacity: 0; } }
+        .rich-menu-item { border-bottom: 1px dashed #E8B4B8; padding: 12px 0; }
+        .rich-menu-item:last-child { border-bottom: none; }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -123,141 +57,61 @@
             <div class="gradient-bg pt-10 px-6 pb-24 relative rounded-b-[40px]">
                 <div class="stars-bg absolute inset-0 opacity-40"></div>
                 <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-brand-text font-outfit text-2xl font-bold tracking-wide flex flex-col brand-title">
+                    <div class="text-brand-text font-outfit text-2xl font-bold tracking-wide flex flex-col">
                         BEBBY
                         <span class="text-xs font-medium tracking-widest text-brand-subtext mt-1">Mobile Shop</span>
                     </div>
-                    <div class="relative">
-                        <i class="fa-regular fa-bell text-brand-text text-xl"></i>
-                        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-main rounded-full border-2 border-white"></span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-300"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-300"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-300"></div>
                     </div>
                 </div>
                 
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-lg font-semibold text-brand-text flex justify-center items-center">
-                        Welcome to my shop 
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 inline-block text-white ml-1 drop-shadow-sm"><path d="M12 10.5C11.5 8 9 6 6 6 3 6 2 8 2 10.5 2 13 5 14 8 13.5L10 14.5C9.5 17 8 20 6 21 8.5 21 11 19 12 16 13 19 15.5 21 18 21 16 20 14.5 17 14 14.5L16 13.5C19 14 22 13 22 10.5 22 8 21 6 18 6 15 6 12.5 8 12 10.5Z" /></svg>
-                    </h1>
-                    <p class="text-sm font-medium text-brand-subtext mt-1">รับออกแบบทุกอย่างบนโลก งานเขียน การบ้าน</p>
+                    <h1 class="text-lg font-semibold text-brand-text">Welcome to my shop 🎀</h1>
+                    <p class="text-sm font-medium text-brand-subtext mt-1">รับออกแบบทุกอย่าง งานเขียน การบ้าน ครบวงจร</p>
                 </div>
                 
                 <div class="hero-image-placeholder mt-4 mb-[-80px]">
-                    <img src="https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg" alt="Bebby Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23E8B4B8\'><path d=\'M16 6V4C16 1.79 14.21 0 12 0C9.79 0 8 1.79 8 4V6H2V22C2 23.1 2.9 24 4 24H20C21.1 24 22 23.1 22 22V6H16ZM10 4C10 2.9 10.9 2 12 2C13.1 2 14 2.9 14 4V6H10V4ZM20 22H4V8H20V22Z\'/></svg>'">
+                    <img src="https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg" alt="Logo" class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <div class="bg-white rounded-t-[35px] -mt-16 relative z-10 pt-10 px-5 shadow-app pb-6">
-                
-                <div id="queue-status" class="mt-12 mb-6 bg-brand-light/30 p-4 rounded-2xl border-2 border-dashed border-brand-main shadow-sm">
+            <div class="bg-white rounded-t-[35px] -mt-16 relative z-10 pt-12 px-5 shadow-app pb-6">
+                <div class="mb-8 p-4 rounded-2xl border-2 border-dashed border-brand-main bg-brand-light/30">
                     <div class="flex justify-between items-center mb-3">
-                        <h3 class="font-bold text-sm text-brand-text flex items-center gap-2">
-                            <i class="fa-solid fa-list-check text-brand-main"></i> Status Bar & คิวงาน
-                        </h3>
-                        <button onclick="toggleCalendarView()" class="text-[10px] bg-white border border-brand-main text-brand-text px-3 py-1.5 rounded-full shadow-sm hover:bg-brand-light transition flex items-center gap-1">
-                            สลับมุมมอง 🤎
-                        </button>
+                        <span class="text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-brand-main"></i> Status & คิวงาน</span>
+                        <button onclick="toggleCalendarView()" class="text-[10px] bg-white px-3 py-1 rounded-full border border-brand-main font-bold">ปฏิทินงาน 🤎</button>
                     </div>
-
-                    <div id="view-list" class="space-y-2 block">
-                        <div class="bg-white p-2.5 rounded-xl text-xs border border-brand-light flex justify-between items-center border-l-4 border-l-brand-main shadow-sm">
-                            <span class="text-brand-text font-medium">📝 คิว 1 : งานออกแบบป้ายมินิมอล</span>
-                            <span class="text-[9px] bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full font-bold">กำลังดำเนินการ</span>
-                        </div>
-                        <div class="bg-white p-2.5 rounded-xl text-xs border border-brand-light flex justify-between items-center border-l-4 border-l-brand-main shadow-sm">
-                            <span class="text-brand-text font-medium">📝 คิว 2 : สไลด์นำเสนอ</span>
-                            <span class="text-[9px] bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-bold">รอคิว</span>
+                    <div id="view-list" class="space-y-2">
+                        <div class="bg-white p-2 rounded-xl text-[11px] border border-brand-light flex justify-between items-center shadow-sm">
+                            <span>📝 คิวปัจจุบัน : งานออกแบบป้าย</span>
+                            <span class="text-brand-main font-bold">กำลังทำ..</span>
                         </div>
                     </div>
-
                     <div id="view-calendar" class="hidden bg-white p-3 rounded-xl border border-brand-light shadow-sm">
-                        <div id="cal-month-year" class="text-center font-bold text-brand-main mb-2 text-sm"></div>
-                        <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-brand-subtext mb-1">
-                            <div>อา</div><div>จ</div><div>อ</div><div>พ</div><div>พฤ</div><div>ศ</div><div>ส</div>
-                        </div>
-                        <div id="cal-grid" class="grid grid-cols-7 gap-1 text-center text-[11px] text-brand-text font-medium">
-                            </div>
+                        <div id="cal-month-year" class="text-center font-bold text-brand-main mb-2 text-xs"></div>
+                        <div id="cal-grid" class="grid grid-cols-7 gap-1 text-[10px] text-center"></div>
                     </div>
                 </div>
 
-                <div class="text-center mb-4">
-                    <span class="text-brand-main font-semibold text-sm tracking-wide bg-brand-light px-4 py-1.5 rounded-full inline-block border border-brand-main/20">
-                        Fast Menu
-                        <svg class="w-3.5 h-3.5 inline-block text-brand-main ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-                    </span>
-                </div>
-                
                 <div class="grid grid-cols-4 gap-3 mb-8">
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-services', 1)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รับทำ<br>เว็บไซต์</span>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="switchTab('page-services', 1)">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl border border-brand-main/10 shadow-sm"><i class="fa-solid fa-palette"></i></div>
+                        <span class="text-[10px] text-brand-text font-medium text-center">ริชเมนู<br>ราคา</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-goodnotes', 2)">
-                        <div class="w-14 h-14 rounded-2xl bg-[#F5ECE9] group-hover:bg-[#EFE5E2] flex items-center justify-center text-[#8A6F65] text-xl shadow-sm border border-[#EFE5E2] transition-colors">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">แอป<br>Goodnotes</span>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="switchTab('page-website', -1)">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl border border-brand-main/10 shadow-sm"><i class="fa-solid fa-laptop-code"></i></div>
+                        <span class="text-[10px] text-brand-text font-medium text-center">ทำเว็บ<br>เขียนโค้ด</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-course', -1)">
-                        <div class="w-14 h-14 rounded-2xl bg-[#EFE5E2] group-hover:bg-[#E0D4CF] flex items-center justify-center text-brand-text text-xl shadow-sm border border-[#E0D4CF] transition-colors">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">คอร์ส<br>สอนเว็บ</span>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="switchTab('page-goodnotes', 2)">
+                        <div class="w-14 h-14 rounded-2xl bg-[#F5ECE9] flex items-center justify-center text-[#8A6F65] text-xl border border-[#EFE5E2] shadow-sm"><i class="fa-solid fa-book-open"></i></div>
+                        <span class="text-[10px] text-brand-text font-medium text-center">แอป<br>GN</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-contact', 3)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors">
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">ช่องทาง<br>ติดต่อ</span>
-                    </div>
-                </div>
-
-                <div class="space-y-3 mb-8">
-                    <div class="border border-brand-light rounded-2xl bg-white shadow-sm overflow-hidden">
-                        <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-scroll text-brand-main"></i> กติกาการจ้างงาน</span>
-                        </div>
-                        <div class="px-4 py-3 text-xs text-brand-subtext bg-brand-light/40 border-t border-brand-light">
-                            <ul class="space-y-2 pb-2">
-                                <li>1. สรุปงานก่อนเริ่มทุกครั้ง หากมีเพิ่มทีหลังอาจมีค่าใช้จ่ายเพิ่ม</li>
-                                <li>2. การโอนเงิน: แบบ 50% และ 100% (ยอด 300฿ ขึ้นไปเลือก 50% ได้)</li>
-                                <li class="pl-3">- โอน 100% = ส่งงานทันที</li>
-                                <li class="pl-3">- โอน 50% = ส่งตัวอย่างก่อน</li>
-                                <li>3. ยกเลิกงาน: <span class="text-red-400 font-medium">มัดจำไม่คืนทุกกรณี</span></li>
-                                <li class="text-red-400 font-bold mt-2 pt-2 border-t border-white"><i class="fa-solid fa-ban"></i> ไม่รับงานก่อนโอน</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="border border-brand-light rounded-2xl bg-white shadow-sm overflow-hidden">
-                        <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-list-ol text-brand-main"></i> ขั้นตอนการสั่ง & เงื่อนไข</span>
-                        </div>
-                        <div class="px-4 py-3 text-xs text-brand-subtext bg-brand-light/40 border-t border-brand-light">
-                            <p class="font-bold text-brand-text mb-2">โอน = ลูกค้ายอมรับข้อตกลงและยินดีให้ปรับ 999฿ ❌ ไม่รับโทนสีที่ขัดกัน</p>
-                            <ul class="space-y-2 pb-2">
-                                <li>• ตามปกติรองาน 1 - 4 วัน แล้วแต่คิว</li>
-                                <li>• งานเร่ง *2 ของราคา (ภายใน 24 ชม. +50฿ / ภายใน 3-4 ชม. +100฿)</li>
-                                <li>• ไม่รับทำงานเรฟร้านอื่น หากพบนำงานร้านไปเรฟร้านอื่น ปรับ 999฿</li>
-                                <li>• บรีฟเป็นข้อความเท่านั้น (ไม่รับรูป/อักษรพิเศษ) เช็คบรีฟให้ครบถ้วน</li>
-                                <li>• แก้ได้ 2 ครั้ง แจ้งให้ครบในครั้งเดียว (แก้เพิ่ม +10฿/จุด, แก้สไตล์ไม่ได้แจ้ง +50฿)</li>
-                                <li>• ให้รายละเอียดหลังโอนภายใน 2 สัปดาห์ (เกินกำหนดตัดคิวไม่คืนเงิน)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="border border-[#EFE5E2] rounded-2xl bg-white shadow-sm overflow-hidden">
-                        <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-circle-question text-brand-text"></i> Q&A สำคัญ</span>
-                        </div>
-                        <div class="px-4 py-3 text-xs text-brand-text bg-[#F5ECE9]/50 border-t border-[#EFE5E2]">
-                            <ul class="space-y-2 pb-2">
-                                <li><i class="fa-solid fa-check text-brand-main mr-1"></i> แจ้งรายละเอียดงานก่อนทำทุกครั้ง</li>
-                                <li><i class="fa-solid fa-check text-brand-main mr-1"></i> ยกเลิกงานหลังโอน = ไม่คืนเงินทุกกรณี</li>
-                                <li><i class="fa-solid fa-check text-brand-main mr-1"></i> งานทุกงานใช้เองคนเดียวเท่านั้น ห้ามลงกลุ่มตัวแทน</li>
-                            </ul>
-                        </div>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="switchTab('page-contact', 3)">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl border border-brand-main/10 shadow-sm"><i class="fa-regular fa-comment-dots"></i></div>
+                        <span class="text-[10px] text-brand-text font-medium text-center">ติดต่อ<br>เรา</span>
                     </div>
                 </div>
             </div>
@@ -266,314 +120,125 @@
         <div id="page-services" class="page">
             <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
+                    <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-main shadow-sm cursor-pointer" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="text-brand-text font-outfit text-xl font-bold">BEBBY DESIGN</div>
                     <div class="w-8"></div>
                 </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">All Services</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        บริการทั้งหมด 
-                        <svg class="w-5 h-5 inline-block text-white ml-1 drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                    </div>
+                <div class="text-center relative z-10">
+                    <span class="bg-white/40 text-brand-text text-[10px] font-bold px-3 py-1 rounded-full border border-white/50">PRICE LIST</span>
+                    <h1 class="text-2xl font-bold mt-2 text-brand-text">ริชเมนูรายการ & ราคา</h1>
                 </div>
             </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
+            <div class="px-5 -mt-10 relative z-10 space-y-4">
                 
-                <a href="https://drive.google.com/drive/folders/1x3qtzrZDN9xQmhgP2O4LZGkTSUWg92kG" target="_blank" class="block w-full bg-white border border-brand-light rounded-xl p-3 shadow-sm hover:bg-brand-light/50 transition flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-regular fa-folder-open text-brand-main text-lg"></i>
-                        <span class="text-xs font-bold text-brand-text">⭐️ ดูตัวอย่างงานทั้งหมด (Google Drive)</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-[10px] text-brand-subtext"></i>
-                </a>
-
-                <div class="bg-white rounded-[24px] shadow-app p-5 border border-brand-light">
-                    <div class="grid grid-cols-4 gap-y-6 gap-x-2">
-                        <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="toggleCategory('bright')">
-                            <div class="w-12 h-12 rounded-xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-light transition-colors"><i class="fa-solid fa-sun"></i></div>
-                            <span class="text-[10px] text-center text-brand-text font-medium">โทนสดใส</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="toggleCategory('dark')">
-                            <div class="w-12 h-12 rounded-xl bg-[#F5ECE9] group-hover:bg-[#EFE5E2] flex items-center justify-center text-[#8A6F65] text-xl shadow-sm border border-[#F5ECE9] transition-colors"><i class="fa-solid fa-moon"></i></div>
-                            <span class="text-[10px] text-center text-brand-text font-medium">โทนมืด</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="toggleCategory('pastel')">
-                            <div class="w-12 h-12 rounded-xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-text text-xl shadow-sm border border-brand-light transition-colors"><i class="fa-solid fa-candy-cane"></i></div>
-                            <span class="text-[10px] text-center text-brand-text font-medium">พาสเทล</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-course', -1)">
-                            <div class="w-12 h-12 rounded-xl bg-[#EFE5E2] group-hover:bg-[#E0D4CF] flex items-center justify-center text-brand-text text-xl shadow-sm border border-[#EFE5E2] transition-colors"><i class="fa-solid fa-chalkboard-user"></i></div>
-                            <span class="text-[10px] text-center text-brand-text font-medium">คอร์สสอน</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="template-links-container" class="hidden bg-white rounded-[24px] shadow-app border border-brand-light p-5 mt-4">
-                    <h3 id="template-title" class="font-bold text-brand-text text-sm mb-3 flex items-center"></h3>
-                    <div id="template-list" class="space-y-2 max-h-[300px] overflow-y-auto pr-1"></div>
-                </div>
-
                 <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5">
-                    <h3 class="text-sm font-bold text-brand-text mb-3 border-b border-brand-light pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-palette text-brand-main"></i> งานออกแบบ (เรทราคางานป้าย)
+                    <h3 class="text-sm font-bold text-brand-text mb-4 flex items-center gap-2">
+                        <div class="w-6 h-6 bg-brand-main rounded-lg flex items-center justify-center text-white text-[10px]"><i class="fa-solid fa-tags"></i></div>
+                        เรทราคางานป้าย (ตามความละเอียด)
                     </h3>
-                    <div class="grid grid-cols-2 gap-x-2 gap-y-2 text-[10px] text-brand-subtext mb-3">
-                        <p>• ป้ายแอพพรีเมี่ยม เริ่ม 80.-</p>
-                        <p>• เบอร์เงิน/ทอง/กู้ เริ่ม 60.-</p>
-                        <p>• ปก X/Line/FB เริ่ม 69.-</p>
-                        <p>• ป้ายสะสมแต้ม เริ่ม 100.-</p>
-                        <p>• ป้ายบัญชีใส่รูป เริ่ม 65.-</p>
-                        <p>• LOGO/PROFILE เริ่ม 65.-</p>
-                        <p>• ริชเมนู ใหญ่ 100.- / เล็ก 69.-</p>
-                        <p>• กรอบรีวิว เริ่ม 99.-</p>
-                        <p>• ป้ายรายละเอียด เริ่ม 49.-</p>
-                        <p>• ลายน้ำ (รูปตัวเอง) 45.-</p>
-                        <p>• ลายน้ำ (การ์ตูน) เริ่ม 49.-</p>
-                        <p>• ลายน้ำ (สีสัน) งานละ 25.-</p>
-                        <p class="col-span-2">• ลายน้ำ (ขาวดำ) งานละ 15.-</p>
+                    <div class="text-[11px] text-brand-subtext space-y-1">
+                        <div class="rich-menu-item flex justify-between"><span>ป้ายเรทแอพพรีเมี่ยม</span> <span class="font-bold text-brand-main">เริ่ม 80.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ป้ายเบอร์เงิน / ทอง / เงินกู้</span> <span class="font-bold text-brand-main">เริ่ม 60.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ป้ายปก X, Line OA, FB</span> <span class="font-bold text-brand-main">เริ่ม 69.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ป้ายสะสมแต้ม</span> <span class="font-bold text-brand-main">เริ่ม 100.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ป้ายบัญชี / ใส่รูปตัวเอง</span> <span class="font-bold text-brand-main">เริ่ม 65.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>LOGO / PROFILE</span> <span class="font-bold text-brand-main">เริ่ม 65.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ริชเมนู (ใหญ่) 100.- / (เล็ก)</span> <span class="font-bold text-brand-main">69.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>กรอบรีวิว 99.- / ป้ายรายละเอียด</span> <span class="font-bold text-brand-main">49.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ลายน้ำใส่รูปตัวเอง 45.- / ตัวการ์ตูน</span> <span class="font-bold text-brand-main">49.-</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ลายน้ำแบบคำ (สีสัน) 25.- / (ขาวดำ)</span> <span class="font-bold text-brand-main">15.-</span></div>
                     </div>
-                    <div class="bg-brand-light p-2 rounded-lg text-[10px] text-brand-text">
-                        <span class="font-bold">แนวที่รับทำ:</span> มินิมอล, น่ารัก, มืด, ฟุ้งสว่าง, ธรรมชาติ, ADS, ทางการ, สีสด, หรู, เฮด, เรียบ, รก
+                    <div class="mt-4 bg-brand-light/50 p-3 rounded-xl border border-brand-light text-[10px] text-brand-text leading-relaxed">
+                        <span class="font-bold text-brand-main underline">แนวที่รับทำ:</span> มินิมอล, น่ารัก, มืด, ฟุ้งสว่าง, ธรรมชาติ, ADS, ทางการ, สีสด, หรู, เฮด, เรียบ, รก
                     </div>
                 </div>
 
                 <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5">
-                    <h3 class="text-sm font-bold text-brand-text mb-3 border-b border-brand-light pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-pen-nib text-brand-main"></i> งานเขียน, การบ้าน, งานลอก
+                    <h3 class="text-sm font-bold text-brand-text mb-4 flex items-center gap-2">
+                        <div class="w-6 h-6 bg-[#6B4C3A] rounded-lg flex items-center justify-center text-white text-[10px]"><i class="fa-solid fa-pen-fancy"></i></div>
+                        งานเขียน, การบ้าน, งานลอก
                     </h3>
-                    <div class="grid grid-cols-2 gap-x-2 gap-y-2 text-[10px] text-brand-subtext mb-3">
-                        <p>• สไลด์นำเสนอ: หน้าละ 20฿</p>
-                        <p>• อินโฟกราฟิก: เริ่ม 75฿</p>
-                        <p>• งานพิมพ์/เขียน: 65-150฿</p>
-                        <p>• Resume: เริ่ม 100฿</p>
-                        <p>• ป๊อปอัพ/เล่มเล็ก: เริ่ม 50฿</p>
-                        <p>• แผ่นพับ 3-6 ช่อง: เริ่ม 80฿</p>
-                        <p class="font-bold text-brand-text col-span-2 mt-1">📝 งานลอก:</p>
-                        <p>• สมุด: หน้าละ 10฿</p>
-                        <p>• รายงาน: หน้าละ 15฿</p>
-                        <p>• A4: หน้าละ 20฿</p>
-                        <p class="font-bold text-brand-text col-span-2 mt-1">🎯 งานออกแบบ:</p>
-                        <p>• โปสเตอร์/มายแมพ: 60/65฿</p>
-                        <p>• แผ่นพับ: 70/80฿ | เรซูเม่ 60฿</p>
+                    <div class="text-[11px] text-brand-subtext space-y-1">
+                        <div class="rich-menu-item flex justify-between"><span>สไลด์นำเสนอ (หน้าละ)</span> <span class="font-bold text-[#6B4C3A]">20฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>อินโฟกราฟิก</span> <span class="font-bold text-[#6B4C3A]">เริ่ม 75฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>งานพิมพ์ / เขียน</span> <span class="font-bold text-[#6B4C3A]">65-150฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>Resume / เรซูเม่</span> <span class="font-bold text-[#6B4C3A]">เริ่ม 100฿ / 60฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ลอกงาน / พิมพ์งาน</span> <span class="font-bold text-[#6B4C3A]">เริ่ม 80฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>ป๊อปอัพ / เล่มเล็ก</span> <span class="font-bold text-[#6B4C3A]">เริ่ม 50฿</span></div>
+                        <div class="rich-menu-item flex justify-between"><span>แผ่นพับ 3–6 ช่อง</span> <span class="font-bold text-[#6B4C3A]">เริ่ม 80฿</span></div>
+                        <div class="rich-menu-item flex justify-between font-bold border-t border-brand-light mt-2 pt-2 text-brand-text"><span>🎯 งานออกแบบ (โปสเตอร์/มายแมพ/แผ่นพับ)</span> <span>เริ่ม 60-80฿</span></div>
+                        <div class="rich-menu-item flex justify-between font-bold text-brand-main"><span>📝 งานลอก (สมุด 10฿ / รายงาน 15฿ / A4 20฿)</span></div>
                     </div>
-                    <div class="bg-[#F5ECE9] p-2 rounded-lg text-[10px] text-brand-text">
-                        <p><i class="fa-solid fa-check text-brand-main"></i> ส่งพัสดุทั่วประเทศ (Flash/ไปรษณีย์)</p>
-                        <p><i class="fa-solid fa-check text-brand-main"></i> รับจดงาน / แก้ 0 ร มส / งานคุณภาพ 100%</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-lg">#ส่งตรงเวลา</span>
+                        <span class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-lg">#งานคุณภาพ100%</span>
+                        <span class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-lg">#ประสบการณ์5ปี</span>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5">
-                    <h3 class="text-sm font-bold text-brand-text mb-3 border-b border-brand-light pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-brush text-brand-main"></i> งานวาดรูป & รายงาน
+                    <h3 class="text-sm font-bold text-brand-text mb-4 flex items-center gap-2">
+                        <div class="w-6 h-6 bg-brand-main rounded-lg flex items-center justify-center text-white text-[10px]"><i class="fa-solid fa-laptop-code"></i></div>
+                        เว็บไซต์ & งานวาดรูป
                     </h3>
-                    <div class="text-[10px] text-brand-subtext mb-3 space-y-1">
-                        <p>1. ลายเส้น แบบร่าง ไม่ลงสี / 2. ลงสี</p>
-                        <p>3. โปรไฟล์ / 4. ของตกแต่งการ์ตูน</p>
-                        <p>5. สติกเกอร์เฟส ไอจี / 6. สติกเกอร์ไลน์</p>
-                    </div>
-                    <div class="bg-brand-light/50 p-3 rounded-lg border border-brand-light text-[10px] text-brand-text">
-                        <p class="font-bold mb-1">📘 กรณีทำรายงาน โปรดแจ้ง:</p>
-                        <p class="text-brand-subtext">- รายงาน เรื่อง / จัดทำโดย / เสนออาจารย์</p>
-                        <p class="text-brand-subtext">- ชื่อรายวิชา / ภาคเรียน ปี / สถาบัน / ตรา</p>
-                        <p class="text-brand-subtext">- หัวข้อเนื้อหาที่ต้องการให้มี (1-5)</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="page-website" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">Website Services</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        รับทำเว็บไซต์ <i class="fa-solid fa-laptop-code ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6">
-                    <div class="text-center mb-4">
-                        <span class="bg-brand-light text-brand-main text-[10px] font-bold px-3 py-1 rounded-full border border-brand-main/20">HOT DEAL <i class="fa-solid fa-fire text-brand-text ml-1"></i></span>
-                        <h3 class="text-lg font-bold text-brand-text mt-3 mb-1">เขียนโค้ดเว็บร้าน</h3>
-                        <p class="text-xs text-brand-subtext">สวยปัง คุมโทน เพิ่มยอดขายให้ร้านคุณ</p>
-                    </div>
-                    
-                    <div class="bg-brand-light/20 rounded-xl p-4 border border-brand-light space-y-2 mb-4">
-                        <div class="flex justify-between items-center border-b border-brand-light pb-2">
-                            <span class="text-sm font-medium text-brand-text"><i class="fa-solid fa-star text-brand-main text-[10px] mr-1"></i> รายละเอียด + โลโก้ เริ่มต้น</span>
-                            <span class="text-lg font-bold text-brand-main">129.-</span>
-                        </div>
-                        <ul class="text-xs text-brand-subtext space-y-2 pt-2">
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-plus text-brand-text mt-0.5"></i> เพิ่มรูปแบนเนอร์ 1-2 รูป +29.-</li>
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-text mt-0.5"></i> แก้ไขข้อมูลหลังส่งตรวจสอบ ฟรี 1 ครั้ง</li>
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-pen text-brand-text mt-0.5"></i> หลังส่งงาน แก้ข้อความจุดละ 5.- / รูป 29.-</li>
-                        </ul>
-                    </div>
-                    
-                    <button onclick="switchTab('page-contact', 3)" class="w-full bg-brand-main hover:bg-[#D9779B] text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-pink-200 transition-all text-sm flex items-center justify-center gap-2">
-                        ทักแชทสั่งทำเลย <i class="fa-regular fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-goodnotes" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">Premium Apps</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        แอป Goodnotes <i class="fa-solid fa-pen-nib ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5">
-                    <p class="text-xs text-brand-subtext text-center mb-4">สายจดสรุป สายเรียนห้ามพลาด! อัปเดตฟรีตลอดชีพ โหลดไว้ใช้ยังไงก็คุ้ม <i class="fa-solid fa-heart text-brand-main ml-1"></i></p>
-                    
                     <div class="space-y-3">
-                        <div class="border border-brand-light rounded-xl p-3 flex items-center justify-between bg-white hover:bg-brand-light/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-brand-light flex items-center justify-center text-brand-main text-lg"><i class="fa-solid fa-infinity"></i></div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">GN ถาวร (IOS)</div>
-                                    <div class="text-[10px] text-brand-subtext">โหลดผ่าน Apple ID ร้าน</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-brand-main font-bold text-sm">69.-</div>
-                                <button onclick="switchTab('page-contact', 3)" class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-md mt-1 font-bold">สั่งซื้อ</button>
-                            </div>
+                        <div class="bg-brand-light/30 p-3 rounded-xl border border-brand-light">
+                            <p class="text-[11px] font-bold text-brand-text mb-1">💻 เขียนโค้ดเว็บร้าน</p>
+                            <p class="text-[10px] text-brand-subtext">รายละเอียด + โลโก้ <span class="font-bold text-brand-main">เริ่ม 129.-</span></p>
+                            <p class="text-[9px] text-brand-subtext mt-1">• เพิ่มรูปแบนเนอร์ +29.- | แก้ไขฟรี 1 ครั้ง</p>
                         </div>
-
-                        <div class="border border-[#EFE5E2] rounded-xl p-3 flex items-center justify-between bg-white hover:bg-[#F5ECE9]/30 transition-colors">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-[#F5ECE9] flex items-center justify-center text-[#8A6F65] text-lg"><i class="fa-solid fa-calendar-check"></i></div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">GN รายปี (IOS)</div>
-                                    <div class="text-[10px] text-brand-subtext">ใช้งาน 1 ปีเต็มสุดคุ้ม</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-[#8A6F65] font-bold text-sm">49.-</div>
-                                <button onclick="switchTab('page-contact', 3)" class="text-[9px] bg-[#F5ECE9] text-[#8A6F65] px-2 py-1 rounded-md mt-1 font-bold">สั่งซื้อ</button>
-                            </div>
-                        </div>
-
-                        <div class="border border-[#EFE5E2] rounded-xl p-3 flex items-center justify-between bg-white hover:bg-[#F5ECE9]/30 transition-colors relative overflow-hidden">
-                            <div class="absolute top-0 right-0 bg-brand-text text-white text-[8px] font-bold px-2 py-0.5 rounded-bl-lg">BEST SELLER</div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-[#EFE5E2] flex items-center justify-center text-brand-text text-lg"><i class="fa-solid fa-crown"></i></div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">GN Pro (Full)</div>
-                                    <div class="text-[10px] text-brand-subtext">ปลดล็อกครบทุกฟังก์ชัน</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-brand-text font-bold text-sm">99.-</div>
-                                <button onclick="switchTab('page-contact', 3)" class="text-[9px] bg-[#EFE5E2] text-brand-text px-2 py-1 rounded-md mt-1 font-bold">สั่งซื้อ</button>
-                            </div>
+                        <div class="bg-brand-light/30 p-3 rounded-xl border border-brand-light">
+                            <p class="text-[11px] font-bold text-brand-text mb-1">🎨 งานวาดรูป</p>
+                            <p class="text-[10px] text-brand-subtext leading-relaxed">ลายเส้นไม่ลงสี, ลงสี, วาดโปรไฟล์, ของตกแต่งคู่ตูน, สติกเกอร์ FB/IG/Line</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div id="page-course" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
+                <div class="bg-white rounded-2xl border border-brand-light p-4 shadow-sm text-center">
+                    <p class="text-[10px] font-bold text-brand-subtext mb-2">⭐️ คลิกดูตัวอย่างผลงาน ⭐️</p>
+                    <a href="https://drive.google.com/drive/folders/1x3qtzrZDN9xQmhgP2O4LZGkTSUWg92kG" target="_blank" class="inline-flex items-center gap-2 bg-brand-light text-brand-main px-4 py-2 rounded-xl text-[11px] font-bold border border-brand-main/20">
+                        <i class="fa-regular fa-folder-open"></i> Google Drive Portfolio
+                    </a>
                 </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">Learning Class</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        คอร์สสอนทำเว็บ <i class="fa-solid fa-graduation-cap ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6">
-                    <div class="text-center mb-4">
-                        <span class="bg-[#F5ECE9] text-brand-text text-[10px] font-bold px-3 py-1 rounded-full border border-[#EFE5E2]">BEST SELLER <i class="fa-solid fa-fire text-brand-main ml-1"></i></span>
-                        <h3 class="text-lg font-bold text-brand-text mt-3 mb-1">คอร์สสอนทำ “เว็บร้าน”</h3>
-                        <p class="text-[11px] text-brand-subtext leading-relaxed">
-                            ไม่ต้องมีพื้นฐาน ไม่ต้องงมเอง <i class="fa-solid fa-sparkles text-brand-main ml-1"></i><br>
-                            สอนครบทุกขั้นตอน ดูรอบเดียวทำตามได้เลย
-                        </p>
-                    </div>
-                    <div class="bg-[#F5ECE9]/30 rounded-xl p-4 border border-[#EFE5E2] space-y-3 mb-4">
-                        <ul class="text-[11px] text-brand-text space-y-2">
-                            <li class="flex items-start gap-2"><div class="w-4 flex justify-center mt-0.5"><i class="fa-solid fa-play text-brand-main"></i></div> <span><strong>คลิปสอนทำจริงแบบละเอียด</strong></span></li>
-                            <li class="flex items-start gap-2"><div class="w-4 flex justify-center mt-0.5"><i class="fa-solid fa-note-sticky text-brand-main"></i></div> <span><strong>โน้ตสรุป + ทริคสำคัญ</strong> อ่านง่าย</span></li>
-                            <li class="flex items-start gap-2"><div class="w-4 flex justify-center mt-0.5"><i class="fa-solid fa-palette text-brand-main"></i></div> <span><strong>เทมเพลตเว็บ 50+ แบบ</strong> เอาไปใช้ต่อได้ทันที!</span></li>
+                <div class="bg-[#6B4C3A] rounded-[24px] p-5 text-white shadow-lg space-y-4">
+                    <div>
+                        <h4 class="text-xs font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-circle-info"></i> เงื่อนไขสำคัญ</h4>
+                        <ul class="text-[10px] space-y-1 list-disc pl-3 text-white/80">
+                            <li>ปกติรองาน 1 - 4 วัน แล้วแต่คิว</li>
+                            <li>งานเร่ง *2 ของราคาปกติ</li>
+                            <li>โอน = ยอมรับข้อตกลง / ไม่คืนเงินทุกกรณี</li>
                         </ul>
                     </div>
-                    <div class="bg-brand-light/30 border border-brand-light rounded-xl p-3 mb-4 text-center">
-                        <span class="text-brand-subtext text-[11px]">เข้าได้ตลอดชีพในราคาเพียง</span><br>
-                        <span class="text-brand-main font-bold text-2xl">459.-</span>
+                    <div class="border-t border-white/20 pt-3">
+                        <h4 class="text-xs font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-book"></i> กรณีทำรายงาน (สิ่งที่ต้องแจ้ง)</h4>
+                        <p class="text-[9px] text-white/70 leading-relaxed">ชื่อเรื่อง, จัดทำโดย, เสนอาจารย์, ชื่อวิชา, ปีการศึกษา, สถาบัน, ตราสัญลักษณ์ และหัวข้อเนื้อหาที่ต้องการ (1-5)</p>
                     </div>
-                    <button onclick="switchTab('page-contact', 3)" class="w-full bg-brand-text hover:bg-[#3A2821] text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-[#EFE5E2] transition-all text-sm flex items-center justify-center gap-2">
-                        ทักแชทสมัครเรียนเลย <i class="fa-solid fa-hand-sparkles ml-1"></i>
-                    </button>
                 </div>
+
             </div>
         </div>
 
+        <div id="page-website" class="page"> </div>
+        <div id="page-goodnotes" class="page"> </div>
         <div id="page-contact" class="page">
             <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main backdrop-blur-md shadow-sm cursor-pointer border border-brand-main/20" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
+                    <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-main shadow-sm cursor-pointer" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide">CONTACT</div>
                     <div class="w-8"></div>
                 </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-subtext">Contact Us</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        ช่องทางติดต่อ <i class="fa-regular fa-comments ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
             </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8">
+            <div class="px-5 -mt-10 relative z-10">
                 <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-8 flex justify-center gap-8">
-                    <a href="https://www.facebook.com/share/1Dw2GW5XZL/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-16 h-16 rounded-full border-2 border-brand-light bg-brand-light/30 text-brand-main flex items-center justify-center text-3xl group-hover:bg-[#8A6F65] group-hover:text-white group-hover:border-[#8A6F65] transition-all shadow-sm">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-brand-text group-hover:text-[#8A6F65] transition-colors">Facebook</span>
+                    <a href="https://www.facebook.com/share/1Dw2GW5XZL/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center gap-2">
+                        <div class="w-16 h-16 rounded-full bg-brand-light text-brand-main flex items-center justify-center text-3xl shadow-sm border border-brand-main/10"><i class="fa-brands fa-facebook-f"></i></div>
+                        <span class="text-[10px] font-bold text-brand-text">Facebook</span>
                     </a>
-                    <a href="https://lin.ee/5auqs5N" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-16 h-16 rounded-full border-2 border-brand-light bg-brand-light/30 text-brand-main flex items-center justify-center text-3xl group-hover:bg-brand-text group-hover:text-white group-hover:border-brand-text transition-all shadow-sm">
-                            <i class="fa-brands fa-line"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-brand-text group-hover:text-brand-text transition-colors">Line</span>
+                    <a href="https://lin.ee/5auqs5N" target="_blank" class="flex flex-col items-center gap-2">
+                        <div class="w-16 h-16 rounded-full bg-brand-light text-brand-main flex items-center justify-center text-3xl shadow-sm border border-brand-main/10"><i class="fa-brands fa-line"></i></div>
+                        <span class="text-[10px] font-bold text-brand-text">Line</span>
                     </a>
                 </div>
             </div>
@@ -581,27 +246,20 @@
 
         <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
             <div class="flex justify-between items-end pb-2">
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <i class="fa-solid fa-house text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-semibold">หน้าแรก</span>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)">
+                    <i class="fa-solid fa-house text-xl"></i><span class="text-[9px] font-bold">หน้าแรก</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-website', 1)" id="nav-item-1">
-                    <i class="fa-solid fa-laptop-code text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">รับทำเว็บ</span>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-services', 1)">
+                    <i class="fa-solid fa-palette text-xl"></i><span class="text-[9px] font-medium">ริชเมนูราคา</span>
                 </div>
-                <div class="relative w-1/4 flex justify-center" onclick="switchTab('page-services', -1)">
-                    <div class="absolute -top-10 w-14 h-14 bg-gradient-to-tr from-brand-main to-pink-300 rounded-full flex items-center justify-center text-white text-2xl shadow-lg shadow-pink-200 border-4 border-white cursor-pointer transform hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <span class="text-[9px] font-bold text-brand-main mt-5">บริการทั้งหมด</span>
+                <div class="relative w-1/4 flex justify-center">
+                    <div class="absolute -top-10 w-14 h-14 bg-gradient-to-tr from-brand-main to-pink-300 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white cursor-pointer" onclick="switchTab('page-services', -1)"><i class="fa-solid fa-layer-group"></i></div>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-goodnotes', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-book-open text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">แอป GN</span>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-goodnotes', 2)">
+                    <i class="fa-solid fa-book-open text-xl"></i><span class="text-[9px] font-medium">แอป GN</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-contact', 3)" id="nav-item-3">
-                    <i class="fa-regular fa-comment-dots text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">ติดต่อ</span>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-contact', 3)">
+                    <i class="fa-regular fa-comment-dots text-xl"></i><span class="text-[9px] font-medium">ติดต่อ</span>
                 </div>
             </div>
         </div>
@@ -609,157 +267,46 @@
     </div>
 
     <script>
-        const templates = {
-            bright: [
-                { name: "✨ ธีมสดใส - ลูกอม", url: "https://t03.cozyw75.workers.dev" },
-                { name: "✨ ธีมสดใส - ผลไม้", url: "https://t04.cozyw75.workers.dev" },
-                { name: "✨ ธีมสดใส - ท้องฟ้า", url: "https://t05.cozyw75.workers.dev" }
-            ],
-            dark: [
-                { name: "🌙 ธีมมืด - หรูหรา", url: "https://t06.cozyw75.workers.dev" },
-                { name: "🌙 ธีมมืด - มินิมอล", url: "https://t07.cozyw75.workers.dev" },
-                { name: "🌙 ธีมมืด - คลาสสิค", url: "https://t08.cozyw75.workers.dev" }
-            ],
-            pastel: [
-                { name: "🎀 ธีมพาสเทล - หวานแหวว", url: "https://t09.cozyw75.workers.dev" },
-                { name: "🎀 ธีมพาสเทล - ละมุน", url: "https://t10.cozyw75.workers.dev" },
-                { name: "🎀 ธีมพาสเทล - เจ้าหญิง", url: "https://t11.cozyw75.workers.dev" }
-            ]
-        };
-
-        const titles = {
-            bright: "<i class='fa-solid fa-sun text-brand-main mr-2'></i> เทมเพลตโทนสดใส",
-            dark: "<i class='fa-solid fa-moon text-[#8A6F65] mr-2'></i> เทมเพลตโทนมืด",
-            pastel: "<i class='fa-solid fa-candy-cane text-brand-text mr-2'></i> เทมเพลตพาสเทล"
-        };
-
         function switchTab(pageId, navIndex) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-
-            if(pageId !== 'page-services') {
-                document.getElementById('template-links-container').classList.add('hidden');
-            }
-
-            if (navIndex >= 0) {
-                for (let i = 0; i <= 3; i++) {
-                    const item = document.getElementById(`nav-item-${i}`);
-                    if (item) {
-                        if (i === navIndex) {
-                            item.classList.remove('text-brand-subtext');
-                            item.classList.add('text-brand-main');
-                            item.querySelector('span').classList.replace('font-medium', 'font-semibold');
-                        } else {
-                            item.classList.remove('text-brand-main');
-                            item.classList.add('text-brand-subtext');
-                            item.querySelector('span').classList.replace('font-semibold', 'font-medium');
-                        }
-                    }
-                }
-            } else {
-                for (let i = 0; i <= 3; i++) {
-                    const item = document.getElementById(`nav-item-${i}`);
-                    if (item) {
-                        item.classList.remove('text-brand-main');
-                        item.classList.add('text-brand-subtext');
-                        item.querySelector('span').classList.replace('font-semibold', 'font-medium');
-                    }
-                }
-            }
+            window.scrollTo(0,0);
         }
 
-        function toggleCategory(cat) {
-            const container = document.getElementById('template-links-container');
-            const titleEl = document.getElementById('template-title');
-            const listEl = document.getElementById('template-list');
-
-            if (!container || !titleEl || !listEl) return;
-
-            titleEl.innerHTML = titles[cat];
-            listEl.innerHTML = '';
-
-            templates[cat].forEach(tmpl => {
-                const a = document.createElement('a');
-                a.href = tmpl.url;
-                a.target = '_blank';
-                a.className = 'block w-full p-3 mb-2 rounded-xl bg-brand-light/30 border border-brand-light hover:bg-[#FFD1E0] hover:border-[#E8B4B8] transition-colors text-xs font-medium text-brand-text flex justify-between items-center group';
-                a.innerHTML = `
-                    <span>${tmpl.name}</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-brand-main opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                `;
-                listEl.appendChild(a);
-            });
-
-            container.classList.remove('hidden');
-            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // 🤎 ฟังก์ชันสลับมุมมอง ปฏิทิน/ลิสต์คิวงาน (ของใหม่)
+        // 🤎 ฟังก์ชันปฏิทิน (Status Bar)
         function toggleCalendarView() {
             const list = document.getElementById('view-list');
             const cal = document.getElementById('view-calendar');
-            if (list.classList.contains('block') || list.style.display === 'block') {
-                list.style.display = 'none';
-                list.classList.remove('block');
-                cal.style.display = 'block';
-                cal.classList.remove('hidden');
-                renderCalendar();
-            } else {
-                cal.style.display = 'none';
-                cal.classList.add('hidden');
-                list.style.display = 'block';
-                list.classList.add('block');
-            }
+            if (list.classList.contains('hidden')) { list.classList.remove('hidden'); cal.classList.add('hidden'); }
+            else { list.classList.add('hidden'); cal.classList.remove('hidden'); renderCalendar(); }
         }
 
-        // 🗓️ สร้างปฏิทินปัจจุบันแบบ Real-time (ของใหม่)
         function renderCalendar() {
             const grid = document.getElementById('cal-grid');
-            const title = document.getElementById('cal-month-year');
-            if (grid.innerHTML.trim() !== "") return; 
-            
+            if (grid.innerHTML !== "") return;
             const date = new Date();
-            const year = date.getFullYear();
-            const month = date.getMonth();
-            const today = date.getDate();
-            
-            const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-            title.innerText = `${monthNames[month]} ${year + 543}`;
-            
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
-            for(let i=0; i<firstDay; i++) {
-                grid.innerHTML += `<div class="p-2"></div>`;
-            }
+            const monthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+            document.getElementById('cal-month-year').innerText = monthNames[date.getMonth()] + " " + (date.getFullYear() + 543);
+            const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
             for(let i=1; i<=daysInMonth; i++) {
-                if (i === today) {
-                    grid.innerHTML += `<div class="p-1.5 bg-[#E8B4B8] text-white rounded-full shadow-sm">${i}</div>`;
-                } else {
-                    grid.innerHTML += `<div class="p-1.5 hover:bg-brand-light rounded-full transition cursor-pointer">${i}</div>`;
-                }
+                const dayDiv = document.createElement('div');
+                dayDiv.innerText = i;
+                dayDiv.className = (i === date.getDate()) ? "bg-brand-main text-white rounded-full p-1" : "p-1";
+                grid.appendChild(dayDiv);
             }
         }
 
-        // 🫧 ลูกเล่นจิ้มหน้าจอแล้วมี Emoji โผล่ 🌥️⭐️🫯🫧🪼🧸🩷 (ของใหม่)
+        // 🫧 อีโมจิสุ่มจิ้มจอ
         const emojis = ['🌥️','⭐️','🫯','🫧','🪼','🧸','🩷'];
         document.addEventListener('click', function(e) {
-            // ป้องกันไม่ให้ขึ้นเวลากดปุ่มหรือลิงก์
-            if(e.target.closest('button') || e.target.closest('a') || e.target.closest('.cursor-pointer')) return;
-
+            if(e.target.closest('button') || e.target.closest('a')) return;
             const span = document.createElement('span');
             span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             span.className = 'floating-emoji';
             span.style.left = e.pageX + 'px';
             span.style.top = e.pageY + 'px';
             document.body.appendChild(span);
-
-            setTimeout(() => {
-                span.remove();
-            }, 1000);
+            setTimeout(() => span.remove(), 1000);
         });
     </script>
 </body>
