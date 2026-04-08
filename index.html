@@ -19,11 +19,11 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#D28C9F',     /* ชมพูเข้มขึ้น */
-                            main: '#FFB6C1',     /* ชมพู */
-                            light: '#FFF5EB',    /* ครีม */
-                            text: '#5C4033',     /* น้ำตาลเข้ม */
-                            subtext: '#8B6A58'   /* น้ำตาลอ่อน */
+                            dark: '#D28C9F',     
+                            main: '#FFB6C1',     
+                            light: '#FFF5EB',    
+                            text: '#5C4033',     
+                            subtext: '#8B6A58'   
                         }
                     },
                     boxShadow: {
@@ -43,13 +43,13 @@
             max-width: 430px;
             margin: 0 auto;
             min-height: 100vh;
-            background-color: #FFF5EB; /* ครีม */
+            background-color: #FFF5EB; 
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             overflow-x: hidden;
         }
         .gradient-bg {
-            background: linear-gradient(180deg, #FFB6C1 0%, #FFD1DC 100%); /* ชมพูอ่อน */
+            background: linear-gradient(180deg, #FFB6C1 0%, #FFD1DC 100%); 
         }
         .stars-bg {
             background-image: 
@@ -86,13 +86,10 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom Scrollbar */
         #template-list::-webkit-scrollbar { width: 4px; }
         #template-list::-webkit-scrollbar-track { background: transparent; }
         #template-list::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 10px; }
 
-        /* --- NEW EFFECTS --- */
-        /* Bouncing Button (Jelly Effect) */
         .btn-bounce {
             transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
@@ -100,8 +97,6 @@
         .btn-bounce:active {
             transform: scale(0.92);
         }
-
-        /* Floating Emoji Effect */
         .emoji-float {
             position: fixed;
             pointer-events: none;
@@ -114,8 +109,6 @@
             0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
             100% { opacity: 0; transform: translate(-50%, -100px) scale(1.5); }
         }
-
-        /* Confetti BEBBY Animation */
         .confetti {
             position: absolute;
             top: -10px;
@@ -129,15 +122,11 @@
         @keyframes fall {
             to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
-
-        /* Best Seller Pop Animation */
         @keyframes pop {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.15) rotate(-3deg); }
         }
         .animate-pop { animation: pop 1.5s infinite; }
-
-        /* Cart Shake Action */
         @keyframes shakeCart {
             0%, 100% { transform: translateX(0) scale(1); }
             25% { transform: translateX(-5px) scale(1.1); }
@@ -146,58 +135,42 @@
         }
         .cart-action { animation: shakeCart 0.4s ease-in-out; }
 
-        /* Glassmorphism 3D Folder */
+        /* Cart Modal Styles */
+        .cart-modal-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .cart-modal-backdrop.show { opacity: 1; pointer-events: auto; }
+        .cart-bottom-sheet {
+            position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 430px; background: white; border-radius: 24px 24px 0 0;
+            z-index: 101; transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 80vh; display: flex; flex-direction: column;
+        }
+        .cart-bottom-sheet.show { bottom: 0; }
+        #cart-items-container::-webkit-scrollbar { width: 4px; }
+        #cart-items-container::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 10px; }
+
         .glass-folder {
-            position: relative;
-            width: 130px;
-            height: 100px;
-            background-color: #f5f6f8; /* พื้นหลังจอเทาอ่อน */
-            border-radius: 16px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 10px;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
-            margin: 0 auto;
+            position: relative; width: 130px; height: 100px; background-color: #f5f6f8; 
+            border-radius: 16px; display: flex; align-items: flex-end; justify-content: center;
+            padding: 10px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); margin: 0 auto;
         }
         .folder-back {
-            position: absolute;
-            bottom: 15px;
-            width: 100px;
-            height: 70px;
-            background-color: #3f3f46; /* ดำกึ่งเทาเข้ม */
-            border-radius: 8px 8px 4px 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: absolute; bottom: 15px; width: 100px; height: 70px;
+            background-color: #3f3f46; border-radius: 8px 8px 4px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .folder-back::before { /* Tab ด้านบนแฟ้ม */
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 0;
-            width: 35px;
-            height: 10px;
-            background-color: #3f3f46;
-            border-radius: 4px 4px 0 0;
+        .folder-back::before { 
+            content: ''; position: absolute; top: -6px; left: 0; width: 35px; height: 10px;
+            background-color: #3f3f46; border-radius: 4px 4px 0 0;
         }
         .folder-doc {
-            position: absolute;
-            bottom: 25px;
-            width: 85px;
-            height: 60px;
-            background-color: white;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            position: absolute; bottom: 25px; width: 85px; height: 60px; background-color: white;
+            border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 8px;
+            display: flex; flex-direction: column; gap: 4px;
         }
         .folder-doc::before, .folder-doc::after {
-            content: '';
-            display: block;
-            height: 3px;
-            background-color: #e5e7eb;
-            border-radius: 2px;
+            content: ''; display: block; height: 3px; background-color: #e5e7eb; border-radius: 2px;
         }
         .folder-doc::before { width: 100%; }
         .folder-doc::after { width: 70%; }
@@ -205,21 +178,11 @@
         .doc-2 { transform: rotate(4deg) translateX(5px); z-index: 2; }
         .doc-3 { transform: rotate(-2deg); z-index: 3; }
         .folder-front {
-            position: absolute;
-            bottom: 10px;
-            width: 110px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 6px;
-            border-top: 1px solid rgba(255, 255, 255, 0.6);
-            border-left: 1px solid rgba(255, 255, 255, 0.6);
-            z-index: 10;
-            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; bottom: 10px; width: 110px; height: 45px;
+            background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 6px; border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.6); z-index: 10;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;
         }
     </style>
 </head>
@@ -344,7 +307,7 @@
                             <ul class="space-y-2 list-disc pl-4 pb-2">
                                 <li class="text-brand-main font-bold">โอน = ลูกค้ายอมรับข้อตกลงของร้านแล้ว และยินดีให้ปรับ 999฿</li>
                                 <li class="font-medium text-brand-text">❌ ไม่รับทำเรฟจากร้านอื่น ชอบผลงานร้านไหน ทำร้านนั้น ห้ามนำผลงานร้านไปเรฟร้านอื่น พบเจอปรับ 999฿</li>
-                                <li>ตามปกติรองาน 1-4 วัน แล้วแต่คิวของวันนั้นๆ (เดิม 4-8 ชม.)</li>
+                                <li>ตามปกติรองาน 1-4 วัน แล้วแต่คิวของวันนั้นๆ</li>
                                 <li>งานเร่ง *2 ของราคา</li>
                                 <li>แจ้งงานที่ต้องการสั่งทำ เช่น ลายน้ำ, ป้ายแอพพรี บรีฟเป็นข้อความเท่านั้น ไม่รับรูปภาพ/อักษรพิเศษ</li>
                                 <li>เช็คบรีฟให้ครบถ้วน ทางร้านจะสรุปงานหลังจากรับงานเสร็จและยึดข้อความสรุปเป็นหลัก</li>
@@ -528,7 +491,6 @@
                 </div>
             </div>
         </div>
-
         <div id="page-goodnotes" class="page relative">
             <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6 btn-bounce">
@@ -546,67 +508,275 @@
                 </div>
             </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-20 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5 mb-4 btn-bounce">
-                    <h3 class="text-brand-text font-bold text-sm mb-3 border-b border-brand-light pb-2">🍿 หมวดหมู่ แอปดูหนัง / ซีรีย์</h3>
+            <div class="px-5 -mt-10 relative z-10 pb-24 space-y-4">
+                
+                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-4 btn-bounce">
+                    <h3 class="text-brand-text font-bold text-sm mb-3 border-b border-brand-light pb-2"><i class="fa-solid fa-popcorn text-red-500 mr-1"></i> หมวดหมู่ ดูหนัง / ซีรีย์</h3>
                     
                     <div class="space-y-3">
                         <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white hover:bg-[#FFF5EB] transition-colors relative">
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-xl font-bold">N</div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">Netflix (ทุกอุปกรณ์ยกเว้นทีวี)</div>
-                                    <div class="text-[10px] text-brand-subtext">รับเคลมกรณีโดนปิด</div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart()">1 วัน 15฿</div>
-                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart()">7 วัน 45฿</div>
-                                <div class="bg-brand-main text-white font-bold rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart()">
+                            <div class="font-bold text-sm text-brand-text mb-1">Netflix <span class="text-[10px] text-brand-subtext font-normal">(ทุกอุปกรณ์ยกเว้นทีวี)</span></div>
+                            <div class="text-[9px] text-red-400 mb-2 font-medium">*รับเคลมกรณีโดนปิด</div>
+                            <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-bold">
+                                <div class="bg-brand-light text-brand-text rounded py-1.5 cursor-pointer hover:bg-brand-main hover:text-white transition" onclick="addToCart('Netflix 1 วัน', 15)">01 วัน 15฿</div>
+                                <div class="bg-brand-light text-brand-text rounded py-1.5 cursor-pointer hover:bg-brand-main hover:text-white transition" onclick="addToCart('Netflix 7 วัน', 45)">07 วัน 45฿</div>
+                                <div class="bg-brand-main text-white rounded py-1.5 relative cursor-pointer animate-pop shadow-sm" onclick="addToCart('Netflix 30 วัน', 115)">
                                     30 วัน 115฿ <span class="absolute -top-2 -right-2 bg-yellow-400 text-[8px] px-1 rounded text-brand-text">ยอดนิยม</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white hover:bg-[#FFF5EB] transition-colors relative">
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-xl"><i class="fa-solid fa-tv"></i></div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">Netflix TV (เฉพาะทีวี)</div>
+                            <div class="font-bold text-sm text-brand-text mb-1">Netflix TV <span class="text-[10px] text-brand-subtext font-normal">(เฉพาะทีวี)</span></div>
+                            <div class="text-[9px] text-red-400 mb-2 font-medium">*รับเคลมกรณีโดนปิด</div>
+                            <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-bold">
+                                <div class="bg-brand-light text-brand-text rounded py-1.5 cursor-pointer hover:bg-brand-main hover:text-white transition" onclick="addToCart('Netflix TV 1 วัน', 20)">01 วัน 20฿</div>
+                                <div class="bg-brand-main text-white rounded py-1.5 relative cursor-pointer animate-pop shadow-sm" onclick="addToCart('Netflix TV 7 วัน', 55)">
+                                    07 วัน 55฿ <span class="absolute -top-2 -right-2 bg-yellow-400 text-[8px] px-1 rounded text-brand-text">ยอดนิยม</span>
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                                <div class="bg-brand-light rounded py-1 cursor-pointer" onclick="addToCart()">1 วัน 20฿</div>
-                                <div class="bg-brand-main text-white font-bold rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart()">
-                                    7 วัน 55฿ <span class="absolute -top-2 -right-2 bg-yellow-400 text-[8px] px-1 rounded text-brand-text">ยอดนิยม</span>
-                                </div>
-                                <div class="bg-brand-light rounded py-1 cursor-pointer" onclick="addToCart()">30 วัน 145฿</div>
+                                <div class="bg-brand-light text-brand-text rounded py-1.5 cursor-pointer hover:bg-brand-main hover:text-white transition" onclick="addToCart('Netflix TV 30 วัน', 145)">30 วัน 145฿</div>
                             </div>
                         </div>
 
-                        <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white hover:bg-[#FFF5EB] transition-colors">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="text-sm font-bold text-brand-text">Netflix 4K จอส่วนตัว</div>
-                                <span class="text-[9px] bg-red-100 text-red-600 px-2 py-0.5 rounded font-bold">รอเคลมไม่เกิน 48 ชม.</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white">
+                                <div class="font-bold text-xs text-brand-text mb-2">Netflix จอเสริม<br><span class="text-[9px] text-brand-subtext font-normal">เข้าได้ทุกอุปกรณ์ (รับเคลม)</span></div>
+                                <div class="space-y-1.5 text-center text-[10px] font-bold">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Netflix จอเสริม 1 วัน', 35)">1 วัน 35฿</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Netflix จอเสริม 7 วัน', 65)">7 วัน 65฿</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Netflix จอเสริม 30 วัน', 165)">30 วัน 165฿</div>
+                                </div>
+                            </div>
+                            <div class="border border-red-100 rounded-xl p-3 bg-red-50/50 flex flex-col justify-center text-center cursor-pointer hover:bg-red-100 transition" onclick="switchTab('page-contact', 3)">
+                                <i class="fa-solid fa-gem text-red-500 text-lg mb-1"></i>
+                                <div class="font-bold text-xs text-brand-text">Netflix 4K จอส่วนตัว</div>
+                                <div class="text-[9px] text-red-500 mt-1">โดนปิดรับเคลมตลอดการใช้งาน<br>รอเคลมไม่เกิน 48 ชม.</div>
+                                <div class="mt-2 text-[10px] bg-white rounded py-1 text-brand-text font-bold">ติดต่อสอบถาม</div>
                             </div>
                         </div>
 
-                        <div class="border border-green-100 rounded-xl p-3 bg-white hover:bg-green-50 transition-colors relative mt-4">
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xl font-bold">IQ</div>
-                                <div>
-                                    <div class="text-sm font-bold text-brand-text">IQIYI GOLD</div>
-                                    <div class="text-[9px] text-red-500">ห้ามอัพเกรด/ห้ามเข้าทีวี ไม่รับเคลม</div>
+                        <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white">
+                            <div class="font-bold text-sm text-brand-text mb-1">IQIYI GOLD <span class="text-[9px] text-red-400 font-normal ml-1">ห้ามอัพเกรด/ห้ามเข้าทีวี ร้านไม่รับเคลม</span></div>
+                            <div class="grid grid-cols-3 gap-1.5 text-center text-[10px] font-bold mt-2">
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold 7 วัน (หาร4)', 15)">7วัน ÷4 (15฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold 30 วัน (หาร4)', 25)">30วัน ÷4 (25฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold 30 วัน (หาร3)', 35)">30วัน ÷3 (35฿)</div>
+                                <div class="bg-brand-main text-white rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart('IQIYI Gold 30 วัน (หาร2)', 48)">30วัน ÷2 (48฿) <span class="absolute -top-1 -right-1 text-[8px]">🔥</span></div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold ส่วนตัว 30 วัน', 90)">ส่วนตัว 30วัน (90฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold 90 วัน (หาร4)', 70)">90วัน ÷4 (70฿)</div>
+                                <div class="bg-brand-main text-white rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart('IQIYI Gold 90 วัน (หาร2)', 145)">90วัน ÷2 (145฿) <span class="absolute -top-1 -right-1 text-[8px]">🔥</span></div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Gold 365 วัน (หาร4)', 200)">365วัน ÷4 (200฿)</div>
+                            </div>
+                            <div class="border-t border-brand-light mt-2 pt-2">
+                                <div class="font-bold text-xs text-brand-text mb-1">IQIYI พรีเมียม <span class="text-[9px] text-brand-main font-normal ml-1">แพ็คสูงสุด เข้าทีวีได้</span></div>
+                                <div class="grid grid-cols-2 gap-2 text-center text-[10px] font-bold">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Premium 30 วัน (หาร5)', 50)">30วัน ÷5 (50฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('IQIYI Premium 30 วัน (หาร4)', 60)">30วัน ÷4 (60฿)</div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2 text-center text-xs">
-                                <div class="bg-gray-100 rounded py-1 cursor-pointer" onclick="addToCart()">30วัน(หาร2) 48฿ <span class="text-[8px] bg-yellow-300 px-1 rounded animate-pulse">ฮิต</span></div>
-                                <div class="bg-gray-100 rounded py-1 cursor-pointer" onclick="addToCart()">ส่วนตัว30วัน 90฿</div>
-                                <div class="bg-gray-100 rounded py-1 cursor-pointer" onclick="addToCart()">90วัน(หาร2) 145฿ <span class="text-[8px] bg-yellow-300 px-1 rounded animate-pulse">ฮิต</span></div>
-                                <div class="bg-gray-100 rounded py-1 cursor-pointer" onclick="addToCart()">365วัน(หาร4) 200฿</div>
+                        </div>
+
+                        <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white">
+                            <div class="font-bold text-sm text-brand-text mb-2">WeTV</div>
+                            <div class="grid grid-cols-3 gap-1.5 text-center text-[10px] font-bold">
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV 7 วัน (หาร4)', 15)">7วัน ÷4 (15฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV 30 วัน (หาร4)', 26)">30วัน ÷4 (26฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV 30 วัน (หาร3)', 38)">30วัน ÷3 (38฿)</div>
+                                <div class="bg-brand-main text-white rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart('WeTV 30 วัน (หาร2)', 45)">30วัน ÷2 (45฿) <span class="absolute -top-1 -right-1 text-[8px]">🔥</span></div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV ส่วนตัว 30 วัน', 90)">ส่วนตัว 30วัน (90฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV 90 วัน (หาร5)', 60)">90วัน ÷5 (60฿)</div>
+                                <div class="bg-brand-main text-white rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart('WeTV 90 วัน (หาร2)', 100)">90วัน ÷2 (100฿) <span class="absolute -top-1 -right-1 text-[8px]">🔥</span></div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('WeTV 365 วัน (หาร4)', 200)">365วัน ÷4 (200฿)</div>
+                            </div>
+                        </div>
+
+                        <div class="border border-[#EFE5E2] rounded-xl p-3 bg-white">
+                            <div class="font-bold text-sm text-brand-text mb-2">VIU</div>
+                            <div class="grid grid-cols-3 gap-1.5 text-center text-[10px] font-bold">
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU 7 วัน (หาร4)', 15)">7วัน ÷4 (15฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU 30 วัน (หาร4)', 20)">30วัน ÷4 (20฿)</div>
+                                <div class="bg-brand-main text-white rounded py-1 relative cursor-pointer animate-pop" onclick="addToCart('VIU 30 วัน (หาร2)', 35)">30วัน ÷2 (35฿) 🔥</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU ส่วนตัว 40 วัน', 45)">ส่วนตัว 40วัน (45฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU 60 วัน', 50)">60วัน (50฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU ส่วนตัว 60 วัน', 75)">ส่วนตัว 60วัน (75฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU 90 วัน (หาร4)', 45)">90วัน ÷4 (45฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU ส่วนตัว 90 วัน', 100)">ส่วนตัว 90วัน (100฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU 365 วัน (หาร4)', 130)">365วัน ÷4 (130฿)</div>
+                                <div class="col-span-3 bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('VIU ส่วนตัว 365 วัน', 325)">ส่วนตัว 365 วัน (325฿)</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">HBO GO Standard</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Standard 7 วัน (หาร5)', 32)">7วัน ÷5 (32฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Standard 30 วัน (หาร5)', 55)">30วัน ÷5 (55฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Standard 30 วัน (หาร3)', 65)">30วัน ÷3 (65฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">HBO GO Ultimate</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Ultimate 7 วัน (หาร5)', 45)">7วัน ÷5 (45฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Ultimate 30 วัน (หาร5)', 90)">30วัน ÷5 (90฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('HBO Ultimate 30 วัน (หาร4)', 100)">30วัน ÷4 (100฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">Bilibili Premium</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Bilibili 30 วัน (หาร3)', 44)">30วัน ÷3 (44฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Bilibili 30 วัน (หาร2)', 66)">30วัน ÷2 (66฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Bilibili 30 วัน ยกแอค', 100)">30วัน ยกแอค (100฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">Youku VIP</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Youku 30 วัน (หาร4)', 42)">30วัน ÷4 (42฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Youku 30 วัน (หาร3)', 33)">30วัน ÷3 (33฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Youku 30 วัน (หาร2)', 55)">30วัน ÷2 (55฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">Monomax</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Monomax จอหาร 30 วัน', 35)">จอหาร 30วัน (35฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Monomax จอส่วนตัว 30 วัน', 55)">จอส่วนตัว 30วัน (55฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">CH3 Plus</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('CH3 Plus 7 วัน (หาร2)', 35)">7วัน ÷2 (35฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('CH3 Plus 30 วัน (หาร4)', 50)">30วัน ÷4 (50฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('CH3 Plus 30 วัน (หาร2)', 65)">30วัน ÷2 (65฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">Prime Video</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Prime Video 7 วัน (หาร5)', 35)">7วัน ÷5 (35฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Prime Video 30 วัน (หาร5)', 45)">30วัน ÷5 (45฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Prime Video 30 วัน (หาร3)', 65)">30วัน ÷3 (65฿)</div>
+                                </div>
+                            </div>
+                            <div class="border border-brand-light rounded-xl p-2 bg-white">
+                                <div class="font-bold text-[11px] text-brand-text mb-1 text-center">OneD Premium</div>
+                                <div class="space-y-1 text-[9px] font-bold text-center">
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('OneD 30 วัน (หาร4)', 32)">30วัน ÷4 (32฿)</div>
+                                    <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('OneD 30 วัน (หาร2)', 55)">30วัน ÷2 (55฿)</div>
+                                    <div class="bg-brand-light rounded py-1 mt-1 cursor-pointer hover:bg-[#D28C9F] hover:text-white" onclick="addToCart('Gagaoolala & Mango 30 วัน', 60)">Gagaoolala 30วัน (60฿)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-blue-50 rounded-xl p-3 bg-white hover:bg-blue-50/50 transition-colors">
+                            <div class="font-bold text-sm text-blue-800 mb-2">TRUE Packages</div>
+                            <div class="grid grid-cols-2 gap-2 text-center text-[10px] font-bold">
+                                <div class="bg-blue-100 text-blue-800 rounded py-1.5 cursor-pointer hover:bg-blue-500 hover:text-white" onclick="addToCart('TRUE ID PLUS 30 วัน (หาร4)', 45)">ID PLUS 30วัน ÷4 (45฿)</div>
+                                <div class="bg-blue-100 text-blue-800 rounded py-1.5 cursor-pointer hover:bg-blue-500 hover:text-white" onclick="addToCart('TRUE League 30 วัน (หาร2)', 400)">League ดูบอล 30วัน (400฿)</div>
+                                <div class="col-span-2 bg-blue-100 text-blue-800 rounded py-1.5 cursor-pointer hover:bg-blue-500 hover:text-white mt-1" onclick="addToCart('True visions now 30 วัน (หาร4)', 65)">Visions Now 30วัน ÷4 (65฿)</div>
+                                <div class="col-span-2 bg-blue-100 text-blue-800 rounded py-1.5 cursor-pointer hover:bg-blue-500 hover:text-white" onclick="addToCart('True visions now 30 วัน (หาร2)', 137)">Visions Now 30วัน ÷2 (137฿)</div>
+                            </div>
+                            <div class="text-[9px] text-blue-600 mt-2 text-center">เข้าระบบแอพทรูไอดี ดูบอลลีค/F1 ดูได้ทุกอุปกรณ์ 1 เครื่อง/คน</div>
+                        </div>
+
+                        <div class="border border-[#EFE5E2] rounded-xl p-3 bg-gradient-to-b from-blue-900 to-[#101020] text-white">
+                            <div class="font-bold text-sm mb-1 flex items-center justify-between">
+                                <span><i class="fa-brands fa-disney"></i> Disney Plus</span>
+                                <span class="text-[9px] bg-blue-500 px-2 py-0.5 rounded font-medium">ดูพร้อมกันได้ 4 อุปกรณ์</span>
+                            </div>
+                            <div class="text-[9px] text-blue-200 mb-3">*แจ้งกด OTP ภายใน 10-15 นาที</div>
+                            
+                            <div class="grid grid-cols-3 gap-1.5 text-center text-[10px] font-bold mb-3">
+                                <div class="bg-white/20 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900" onclick="addToCart('Disney+ 1 วัน (หาร4)', 20)">1วัน ÷4 (20฿)</div>
+                                <div class="bg-white/20 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900" onclick="addToCart('Disney+ 3 วัน (หาร5)', 30)">3วัน ÷5 (30฿)</div>
+                                <div class="bg-white/20 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900" onclick="addToCart('Disney+ 3 วัน (หาร4)', 45)">3วัน ÷4 (45฿)</div>
+                                <div class="bg-white/20 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900" onclick="addToCart('Disney+ 7 วัน (หาร5)', 55)">7วัน ÷5 (55฿)</div>
+                                <div class="bg-white/20 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900" onclick="addToCart('Disney+ 7 วัน (หาร4)', 60)">7วัน ÷4 (60฿)</div>
+                                <div class="bg-blue-500 rounded py-1 cursor-pointer hover:bg-white hover:text-blue-900 shadow-sm" onclick="addToCart('Disney+ 30 วัน (หาร5)', 90)">30วัน ÷5 (90฿)</div>
+                                <div class="col-span-3 bg-blue-500 rounded py-1.5 cursor-pointer hover:bg-white hover:text-blue-900 shadow-sm text-[11px]" onclick="addToCart('Disney+ 30 วัน (หาร4)', 100)">30วัน ÷4 (100฿) 🔥</div>
+                            </div>
+                            
+                            <div class="border-t border-white/20 pt-2 mb-2">
+                                <div class="text-[10px] font-bold mb-1">แบบยกแอค (เคลียร์จอ 24 ชม.)</div>
+                                <div class="flex gap-2 text-[10px] font-bold text-center">
+                                    <div class="flex-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded py-1.5 cursor-pointer hover:opacity-90" onclick="addToCart('Disney+ ยกแอค 1 วัน', 50)">1 วัน ยกแอค (50฿)</div>
+                                    <div class="flex-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded py-1.5 cursor-pointer hover:opacity-90" onclick="addToCart('Disney+ ยกแอค 7 วัน', 150)">7 วัน ยกแอค (150฿)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-black/40 rounded-lg p-2 text-[9px] text-gray-300 font-medium">
+                                <div class="font-bold text-white mb-1"><i class="fa-regular fa-circle-question text-yellow-400"></i> คำถามที่พบ (Disney)</div>
+                                <ul class="space-y-1 pl-1">
+                                    <li>- ตัดระบบ 23:00 ของวันหมดอายุ เด้งออกทันที</li>
+                                    <li>- กดOTPภายในวันที่ซื้อเท่านั้น! (รับotpกับร้าน/ใช้เมลร้าน)</li>
+                                    <li>- ซื้อ30วัน ไม่สามารถรีขายย่อย 1/3/7 ได้ / ต่ออายุแอคเดิมได้</li>
+                                    <li>- ขายไม่หมดใน 24ชม +10฿/จอ, ย้ายเครื่อง ลบแอพ +10฿/จอ</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-4 btn-bounce">
+                    <h3 class="text-brand-text font-bold text-sm mb-3 border-b border-brand-light pb-2"><i class="fa-solid fa-music text-purple-400 mr-1"></i> หมวดหมู่ ฟังเพลง / แอพทำงาน / อื่นๆ</h3>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-brand-light/40 rounded-xl p-2 border border-brand-light">
+                            <div class="font-bold text-[11px] text-brand-text text-center mb-1">🎶 ฟังเพลง (Music)</div>
+                            <div class="space-y-1.5 text-[9px] font-bold text-center">
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm" onclick="addToCart('YouTube (เมลตัวเอง)', 25)">YouTube (เมลตัวเอง) 25฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm" onclick="addToCart('YouTube (เมลร้าน)', 35)">YouTube (เมลร้าน) 35฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm text-[#1DB954]" onclick="addToCart('Spotify ไม่ต่อเมล (เมลตัวเอง)', 55)">Spotify (ไม่ต่อเมล/ตัวเอง) 55฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm text-[#1DB954]" onclick="addToCart('Spotify ไม่ต่อเมล (เมลร้าน)', 65)">Spotify (ไม่ต่อเมล/ร้าน) 65฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm text-[#1DB954]" onclick="addToCart('Spotify ต่อเมล (เมลตัวเอง)', 70)">Spotify (ต่อเมล/ตัวเอง) 70฿</div>
+                                <div class="bg-[#1DB954] text-white rounded py-1 cursor-pointer shadow-sm" onclick="addToCart('Spotify ต่อเมล (เมลร้าน)', 80)">Spotify (ต่อเมล/ร้าน) 80฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light shadow-sm text-red-500" onclick="addToCart('Apple Music 30วัน (เมลร้าน)', 65)">Apple Music 30วัน (เมลร้าน) 65฿</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-light/40 rounded-xl p-2 border border-brand-light">
+                            <div class="font-bold text-[11px] text-brand-text text-center mb-1">💻 แอพทำงาน (Work Apps)</div>
+                            <div class="space-y-1 text-[9px] font-bold text-center">
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light" onclick="addToCart('Canva ไม่ต่อเมล (เมลตัวเอง)', 20)">Canva (เมลตัวเอง) 20฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light" onclick="addToCart('Canva ไม่ต่อเมล (เมลร้าน)', 30)">Canva (เมลร้าน) 30฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light text-blue-600" onclick="addToCart('Microsoft 365 30วัน', 45)">Microsoft 365 30วัน 45฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light text-green-600" onclick="addToCart('ChatGPT 7 วัน', 65)">ChatGPT 7วัน 65฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light text-green-600" onclick="addToCart('ChatGPT 15 วัน', 75)">ChatGPT 15วัน 75฿</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light text-green-600" onclick="addToCart('ChatGPT 30 วัน', 180)">ChatGPT 30วัน 180฿</div>
+                                <div class="bg-black text-white rounded py-1 cursor-pointer" onclick="addToCart('Capcut 30วัน (หาร2)', 100)">Capcut 30วัน ÷2 (100฿)</div>
+                                <div class="text-[8px] text-brand-subtext font-normal">*มีหาร 3(90฿) / หาร4(80฿) สอบถามในแชท</div>
+                                <div class="bg-white rounded py-1 cursor-pointer border border-brand-light text-blue-500" onclick="addToCart('Apple TV 30วัน (เมลร้าน)', 60)">Apple TV 30วัน (60฿)</div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="grid grid-cols-2 gap-3 mt-3">
+                        <div class="border border-[#EFE5E2] rounded-xl p-2 bg-white">
+                            <div class="font-bold text-[11px] text-brand-text text-center mb-1"><i class="fa-solid fa-envelope text-red-500"></i> บัญชี Gmail</div>
+                            <div class="space-y-1 text-[9px] font-bold text-center">
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Gmail แพ็กไม่สิทธิ์', 25)">แพ็กไม่สิทธิ์ (25฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Gmail ไม่แพ็กไม่สิทธิ์', 15)">ไม่แพ็กไม่สิทธิ์ (15฿)</div>
+                                <div class="bg-brand-light rounded py-1 cursor-pointer hover:bg-brand-main hover:text-white" onclick="addToCart('Gmail มือ2สุ่ม', 13)">มือ2สุ่ม (13฿)</div>
+                            </div>
+                        </div>
+                        <div class="border border-green-200 rounded-xl p-2 bg-green-50/50">
+                            <div class="font-bold text-[11px] text-green-700 text-center mb-1"><i class="fa-brands fa-line text-green-500"></i> สติกเกอร์ไลน์ / ธีม</div>
+                            <div class="grid grid-cols-2 gap-1 text-[9px] font-bold text-center">
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 25c', 28)">25c (28฿)</div>
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 50c', 36)">50c (36฿)</div>
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 70c', 43)">70c (43฿)</div>
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 85c', 52)">85c (52฿)</div>
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 100c', 54)">100c (54฿)</div>
+                                <div class="bg-white rounded py-1 cursor-pointer shadow-sm text-green-700" onclick="addToCart('สติกเกอร์ไลน์ 150c', 72)">150c (72฿)</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5 btn-bounce">
@@ -622,7 +792,7 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-brand-main font-bold text-sm">69.-</div>
-                                <button onclick="addToCart()" class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-md mt-1 font-bold btn-bounce">เพิ่มลงรถเข็น</button>
+                                <button onclick="addToCart('Goodnotes ถาวร', 69)" class="text-[9px] bg-brand-light text-brand-main px-2 py-1 rounded-md mt-1 font-bold btn-bounce">เพิ่มลงรถเข็น</button>
                             </div>
                         </div>
                         <div class="border border-[#EFE5E2] rounded-xl p-3 flex items-center justify-between bg-white hover:bg-[#FFF5EB]/30 transition-colors relative overflow-hidden">
@@ -636,17 +806,17 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-brand-text font-bold text-sm">99.-</div>
-                                <button onclick="addToCart()" class="text-[9px] bg-[#EFE5E2] text-brand-text px-2 py-1 rounded-md mt-1 font-bold btn-bounce">เพิ่มลงรถเข็น</button>
+                                <button onclick="addToCart('Goodnotes Pro', 99)" class="text-[9px] bg-[#EFE5E2] text-brand-text px-2 py-1 rounded-md mt-1 font-bold btn-bounce">เพิ่มลงรถเข็น</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="fixed bottom-24 right-5 z-50">
-                <button id="floating-cart" class="w-16 h-16 bg-brand-text rounded-full shadow-[0_10px_25px_rgba(92,64,51,0.4)] text-white flex items-center justify-center text-2xl btn-bounce" onclick="cartAction()">
+            <div class="fixed bottom-24 right-5 z-40">
+                <button id="floating-cart" class="w-16 h-16 bg-brand-text rounded-full shadow-[0_10px_25px_rgba(92,64,51,0.4)] text-white flex items-center justify-center text-2xl btn-bounce transition-transform" onclick="toggleCartModal()">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="absolute -top-1 -right-1 bg-brand-main text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white" id="cart-count">0</span>
+                    <span class="absolute -top-1 -right-1 bg-brand-main text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-sm" id="cart-count">0</span>
                 </button>
             </div>
         </div>
@@ -723,7 +893,7 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
+        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-30 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
             <div class="flex justify-between items-end pb-2">
                 <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-main btn-bounce" onclick="switchTab('page-home', 0)" id="nav-item-0">
                     <i class="fa-solid fa-house text-xl mb-0.5"></i>
@@ -750,10 +920,37 @@
             </div>
         </div>
 
+        <div id="cart-modal-backdrop" class="cart-modal-backdrop" onclick="toggleCartModal()"></div>
+        <div id="cart-bottom-sheet" class="cart-bottom-sheet px-5 pt-6 pb-8 shadow-app">
+            <div class="flex justify-between items-center mb-4 border-b border-brand-light pb-3">
+                <div class="font-bold text-brand-text text-lg"><i class="fa-solid fa-basket-shopping text-brand-main mr-2"></i> ตะกร้าสินค้าของคุณ</div>
+                <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-text cursor-pointer hover:bg-brand-main hover:text-white transition-colors btn-bounce" onclick="toggleCartModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            
+            <div id="cart-items-container" class="flex-1 overflow-y-auto mb-4 pr-1 min-h-[100px] max-h-[300px]">
+                <div id="cart-items-list" class="space-y-1">
+                    <div class="text-center text-brand-subtext py-4 text-xs font-medium">ตะกร้ายังว่างอยู่ค่ะ 🥺 ลองเลือกแอปดูนะคะ</div>
+                </div>
+            </div>
+
+            <div class="bg-[#FFF5EB] rounded-xl p-4 border border-[#EFE5E2] mb-4">
+                <div class="flex justify-between items-center text-brand-text font-bold">
+                    <span>ยอดรวมทั้งหมด:</span>
+                    <span id="cart-total" class="text-xl text-brand-main">0 ฿</span>
+                </div>
+            </div>
+
+            <button onclick="checkoutToLine()" class="w-full bg-brand-text hover:bg-[#3A2821] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#EFE5E2] transition-all text-sm flex items-center justify-center gap-2 btn-bounce">
+                ชำระเงินสั่งซื้อผ่าน Line <i class="fa-brands fa-line ml-1"></i>
+            </button>
+        </div>
+
     </div>
 
     <script>
-        // ข้อมูลเทมเพลต (เดิม)
+        // ข้อมูลเทมเพลต
         const templates = {
             bright: [
                 { name: "✨ ธีมสดใส - ลูกอม", url: "#" },
@@ -772,7 +969,6 @@
             pastel: "<i class='fa-solid fa-candy-cane text-brand-text mr-2'></i> เทมเพลตพาสเทล"
         };
 
-        // เอฟเฟกต์วิ้งวับสลับหน้าเว็บ
         function createSparkleOverlay() {
             const overlay = document.createElement('div');
             overlay.className = 'fixed inset-0 pointer-events-none z-[100] bg-white/30 backdrop-blur-[2px] transition-opacity duration-300 flex items-center justify-center';
@@ -783,8 +979,7 @@
         }
 
         function switchTab(pageId, navIndex) {
-            createSparkleOverlay(); // เด้งวิ้งวับตอนกดเปลี่ยนหน้า
-
+            createSparkleOverlay();
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
@@ -849,7 +1044,6 @@
             container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // เอฟเฟกต์ลูกเล่นจิ้มจอ (สุ่มอีโมจิ)
         document.addEventListener('click', function(e) {
             const emojis = ['💖', '✨', '🎀', '🌸', '🧸', '🤎'];
             const emoji = emojis[Math.floor(Math.random() * emojis.length)];
@@ -862,7 +1056,6 @@
             setTimeout(() => el.remove(), 1000);
         });
 
-        // พลุกระดาษ BEBBY ตอนโหลดหน้าแรก
         window.onload = function() {
             const container = document.getElementById('confetti-container');
             const words = ['BEBBY', '💖', '✨', '🎀'];
@@ -879,19 +1072,22 @@
             }
         };
 
-        // ตะกร้ารถเข็น & Action น่ารักๆ
-        let cartCount = 0;
-        function addToCart() {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
+        // ================= CART SYSTEM =================
+        let cartItems = [];
+
+        function addToCart(name, price) {
+            cartItems.push({ name: name, price: parseInt(price) });
+            updateCartUI();
+
+            // Effect เด้งตะกร้า
             const cartBtn = document.getElementById('floating-cart');
             cartBtn.classList.remove('cart-action');
-            void cartBtn.offsetWidth; // trigger reflow
+            void cartBtn.offsetWidth; 
             cartBtn.classList.add('cart-action');
             
-            // แสดงลูกเล่นตรงตะกร้า
+            // Effect เลข +1
             const el = document.createElement('div');
-            el.className = 'emoji-float font-bold text-brand-main';
+            el.className = 'emoji-float font-bold text-white bg-brand-main rounded-full w-6 h-6 flex items-center justify-center text-[10px] z-[9999] shadow-sm';
             el.innerText = '+1';
             const rect = cartBtn.getBoundingClientRect();
             el.style.left = rect.left + (rect.width/2) + 'px';
@@ -900,12 +1096,71 @@
             setTimeout(() => el.remove(), 1000);
         }
 
-        function cartAction() {
-            if(cartCount > 0) {
-                alert(`มีสินค้า ${cartCount} ชิ้นในตะกร้า ทักแชทช่องทางติดต่อเพื่อสั่งซื้อเลยค่ะ 💖`);
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Update counter
+            document.getElementById('cart-count').innerText = cartItems.length;
+            
+            // Update list in modal
+            const listEl = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total');
+            let total = 0;
+
+            if (cartItems.length === 0) {
+                listEl.innerHTML = '<div class="text-center text-brand-subtext py-4 text-xs font-medium">ตะกร้ายังว่างอยู่ค่ะ 🥺 ลองเลือกแอปดูนะคะ</div>';
             } else {
-                alert('ตะกร้ายังว่างอยู่ ลองเลือกแอปดูนะคะ ✨');
+                listEl.innerHTML = '';
+                cartItems.forEach((item, index) => {
+                    total += item.price;
+                    listEl.innerHTML += `
+                        <div class="flex justify-between items-center border-b border-brand-light py-2.5 px-1 hover:bg-brand-light/30 transition-colors">
+                            <span class="text-xs font-semibold text-brand-text truncate pr-2 w-3/4"><span class="text-brand-main mr-1">${index + 1}.</span> ${item.name}</span>
+                            <div class="flex items-center gap-4">
+                                <span class="text-xs font-bold text-brand-main">${item.price} ฿</span>
+                                <i class="fa-solid fa-circle-minus text-red-300 hover:text-red-500 cursor-pointer text-sm transition-colors" onclick="removeFromCart(${index})"></i>
+                            </div>
+                        </div>
+                    `;
+                });
             }
+            totalEl.innerText = total + ' ฿';
+        }
+
+        function toggleCartModal() {
+            const backdrop = document.getElementById('cart-modal-backdrop');
+            const sheet = document.getElementById('cart-bottom-sheet');
+            backdrop.classList.toggle('show');
+            sheet.classList.toggle('show');
+        }
+
+        function checkoutToLine() {
+            if(cartItems.length === 0) {
+                alert('ยังไม่มีสินค้าในตะกร้าเลยค่ะ 🥺');
+                return;
+            }
+            
+            let total = 0;
+            let orderText = "📝 รายการสั่งซื้อ (BEBBY SHOP)\n\n";
+            cartItems.forEach((item, index) => {
+                orderText += `${index + 1}. ${item.name} = ${item.price} ฿\n`;
+                total += item.price;
+            });
+            orderText += `\n💰 ยอดรวมที่ต้องชำระ: ${total} ฿\n\nรบกวนแอดมินเช็คคิวและสรุปยอดให้หน่อยค่ะ 💖`;
+
+            const lineUrl = "https://lin.ee/5auqs5N"; // ลิงก์ไลน์ที่ให้มา
+            
+            // คัดลอกข้อความแล้วเปิด Line
+            navigator.clipboard.writeText(orderText).then(() => {
+                alert('คัดลอกรายการสั่งซื้อสำเร็จ! ✨\nระบบจะพาคุณไปที่แอป Line\n"กดวาง (Paste) ข้อความส่งให้แอดมินได้เลยค่ะ"');
+                window.open(lineUrl, '_blank');
+            }).catch(err => {
+                alert('ระบบจะพาไปที่แอป Line เพื่อสั่งซื้อค่ะ 💖');
+                window.open(lineUrl, '_blank');
+            });
         }
     </script>
 </body>
