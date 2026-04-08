@@ -2,279 +2,47 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Q - BEBBY</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
-                    colors: {
-                        theme: {
-                            bg: '#FF5C93',       /* สีพื้นหลังหลัก (ชมพูเข้ม) */
-                            card: '#FF85B3',     /* สีการ์ด (ชมพูอ่อนลงมา) */
-                            light: '#FFF0F5',    /* สีครีม/ขาว */
-                            text: '#A63C65',     /* สีตัวอักษรเข้ม */
-                            accent: '#FFD166'    /* สีเหลืองน่ารักๆ */
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>หน้าแสดงคิวลูกค้า</title>
     <style>
-        body {
-            background: linear-gradient(180deg, #FF5C93 0%, #FF7EB3 100%);
-            min-height: 100vh;
-            color: white;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        /* แถบ Progress Bar สไตล์มีอีโมจิวิ่งตาม */
-        .progress-track {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 999px;
-            height: 14px;
-            position: relative;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .progress-fill {
-            background: linear-gradient(90deg, #FFF5C3 0%, #FFD166 100%);
-            height: 100%;
-            border-radius: 999px;
-            position: relative;
-            transition: width 0.5s ease;
-        }
-        .progress-icon {
-            position: absolute;
-            right: -10px;
-            top: -8px;
-            font-size: 20px;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
-        }
-        /* ซ่อน Scrollbar แต่ยังเลื่อนได้ */
-        ::-webkit-scrollbar { display: none; }
+        /* คุณสามารถเขียน CSS แต่ง UI สวยๆ ได้ตามต้องการ */
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .queue-box { border: 2px solid #ccc; padding: 20px; border-radius: 10px; max-width: 300px; margin: auto; }
+        progress { width: 100%; height: 20px; }
     </style>
 </head>
-<body class="antialiased pb-24">
+<body>
 
-    <div class="max-w-md mx-auto p-4 space-y-4">
+    <div class="queue-box">
+        <h2>คิวปัจจุบัน</h2>
+        <h1 id="currentQueue">กำลังโหลด...</h1>
+        <p>คิวที่รอ: <span id="waitingQueue">-</span> คิว</p>
         
-        <div class="glass-panel rounded-full p-2 flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-3 pl-3">
-                <span class="text-xl font-bold italic tracking-wider">BEBBY<span class="text-xs text-white/70 ml-2 not-italic bg-white/20 px-2 py-0.5 rounded-full">GUEST</span></span>
-            </div>
-            <div class="w-10 h-10 bg-white rounded-full p-0.5 shadow-md">
-                <img src="https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg" class="w-full h-full rounded-full object-cover">
-            </div>
-        </div>
-
-        <div class="w-full h-32 rounded-3xl overflow-hidden shadow-md border-2 border-white/20">
-            <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-90">
-        </div>
-
-        <div class="grid grid-cols-3 gap-2">
-            <div class="bg-[#FFE4E1] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50">
-                <span class="text-[9px] font-bold uppercase bg-theme-bg text-white px-2 py-0.5 rounded-full mb-1">Next Queue</span>
-                <span class="text-2xl font-bold leading-none mt-1" id="stat-next-date">10</span>
-                <span class="text-[10px] font-medium" id="stat-next-month">MAR 2026</span>
-            </div>
-            <div class="bg-[#FFF0F5] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50">
-                <span class="text-[9px] font-bold uppercase bg-theme-card text-white px-2 py-0.5 rounded-full mb-1">คิวก่อนหน้า</span>
-                <div class="w-10 h-10 bg-theme-bg rounded-full flex items-center justify-center text-white text-xl font-bold mt-1 shadow-inner">
-                    <span id="stat-waiting">0</span>
-                </div>
-                <span class="text-[10px] mt-1">คิว</span>
-            </div>
-            <div class="bg-[#FFFFF0] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50 col-span-1">
-                <span class="text-[9px] font-bold uppercase text-theme-text mb-1">ความสำเร็จวันนี้</span>
-                <i class="fa-solid fa-asterisk text-theme-card text-2xl my-1 animate-spin-slow"></i>
-                <span class="text-[10px] font-bold bg-theme-light px-2 py-0.5 rounded-full mt-1"><span id="stat-percent">0</span>% (<span id="stat-done">0</span>/<span id="stat-total">0</span>)</span>
-            </div>
-        </div>
-
-        <div class="flex gap-2 items-center">
-            <div class="flex-1 glass-panel rounded-full px-4 py-2 text-sm text-white/90 shadow-sm flex items-center gap-2">
-                <i class="fa-solid fa-bullhorn text-theme-accent"></i>
-                <marquee scrollamount="3" class="text-xs font-medium">Morning kubb ทุกคน~ วันนี้เริ่มรันคิวแล้วน้า 🧸✨</marquee>
-            </div>
-            <div class="flex gap-1">
-                <a href="#" class="w-8 h-8 glass-panel rounded-full flex items-center justify-center hover:bg-white/30 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-                <a href="#" class="w-8 h-8 glass-panel rounded-full flex items-center justify-center hover:bg-white/30 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
-            </div>
-        </div>
-
-        <div class="glass-panel rounded-2xl p-1 flex mt-4 shadow-sm text-sm font-medium relative">
-            <button onclick="filterTasks('all')" class="flex-1 text-theme-text bg-white rounded-xl py-2 shadow-sm transition-all" id="tab-all">ทั้งหมด</button>
-            <button onclick="filterTasks('pending')" class="flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all" id="tab-pending">กำลังทำ</button>
-            <button onclick="filterTasks('done')" class="flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all" id="tab-done">เสร็จแล้ว</button>
-        </div>
-
-        <div class="text-[11px] font-bold tracking-widest uppercase opacity-80 mt-6 mb-2 pl-2 flex justify-between items-center">
-            <span>🌸 Today's Task</span>
-            <span class="opacity-70 font-normal">อัปเดตล่าสุด: <span id="last-update">กำลังโหลด...</span></span>
-        </div>
-
-        <div id="queue-container" class="space-y-3">
-            <div class="text-center py-10">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-2"></i>
-                <p class="text-sm">กำลังโหลดคิวจาก Google Sheets...</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="fixed bottom-0 w-full max-w-md left-1/2 transform -translate-x-1/2 p-4 z-50">
-        <div class="bg-theme-text/80 backdrop-blur-md rounded-full flex justify-around p-2 shadow-lg border border-white/20">
-            <button class="w-12 h-12 bg-white text-theme-text rounded-full flex items-center justify-center text-xl shadow-inner transform -translate-y-4 border-4 border-theme-bg"><i class="fa-solid fa-house"></i></button>
-            <button class="w-12 h-12 text-white/70 hover:text-white flex items-center justify-center text-xl"><i class="fa-solid fa-calendar-days"></i></button>
-            <button class="w-12 h-12 text-white/70 hover:text-white flex items-center justify-center text-xl"><i class="fa-solid fa-file-invoice"></i></button>
-        </div>
+        <p>ความคืบหน้างานปัจจุบัน</p>
+        <progress id="progressBar" value="0" max="100"></progress>
+        <p><span id="progressText">0</span>%</p>
     </div>
 
     <script>
-        // 🛑 นำ URL API ของ Google Apps Script มาใส่ตรงนี้
-        const API_URL = 'ใส่_URL_WEB_APP_ของคุณที่นี่'; 
-        
-        let allTasks = [];
+        // ใส่ URL ที่ได้จาก Google Apps Script ในขั้นที่ 1
+        const API_URL = 'ใส่_URL_WEB_APP_ของคุณที่นี่';
 
-        // ตัวอย่างข้อมูลจำลอง (Mock Data) ระหว่างรอต่อ API จริง
-        // ให้เห็นภาพว่าถ้าดึงข้อมูลมา หน้าตาจะเป็นแบบไหน
-        const mockData = [
-            ["Q ที่", "Date", "Platform", "Account Name", "Order", "Type Design", "Status", "Progress", "Icon"],
-            ["Q1", "08/03/69", "FACEBOOK", "น้องมายด์", "ป้ายบัญชี", "มินิมอล", "ส่งงานแล้ว", "100", "✅"],
-            ["Q2", "08/03/69", "LINE", "คุณเอ", "ปกเพจ", "น่ารัก", "กำลังแก้ตัวงาน", "75", "🐰"],
-            ["Q3", "09/03/69", "IG", "Mochi friends", "ลายน้ำ", "พาสเทล", "เริ่มปั้นงาน", "30", "🧸"],
-            ["Q4", "10/03/69", "FACEBOOK", "ลูกค้าVIP", "ป้ายเรท", "หรูหรา", "รอคิว", "0", "⏳"]
-        ];
-
-        async function loadData() {
+        async function fetchQueue() {
             try {
-                // 1. ถ้าเชื่อม API แล้ว ให้เอาคอมเมนต์ 2 บรรทัดล่างออก แล้วลบบรรทัด mockData ทิ้ง
-                // const response = await fetch(API_URL);
-                // const data = await response.json();
+                const response = await fetch(API_URL);
+                const data = await response.json();
                 
-                const data = mockData; // จำลองข้อมูล
-                
-                // ข้ามแถวแรก (หัวข้อ) และเก็บข้อมูลไว้
-                allTasks = data.slice(1).map(row => ({
-                    q: row[0],
-                    date: row[1],
-                    platform: row[2],
-                    name: row[3],
-                    order: row[4],
-                    design: row[5],
-                    status: row[6],
-                    progress: parseInt(row[7]) || 0, // เปอร์เซ็นต์ความคืบหน้า (0-100)
-                    icon: row[8] || '🐰' // อีโมจิวิ่งบนหลอด
-                }));
-
-                // อัปเดตเวลา
-                const now = new Date();
-                document.getElementById('last-update').innerText = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
-
-                calculateStats();
-                renderTasks('all');
-
+                document.getElementById('currentQueue').innerText = data.currentQueue;
+                document.getElementById('waitingQueue').innerText = data.waitingQueue;
+                document.getElementById('progressBar').value = data.progress;
+                document.getElementById('progressText').innerText = data.progress;
             } catch (error) {
-                console.error("Error loading data:", error);
-                document.getElementById('queue-container').innerHTML = '<p class="text-center">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>';
+                console.error('ไม่สามารถดึงข้อมูลได้:', error);
             }
         }
 
-        function calculateStats() {
-            // คำนวณความคืบหน้าของวันนี้
-            const total = allTasks.length;
-            const done = allTasks.filter(t => t.progress === 100).length;
-            const waiting = allTasks.filter(t => t.progress === 0).length;
-            const percent = total === 0 ? 0 : Math.round((done / total) * 100);
-
-            document.getElementById('stat-total').innerText = total;
-            document.getElementById('stat-done').innerText = done;
-            document.getElementById('stat-percent').innerText = percent;
-            document.getElementById('stat-waiting').innerText = waiting;
-            
-            // หาวันที่คิวถัดไป (คิวแรกที่ยังไม่เสร็จ)
-            const nextTask = allTasks.find(t => t.progress < 100);
-            if(nextTask) {
-                // สมมติว่าแยก วัน กับ เดือน ออกจากกันเพื่อความสวยงาม (ต้องปรับตาม Format วันที่ใน Sheet ของคุณ)
-                document.getElementById('stat-next-date').innerText = nextTask.date.split('/')[0] || '-';
-                document.getElementById('stat-next-month').innerText = "คิวถัดไป"; 
-            }
-        }
-
-        function filterTasks(type) {
-            // เปลี่ยนสีปุ่ม Tab
-            ['all', 'pending', 'done'].forEach(tab => {
-                const btn = document.getElementById(`tab-${tab}`);
-                if(tab === type) {
-                    btn.className = "flex-1 text-theme-text bg-white rounded-xl py-2 shadow-sm transition-all";
-                } else {
-                    btn.className = "flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all";
-                }
-            });
-            renderTasks(type);
-        }
-
-        function renderTasks(filterType) {
-            const container = document.getElementById('queue-container');
-            container.innerHTML = '';
-
-            let filtered = allTasks;
-            if (filterType === 'pending') {
-                filtered = allTasks.filter(t => t.progress < 100);
-            } else if (filterType === 'done') {
-                filtered = allTasks.filter(t => t.progress === 100);
-            }
-
-            if (filtered.length === 0) {
-                container.innerHTML = '<div class="text-center py-6 text-white/70">ไม่มีรายการในหมวดหมู่นี้</div>';
-                return;
-            }
-
-            filtered.forEach(task => {
-                // เลือกสีการ์ดตามสถานะ (เสร็จแล้วให้สีจางลงนิดนึง)
-                const cardBg = task.progress === 100 ? 'bg-theme-card/60' : 'bg-theme-card';
-                const opacity = task.progress === 100 ? 'opacity-80' : 'opacity-100';
-
-                const html = `
-                <div class="${cardBg} ${opacity} rounded-3xl p-4 shadow-sm border border-white/20 relative overflow-hidden transition-all hover:scale-[1.01]">
-                    
-                    <div class="flex justify-between items-start mb-3">
-                        <div class="flex flex-col">
-                            <span class="text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-md w-fit mb-1">${task.platform}</span>
-                            <span class="font-bold text-white text-base">${task.name} <span class="text-xs font-normal opacity-80">(${task.order})</span></span>
-                        </div>
-                        <div class="bg-white/20 px-2 py-1 rounded-md text-[10px] font-bold text-white flex items-center gap-1">
-                            <i class="fa-regular fa-calendar"></i> ${task.date}
-                        </div>
-                    </div>
-
-                    <div class="mt-4">
-                        <div class="flex justify-between text-xs font-medium mb-1 text-white/90">
-                            <span>${task.status}</span>
-                            <span>${task.progress}%</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: ${task.progress}%">
-                                <span class="progress-icon">${task.icon}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-                container.innerHTML += html;
-            });
-        }
-
-        // เริ่มโหลดข้อมูลเมื่อเปิดหน้าเว็บ
-        window.onload = loadData;
+        // ให้ดึงข้อมูลทันที และรีเฟรชใหม่ทุกๆ 30 วินาที
+        fetchQueue();
+        setInterval(fetchQueue, 30000); 
     </script>
 </body>
 </html>
