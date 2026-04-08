@@ -50,6 +50,7 @@
         }
         .gradient-bg {
             background: linear-gradient(180deg, #FF8DAF 0%, #FFB6C1 100%);
+            transition: background 0.5s ease;
         }
         .stars-bg {
             background-image: 
@@ -86,7 +87,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom Scrollbar for template list */
         #template-list::-webkit-scrollbar {
             width: 4px;
         }
@@ -97,6 +97,18 @@
             background: #FF9EBB;
             border-radius: 10px;
         }
+        
+        /* ฟังก์ชันเปลี่ยนสีเมื่อปิดร้าน (สีน้ำตาล) */
+        body.closed-mode .gradient-bg {
+            background: linear-gradient(180deg, #8A6F65 0%, #A88F85 100%) !important;
+        }
+        body.closed-mode #timer-progress {
+            background-color: #8A6F65 !important;
+        }
+        
+        /* Custom scrollbar for To-do list */
+        .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #FF9EBB; border-radius: 10px; }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -131,7 +143,62 @@
             </div>
 
             <div class="bg-white rounded-t-[35px] -mt-16 relative z-10 pt-10 px-5 shadow-app pb-6">
-                <div class="text-center mb-4 mt-12">
+                
+                <div class="bg-[#FFF0F5] border border-brand-main/30 p-3.5 rounded-2xl mb-5 mt-4 shadow-sm">
+                    <div class="flex justify-between items-center mb-2">
+                        <div id="store-status-text">
+                            </div>
+                        <div class="text-[10px] text-brand-subtext font-bold">หลอดเวลาทำการ</div>
+                    </div>
+                    <div class="w-full bg-white rounded-full h-3.5 relative border border-brand-main/20">
+                        <div id="timer-progress" class="bg-brand-main h-full rounded-full relative transition-all duration-1000 ease-in-out" style="width: 0%;">
+                            <span class="absolute -right-3 top-1/2 transform -translate-y-1/2 text-xl drop-shadow-sm z-10">🧸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-brand-main/30 rounded-2xl bg-white shadow-sm overflow-hidden mb-5">
+                    <div class="bg-[#FFF0F5] px-4 py-2.5 border-b border-brand-main/30">
+                        <span class="text-sm font-bold text-brand-text flex items-center gap-2">
+                            <i class="fa-solid fa-thumbtack text-brand-main"></i> ประกาศร้าน & ช่องทางติดต่อ
+                        </span>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <textarea class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-brand-text focus:outline-none focus:border-brand-main resize-none" rows="2" placeholder="พิมพ์โน๊ตข้อความเตือนความจำตรงนี้..."></textarea>
+                        <div class="flex gap-2">
+                            <a href="https://www.facebook.com/share/18eTVwt7kX/?mibextid=wwXIfr" target="_blank" class="flex-1 bg-[#1877F2] text-white py-2.5 rounded-xl text-[11px] font-bold flex justify-center items-center gap-1.5 shadow-sm hover:opacity-90 transition">
+                                <i class="fa-brands fa-facebook-f text-sm"></i> Facebook
+                            </a>
+                            <a href="https://lin.ee/oYJ27pk" target="_blank" class="flex-1 bg-[#00B900] text-white py-2.5 rounded-xl text-[11px] font-bold flex justify-center items-center gap-1.5 shadow-sm hover:opacity-90 transition">
+                                <i class="fa-brands fa-line text-lg"></i> Line
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-[#EFE5E2] rounded-2xl bg-white shadow-sm overflow-hidden mb-6">
+                    <div class="bg-[#F5ECE9]/60 px-4 py-2.5 border-b border-[#EFE5E2]">
+                        <span class="text-sm font-bold text-brand-text flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-[#8A6F65]"></i> To do list (สิ่งที่ต้องทำ)
+                        </span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex gap-2 mb-3">
+                            <input type="text" id="todo-input" placeholder="พิมพ์เพิ่มรายการ..." class="flex-1 border border-brand-light rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-brand-main">
+                            <button onclick="addTodo()" class="bg-brand-main text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-brand-dark transition"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <ul id="todo-list" class="space-y-2 max-h-32 overflow-y-auto pr-1 custom-scrollbar">
+                            <li class="flex justify-between items-center bg-[#FFF0F5]/50 border border-brand-light p-2.5 rounded-xl text-xs text-brand-text group">
+                                <span class="flex items-center gap-2 cursor-pointer" onclick="this.classList.toggle('line-through'); this.classList.toggle('text-brand-subtext');">
+                                    <i class="fa-regular fa-circle-check text-brand-main"></i> เคลียร์คิวงานวันนี้
+                                </span>
+                                <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4 mt-6">
                     <span class="text-brand-main font-semibold text-sm tracking-wide bg-brand-light px-4 py-1.5 rounded-full inline-block border border-brand-main/20">
                         Fast Menu
                         <svg class="w-3.5 h-3.5 inline-block text-brand-main ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
@@ -182,7 +249,7 @@
                                 <li class="text-xs text-brand-subtext/70 mt-2 list-none -ml-4">ในอนาคตอาจมีการเปลี่ยนลิงก์ หากนำไปเปลี่ยนโดเมนแล้วมีค่าใช้จ่าย ทางร้านไม่รับผิดชอบทุกกรณี</li>
                             </ul>
                         </div>
-                    </div> 
+                    </div>
                     <div class="border border-[#EFE5E2] rounded-2xl bg-white shadow-sm overflow-hidden">
                         <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text">
                             <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-text"></i> กฎของร้าน</span>
@@ -603,29 +670,33 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
-            <div class="flex justify-between items-end pb-2">
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <i class="fa-solid fa-house text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-semibold">หน้าแรก</span>
+        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md px-2 py-2 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] max-w-[430px] mx-auto rounded-t-3xl border-t border-brand-light/50">
+            <div class="flex justify-between items-end pb-2 px-4 relative">
+                <div class="flex flex-col items-center gap-1 cursor-pointer text-[#FF9EBB]" onclick="switchTab('page-home', 0)" id="nav-item-0">
+                    <i class="fa-solid fa-house text-2xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">หน้าแรก</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-website', 1)" id="nav-item-1">
-                    <i class="fa-solid fa-laptop-code text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">รับทำเว็บ</span>
+                
+                <div class="flex flex-col items-center gap-1 cursor-pointer text-[#8A6F65]" onclick="switchTab('page-website', 1)" id="nav-item-1">
+                    <i class="fa-solid fa-laptop-code text-2xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">รับทำเว็บ</span>
                 </div>
-                <div class="relative w-1/4 flex justify-center" onclick="switchTab('page-services', -1)">
-                    <div class="absolute -top-10 w-14 h-14 bg-gradient-to-tr from-brand-main to-pink-300 rounded-full flex items-center justify-center text-white text-2xl shadow-lg shadow-pink-300/50 border-4 border-white cursor-pointer transform hover:scale-105 transition-transform">
+                
+                <div class="relative flex flex-col items-center justify-end w-[60px] cursor-pointer" onclick="switchTab('page-services', -1)">
+                    <div class="absolute -top-12 w-[60px] h-[60px] bg-[#FF9EBB] rounded-full flex items-center justify-center text-white text-2xl border-[5px] border-white shadow-[0_4px_10px_rgba(255,158,187,0.4)] z-10 transition-transform hover:scale-105">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
-                    <span class="text-[9px] font-bold text-brand-main mt-5">บริการทั้งหมด</span>
+                    <span class="text-[10px] font-bold text-[#FF9EBB] mt-6 whitespace-nowrap relative z-0">บริการทั้งหมด</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-goodnotes', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-book-open text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">แอป GN</span>
+                
+                <div class="flex flex-col items-center gap-1 cursor-pointer text-[#8A6F65]" onclick="switchTab('page-goodnotes', 2)" id="nav-item-2">
+                    <i class="fa-solid fa-book-open text-2xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">แอป GN</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-contact', 3)" id="nav-item-3">
-                    <i class="fa-regular fa-comment-dots text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">ติดต่อ</span>
+                
+                <div class="flex flex-col items-center gap-1 cursor-pointer text-[#8A6F65]" onclick="switchTab('page-contact', 3)" id="nav-item-3">
+                    <i class="fa-regular fa-comment-dots text-2xl mb-0.5"></i>
+                    <span class="text-[10px] font-bold">ติดต่อ</span>
                 </div>
             </div>
         </div>
@@ -668,18 +739,17 @@
                 document.getElementById('template-links-container').classList.add('hidden');
             }
 
+            // Logic เปลี่ยนสี Navigation ตามรูปภาพ
             if (navIndex >= 0) {
                 for (let i = 0; i <= 3; i++) {
                     const item = document.getElementById(`nav-item-${i}`);
                     if (item) {
                         if (i === navIndex) {
-                            item.classList.remove('text-brand-subtext');
-                            item.classList.add('text-brand-main');
-                            item.querySelector('span').classList.replace('font-medium', 'font-semibold');
+                            item.classList.remove('text-[#8A6F65]');
+                            item.classList.add('text-[#FF9EBB]');
                         } else {
-                            item.classList.remove('text-brand-main');
-                            item.classList.add('text-brand-subtext');
-                            item.querySelector('span').classList.replace('font-semibold', 'font-medium');
+                            item.classList.remove('text-[#FF9EBB]');
+                            item.classList.add('text-[#8A6F65]');
                         }
                     }
                 }
@@ -687,9 +757,8 @@
                 for (let i = 0; i <= 3; i++) {
                     const item = document.getElementById(`nav-item-${i}`);
                     if (item) {
-                        item.classList.remove('text-brand-main');
-                        item.classList.add('text-brand-subtext');
-                        item.querySelector('span').classList.replace('font-semibold', 'font-medium');
+                        item.classList.remove('text-[#FF9EBB]');
+                        item.classList.add('text-[#8A6F65]');
                     }
                 }
             }
@@ -720,6 +789,81 @@
             container.classList.remove('hidden');
             container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+
+        // ================= NEW FUNCTIONS =================
+
+        // 1. ระบบสถานะร้านและหลอดนับเวลา
+        function checkStoreStatus() {
+            const now = new Date();
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const currentMins = h * 60 + m;
+            const openMins = 9 * 60; // 09:00
+            const closeMins = 23 * 60 + 59; // 23:59
+            
+            const isOpen = currentMins >= openMins && currentMins <= closeMins;
+            
+            const statusText = document.getElementById('store-status-text');
+            const progressBar = document.getElementById('timer-progress');
+            
+            if (isOpen) {
+                // ร้านเปิด
+                document.body.classList.remove('closed-mode');
+                if(statusText) {
+                    statusText.innerHTML = '<i class="fa-solid fa-store"></i> 09:00 - 23:59 (เปิด)';
+                    statusText.className = 'text-[#00B900] bg-green-100 px-3 py-1 rounded-full text-[10px] font-bold inline-flex items-center gap-1 border border-green-200';
+                }
+                
+                // คำนวณความยาวหลอด 0-100%
+                if(progressBar) {
+                    const total = closeMins - openMins;
+                    const passed = currentMins - openMins;
+                    let percent = (passed / total) * 100;
+                    if(percent > 100) percent = 100;
+                    progressBar.style.width = percent + '%';
+                }
+            } else {
+                // ร้านปิด
+                document.body.classList.add('closed-mode');
+                if(statusText) {
+                    statusText.innerHTML = '<i class="fa-solid fa-store-slash"></i> 23:59 (ปิดแล้ว)';
+                    statusText.className = 'text-white bg-[#8A6F65] px-3 py-1 rounded-full text-[10px] font-bold inline-flex items-center gap-1';
+                }
+                if(progressBar) {
+                    progressBar.style.width = '100%';
+                }
+            }
+        }
+        
+        // 2. To-Do List
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const text = input.value.trim();
+            if(!text) return;
+            
+            const list = document.getElementById('todo-list');
+            const li = document.createElement('li');
+            li.className = 'flex justify-between items-center bg-[#FFF0F5]/50 border border-brand-light p-2.5 rounded-xl text-xs text-brand-text group';
+            li.innerHTML = `
+                <span class="flex items-center gap-2 cursor-pointer" onclick="this.classList.toggle('line-through'); this.classList.toggle('text-brand-subtext');">
+                    <i class="fa-regular fa-circle-check text-brand-main"></i> ${text}
+                </span>
+                <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+            list.appendChild(li);
+            input.value = '';
+        }
+
+        // อนุญาตให้กด Enter เพื่อเพิ่ม To-Do
+        document.getElementById('todo-input')?.addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') addTodo();
+        });
+
+        // สั่งทำงานฟังก์ชันเมื่อโหลดเสร็จ
+        window.addEventListener('DOMContentLoaded', () => {
+            checkStoreStatus();
+            setInterval(checkStoreStatus, 60000); // อัปเดตทุก 1 นาที
+        });
     </script>
 </body>
 </html>
