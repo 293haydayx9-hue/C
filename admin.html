@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ระบบหลังบ้าน (Admin Only)</title>
+    <style>
+        body { font-family: sans-serif; max-width: 400px; margin: auto; padding: 20px; }
+        input { display: block; margin-bottom: 15px; width: 100%; padding: 8px; }
+        button { padding: 10px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>อัปเดตคิวและสถานะงาน</h2>
+    <label>รหัสผ่านแอดมิน:</label>
+    <input type="password" id="adminPass" placeholder="ใส่รหัสผ่าน...">
+
+    <label>คิวปัจจุบัน:</label>
+    <input type="number" id="inputCurrent" placeholder="เลขคิว...">
+
+    <label>จำนวนคิวที่รอ:</label>
+    <input type="number" id="inputWaiting" placeholder="จำนวนคนรอ...">
+
+    <label>ความคืบหน้า (%):</label>
+    <input type="number" id="inputProgress" placeholder="0-100">
+
+    <button onclick="updateQueue()">บันทึกข้อมูล</button>
+
+    <script>
+        // ใส่ URL เดียวกับหน้า index
+        const API_URL = 'ใส่_URL_WEB_APP_ของคุณที่นี่';
+
+        async function updateQueue() {
+            const password = document.getElementById('adminPass').value;
+            const currentQueue = document.getElementById('inputCurrent').value;
+            const waitingQueue = document.getElementById('inputWaiting').value;
+            const progress = document.getElementById('inputProgress').value;
+
+            // รวบรวมข้อมูลแพ็กส่งไปให้ Google Apps Script
+            const payload = {
+                action: 'updateQueue',
+                password: password,
+                currentQueue: currentQueue,
+                waitingQueue: waitingQueue,
+                progress: progress
+            };
+
+            // แจ้งเตือนแอดมินว่ากำลังบันทึก
+            document.querySelector('button').innerText = 'กำลังบันทึก...';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    alert('อัปเดตข้อมูลสำเร็จ!');
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);
+                }
+            } catch (error) {
+                alert('ส่งข้อมูลไม่สำเร็จ');
+            }
+            
+            document.querySelector('button').innerText = 'บันทึกข้อมูล';
+        }
+    </script>
+</body>
+</html>
