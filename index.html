@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEBBY - Mobile Shop</title>
+    <title>Check Q - BEBBY</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Prompt', 'sans-serif'],
-                        outfit: ['Outfit', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            dark: '#D9779B',     
-                            main: '#FF9EBB',     /* ชมพู */
-                            light: '#FFF0F5',    /* ครีมชมพู */
-                            cream: '#F5ECE9',    /* ครีม */
-                            text: '#4A332A',     /* น้ำตาลเข้ม */
-                            subtext: '#8A6F65'   /* น้ำตาลอ่อน */
+                        theme: {
+                            bg: '#FF5C93',       /* สีพื้นหลังหลัก (ชมพูเข้ม) */
+                            card: '#FF85B3',     /* สีการ์ด (ชมพูอ่อนลงมา) */
+                            light: '#FFF0F5',    /* สีครีม/ขาว */
+                            text: '#A63C65',     /* สีตัวอักษรเข้ม */
+                            accent: '#FFD166'    /* สีเหลืองน่ารักๆ */
                         }
-                    },
-                    boxShadow: {
-                        'app': '0 -10px 40px -15px rgba(255, 158, 187, 0.15), 0 10px 40px -15px rgba(255, 158, 187, 0.15)',
-                        'nav': '0 -5px 20px -5px rgba(255, 158, 187, 0.2)'
                     }
                 }
             }
@@ -37,854 +27,254 @@
     </script>
     <style>
         body {
-            background-color: #FAFAFA;
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-        }
-        .app-container {
-            max-width: 430px;
-            margin: 0 auto;
+            background: linear-gradient(180deg, #FF5C93 0%, #FF7EB3 100%);
             min-height: 100vh;
-            background-color: #FFF0F5;
+            color: white;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        /* แถบ Progress Bar สไตล์มีอีโมจิวิ่งตาม */
+        .progress-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 999px;
+            height: 14px;
             position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            overflow-x: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
-        .gradient-bg {
-            background: linear-gradient(180deg, #FF9EBB 0%, #FFF0F5 100%);
-        }
-        .stars-bg {
-            background-image: 
-                radial-gradient(circle at 15% 30%, rgba(255,255,255,0.8) 1px, transparent 1.5px),
-                radial-gradient(circle at 85% 20%, rgba(255,255,255,0.8) 1px, transparent 1.5px),
-                radial-gradient(circle at 30% 60%, rgba(255,255,255,0.8) 2px, transparent 2.5px),
-                radial-gradient(circle at 75% 70%, rgba(255,255,255,0.8) 1.5px, transparent 2px);
-            background-size: 100% 100%;
-        }
-        .hero-image-placeholder {
-            width: 150px;
-            height: 150px;
-            background-color: white;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(255, 158, 187, 0.4);
-            margin: 0 auto;
+        .progress-fill {
+            background: linear-gradient(90deg, #FFF5C3 0%, #FFD166 100%);
+            height: 100%;
+            border-radius: 999px;
             position: relative;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            transition: width 0.5s ease;
         }
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease-out forwards;
-            padding-bottom: 90px;
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #FF9EBB; border-radius: 10px; }
-        
-        /* --- NEW EFFECTS --- */
-        /* Jelly Button */
-        .btn-jelly { transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
-        .btn-jelly:active { transform: scale(0.92); }
-        
-        /* Floating Emoji */
-        .floating-emoji {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            animation: floatUpEmoji 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            font-size: 24px;
-        }
-        @keyframes floatUpEmoji {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
-            50% { opacity: 1; transform: translate(-50%, -100px) scale(1.2); }
-            100% { opacity: 0; transform: translate(-50%, -150px) scale(1); }
-        }
-
-        /* Sparkle Element */
-        .sparkle-effect {
+        .progress-icon {
             position: absolute;
-            background: radial-gradient(circle, #fff 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: sparkleAnim 0.6s ease-out forwards;
-            z-index: 100;
-        }
-        @keyframes sparkleAnim {
-            0% { transform: scale(0) rotate(0deg); opacity: 0.8; }
-            50% { transform: scale(1) rotate(90deg); opacity: 1; }
-            100% { transform: scale(0) rotate(180deg); opacity: 0; }
-        }
-
-        /* Bouncing Badge */
-        .badge-bounce {
-            animation: bounceBadge 1.5s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-        }
-        @keyframes bounceBadge {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1) translateY(-2px); }
-        }
-
-        /* Confetti text */
-        .confetti-text {
-            position: fixed;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            color: #FF9EBB;
+            right: -10px;
+            top: -8px;
             font-size: 20px;
-            letter-spacing: 2px;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0;
-            text-shadow: 0 2px 10px rgba(255,158,187,0.5);
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
         }
-        .confetti-active {
-            animation: rainConfetti 2s ease-in-out forwards;
-        }
-        @keyframes rainConfetti {
-            0% { top: -50px; opacity: 1; transform: translateX(-50%) scale(0.8); }
-            20% { top: 100px; transform: translateX(-50%) scale(1.2); }
-            80% { top: 120px; opacity: 1; transform: translateX(-50%) scale(1); }
-            100% { top: 150px; opacity: 0; transform: translateX(-50%) scale(0.9); }
-        }
-
-        /* Portfolio Folder 3D Glassmorphism */
-        .glass-folder-wrapper {
-            position: relative;
-            width: 90px;
-            height: 70px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-        .gf-back {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 50px;
-            background: linear-gradient(145deg, #4A332A, #8A6F65);
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .gf-paper {
-            position: absolute;
-            bottom: 10px;
-            width: 80%;
-            height: 45px;
-            background: white;
-            border-radius: 6px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding: 6px;
-        }
-        .gf-paper-1 { transform: rotate(-6deg) translateX(-2px); z-index: 10; }
-        .gf-paper-2 { transform: rotate(4deg) translateX(2px); z-index: 11; }
-        .gf-paper-3 { transform: rotate(-1deg); z-index: 12; border: 1px solid #eee; }
-        .gf-line { height: 3px; background: #e5e7eb; border-radius: 2px; }
-        .gf-front {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.8);
-            border-left: 1px solid rgba(255, 255, 255, 0.8);
-            z-index: 20;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-        }
+        /* ซ่อน Scrollbar แต่ยังเลื่อนได้ */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="text-brand-text font-sans antialiased" onclick="spawnEmoji(event)">
-    <div id="confetti" class="confetti-text">✨ BEBBY ✨</div>
+<body class="antialiased pb-24">
 
-    <div class="app-container flex flex-col">
+    <div class="max-w-md mx-auto p-4 space-y-4">
         
-        <div id="page-home" class="page active">
-            <div class="gradient-bg pt-10 px-6 pb-24 relative rounded-b-[40px]">
-                <div class="stars-bg absolute inset-0 opacity-40"></div>
-                <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-brand-text font-outfit text-2xl font-bold tracking-wide flex flex-col brand-title">
-                        BEBBY
-                        <span class="text-xs font-medium tracking-widest text-brand-subtext mt-1">Mobile Shop</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <div class="relative btn-jelly cursor-pointer w-8 h-8 bg-white/50 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-star text-brand-main text-sm"></i>
-                        </div>
-                        <div class="relative btn-jelly cursor-pointer w-8 h-8 bg-white/50 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <i class="fa-regular fa-bell text-brand-text text-sm"></i>
-                            <span class="absolute 0 -right-0 w-2.5 h-2.5 bg-brand-main rounded-full border border-white"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-lg font-semibold text-brand-text flex justify-center items-center">
-                        Welcome to BEBBY 
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 inline-block text-white ml-1 drop-shadow-sm"><path d="M12 10.5C11.5 8 9 6 6 6 3 6 2 8 2 10.5 2 13 5 14 8 13.5L10 14.5C9.5 17 8 20 6 21 8.5 21 11 19 12 16 13 19 15.5 21 18 21 16 20 14.5 17 14 14.5L16 13.5C19 14 22 13 22 10.5 22 8 21 6 18 6 15 6 12.5 8 12 10.5Z" /></svg>
-                    </h1>
-                    <p class="text-[11px] font-medium text-brand-text mt-1 bg-white/40 inline-block px-3 py-1 rounded-full backdrop-blur-sm border border-white/50">รับออกแบบทุกอย่างบนโลก & รับทำเว็บร้าน</p>
-                </div>
-                
-                <div class="hero-image-placeholder mt-4 mb-[-60px]">
-                    <img src="https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg" alt="Bebby Logo" class="w-full h-full object-cover">
-                </div>
+        <div class="glass-panel rounded-full p-2 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3 pl-3">
+                <span class="text-xl font-bold italic tracking-wider">BEBBY<span class="text-xs text-white/70 ml-2 not-italic bg-white/20 px-2 py-0.5 rounded-full">GUEST</span></span>
             </div>
-
-            <div class="bg-white rounded-t-[35px] relative z-10 pt-16 px-5 shadow-app pb-6">
-                
-                <div class="mb-6 bg-brand-cream/30 border border-brand-cream rounded-2xl p-4 shadow-sm relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 bg-brand-main h-full"></div>
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="text-sm font-bold text-brand-text flex items-center gap-2">
-                            <i class="fa-solid fa-list-check text-brand-main"></i> สถานะคิวงานวันนี้
-                        </div>
-                        <div class="flex gap-1 bg-white rounded-lg p-1 border border-brand-light shadow-sm">
-                            <button id="view-list-btn" onclick="toggleQueueView('list')" class="btn-jelly px-2 py-1 bg-brand-light text-brand-main rounded text-[10px] font-bold"><i class="fa-solid fa-list"></i></button>
-                            <button id="view-cal-btn" onclick="toggleQueueView('calendar')" class="btn-jelly px-2 py-1 text-brand-subtext hover:bg-brand-light rounded text-[10px]"><i class="fa-regular fa-calendar"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div id="queue-display-area" class="bg-white rounded-xl p-3 border border-brand-light mb-3">
-                        <div class="flex justify-between items-center text-xs mb-1">
-                            <span class="text-brand-subtext">กำลังดำเนินการ:</span>
-                            <span class="font-bold text-brand-main" id="q-current">กำลังโหลด...</span>
-                        </div>
-                        <div class="w-full bg-brand-light rounded-full h-1.5 mb-2 overflow-hidden">
-                            <div class="bg-brand-main h-1.5 rounded-full relative overflow-hidden" style="width: 45%" id="q-progress">
-                                <div class="absolute top-0 left-0 w-full h-full bg-white/30 animate-pulse"></div>
-                            </div>
-                        </div>
-                        <div class="flex justify-between text-[10px] text-brand-subtext">
-                            <span>คิวทั้งหมด: <span id="q-total">-</span></span>
-                            <span>รอคิว: <span id="q-waiting">-</span></span>
-                        </div>
-                    </div>
-
-                    <a href="https://script.google.com/macros/s/AKfycbximGxrL6vCsaX0egYmNlofmdG22yRfEfDRa1TjGzVyg8ymUe_BYTI2oJLFDUf3-gQMVQ/exec" target="_blank" class="block w-full border-2 border-dashed border-brand-main bg-brand-light/50 text-brand-main font-bold text-xs py-2.5 rounded-xl text-center btn-jelly hover:bg-brand-light transition-colors flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i> เช็คคิวงานทั้งหมดแบบละเอียด
-                    </a>
-                </div>
-
-                <div class="text-center mb-4">
-                    <span class="text-brand-main font-semibold text-sm tracking-wide bg-brand-light px-4 py-1.5 rounded-full inline-block border border-brand-main/20">
-                        Fast Menu
-                    </span>
-                </div>
-                
-                <div class="grid grid-cols-4 gap-3 mb-8">
-                    <div class="flex flex-col items-center gap-2 btn-jelly cursor-pointer group" onclick="switchTab('page-services', 1)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รับออกแบบ<br>ทุกอย่าง</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 btn-jelly cursor-pointer group" onclick="switchTab('page-website', 1)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-cream group-hover:bg-[#EFE5E2] flex items-center justify-center text-[#8A6F65] text-xl shadow-sm border border-[#EFE5E2] transition-colors">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รับทำ<br>เว็บไซต์</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 btn-jelly cursor-pointer group" onclick="switchTab('page-goodnotes', 2)">
-                        <div class="w-14 h-14 rounded-2xl bg-[#EFE5E2] group-hover:bg-[#E0D4CF] flex items-center justify-center text-brand-text text-xl shadow-sm border border-[#E0D4CF] transition-colors relative">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-main opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-main border border-white"></span>
-                            </span>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-bold text-brand-main leading-tight">แอป<br>พรีเมียม</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 btn-jelly cursor-pointer group" onclick="switchTab('page-contact', 3)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light group-hover:bg-[#FFD1E0] flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors">
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">ช่องทาง<br>ติดต่อ</span>
-                    </div>
-                </div>
-
-                <div class="space-y-3 mb-8">
-                    <div class="border border-brand-light rounded-2xl bg-white shadow-sm overflow-hidden">
-                        <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text bg-brand-light/30">
-                            <span class="flex items-center gap-2 font-bold"><i class="fa-solid fa-list-ol text-brand-main"></i> ขั้นตอนการสั่งงาน</span>
-                        </div>
-                        <div class="px-4 py-3 text-xs text-brand-text border-t border-brand-light leading-relaxed">
-                            <ul class="space-y-2 pb-2">
-                                <li><strong class="text-brand-main">1.</strong> แจ้งงานที่ต้องการสั่ง เช่น ลายน้ำ, ป้าย บรีฟเป็นข้อความเท่านั้น</li>
-                                <li><strong class="text-brand-main">2.</strong> ทางร้านสรุปงานให้ ยึดตามข้อความสรุปเป็นหลัก</li>
-                                <li><strong class="text-brand-main">3.</strong> โอนเงิน = จองคิว/เริ่มงาน (รับมัดจำ ผ่อนครบลงคิว)</li>
-                                <li><strong class="text-brand-main">4.</strong> รอรับงาน 2 - 4 วัน (งานเร่ง 24ชม. +50฿, 3-4ชม. +100฿)</li>
-                                <li class="text-[10px] text-brand-subtext pt-2 border-t border-brand-light/50 mt-2">
-                                    * โอน = ยอมรับข้อตกลง ยินดีให้ปรับ 999฿ กรณีพบนำงานไปเป็นเรฟร้านอื่น
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="border border-brand-cream rounded-2xl bg-white shadow-sm overflow-hidden">
-                        <div class="w-full flex justify-between items-center p-4 text-left font-medium text-sm text-brand-text bg-brand-cream/50">
-                            <span class="flex items-center gap-2 font-bold"><i class="fa-solid fa-shield-halved text-brand-text"></i> เงื่อนไข & กฎของร้าน</span>
-                        </div>
-                        <div class="px-4 py-3 text-xs text-brand-text border-t border-brand-cream">
-                            <ul class="space-y-2 pb-2">
-                                <li><i class="fa-solid fa-xmark text-red-400 mr-1"></i> โอนเงินแล้วไม่คืนเงินทุกกรณี</li>
-                                <li><i class="fa-solid fa-xmark text-red-400 mr-1"></i> งดจิก เร่ง โวยวาย ขอคนรองานได้</li>
-                                <li><i class="fa-solid fa-check text-green-500 mr-1"></i> แก้ไขได้ 2 ครั้ง (ต้องแจ้งในครั้งเดียว)</li>
-                                <li><i class="fa-solid fa-info-circle text-brand-main mr-1"></i> ไม่ทำตามแนวร้านอื่น ทำเฉพาะแนวร้านเรา</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="w-10 h-10 bg-white rounded-full p-0.5 shadow-md">
+                <img src="https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg" class="w-full h-full rounded-full object-cover">
             </div>
         </div>
 
-        <div id="page-services" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="btn-jelly w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-brand-text backdrop-blur-md shadow-sm cursor-pointer border border-white" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-text/70">Design Services</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        รับออกแบบทุกอย่าง <i class="fa-solid fa-palette ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
+        <div class="w-full h-32 rounded-3xl overflow-hidden shadow-md border-2 border-white/20">
+            <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-90">
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+            <div class="bg-[#FFE4E1] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50">
+                <span class="text-[9px] font-bold uppercase bg-theme-bg text-white px-2 py-0.5 rounded-full mb-1">Next Queue</span>
+                <span class="text-2xl font-bold leading-none mt-1" id="stat-next-date">10</span>
+                <span class="text-[10px] font-medium" id="stat-next-month">MAR 2026</span>
             </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                
-                <div class="mb-4">
-                    <div class="text-center mb-2 text-[10px] font-bold text-brand-subtext tracking-wider uppercase">✨ Portfolio ของร้าน ✨</div>
-                    <a href="https://drive.google.com/drive/folders/1x3qtzrZDN9xQmhgP2O4LZGkTSUWg92kG" target="_blank" class="block w-full flex flex-col items-center justify-center p-5 bg-[#f5f6f8] rounded-2xl border border-gray-200 shadow-sm btn-jelly group relative overflow-hidden">
-                        <div class="glass-folder-wrapper mb-2">
-                            <div class="gf-back"></div>
-                            <div class="gf-paper gf-paper-1">
-                                <div class="gf-line w-3/4"></div><div class="gf-line w-full"></div>
-                            </div>
-                            <div class="gf-paper gf-paper-2">
-                                <div class="gf-line w-full"></div><div class="gf-line w-1/2"></div><div class="gf-line w-full"></div>
-                            </div>
-                            <div class="gf-paper gf-paper-3">
-                                <div class="gf-line w-2/3"></div><div class="gf-line w-full"></div><div class="gf-line w-4/5"></div>
-                            </div>
-                            <div class="gf-front"></div>
-                        </div>
-                        <span class="text-sm font-bold text-brand-text group-hover:text-brand-main transition-colors relative z-30">คลิกดูตัวอย่างงานออกแบบทั้งหมด</span>
-                        <div class="absolute -right-4 -bottom-4 opacity-10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-regular fa-folder-open"></i></div>
-                    </a>
+            <div class="bg-[#FFF0F5] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50">
+                <span class="text-[9px] font-bold uppercase bg-theme-card text-white px-2 py-0.5 rounded-full mb-1">คิวก่อนหน้า</span>
+                <div class="w-10 h-10 bg-theme-bg rounded-full flex items-center justify-center text-white text-xl font-bold mt-1 shadow-inner">
+                    <span id="stat-waiting">0</span>
                 </div>
-
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light overflow-hidden">
-                    <div class="bg-brand-main text-white text-center py-2 font-bold text-sm">
-                        <i class="fa-solid fa-tag"></i> เรทราคางานป้าย & ลายน้ำ
-                    </div>
-                    <div class="p-4 text-xs text-brand-text space-y-2">
-                        <p class="text-[10px] text-center text-brand-subtext mb-3">* ราคาขึ้นอยู่กับรายละเอียดงาน</p>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายเรทแอพพรีเมี่ยม</span><span class="font-bold">เริ่มต้น 80.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายเบอร์เงิน/ทอง/กู้</span><span class="font-bold">เริ่มต้น 60.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายปก X, Line OA, FB</span><span class="font-bold">เริ่มต้น 69.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายสะสมแต้ม</span><span class="font-bold">เริ่มต้น 100.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายบัญชี/ใส่รูปตัวเอง</span><span class="font-bold">เริ่มต้น 65.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>LOGO, PROFILE</span><span class="font-bold">เริ่มต้น 65.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ป้ายริชเมนู (ใหญ่/เล็ก)</span><span class="font-bold">100.- / 69.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>กรอบรีวิว / ป้ายรายละเอียด</span><span class="font-bold">99.- / 49.-</span></div>
-                        <div class="flex justify-between border-b border-brand-light pb-1"><span>ลายน้ำ ใส่รูปตัวเอง / ตัวการ์ตูน</span><span class="font-bold">45.- / 49.-</span></div>
-                        <div class="flex justify-between pb-1"><span>ลายน้ำ แบบคำ (สีสัน/ขาวดำ)</span><span class="font-bold">25.- / 15.-</span></div>
-                        
-                        <div class="mt-4 p-3 bg-brand-light/50 rounded-xl">
-                            <span class="font-bold text-brand-main mb-1 block"><i class="fa-solid fa-star"></i> แนวป้ายที่รับทำ</span>
-                            <p class="text-[10px] leading-relaxed">1.มินิมอล 2.น่ารัก 3.มืด 4.ฟุ้งสว่าง 5.รากไม้/ดอกไม้/ธรรมชาติ 6.ADS 7.ทางการ 8.สีสดจัด 9.หรู 10.เฮด 11.เรียบ 12.รก</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-cream overflow-hidden">
-                    <div class="bg-brand-text text-white text-center py-2 font-bold text-sm">
-                        <i class="fa-solid fa-book-open"></i> งานเขียน & การบ้าน & วาดรูป
-                    </div>
-                    <div class="p-4 text-xs text-brand-text space-y-4">
-                        <div>
-                            <span class="font-bold text-brand-main block mb-2"><i class="fa-solid fa-paintbrush"></i> งานวาดรูป</span>
-                            <ul class="list-disc pl-4 text-[11px] space-y-1">
-                                <li>ลายเส้น แบบร่าง ไม่ลงสี / ลงสี</li>
-                                <li>งานวาดโปรไฟล์ / ของตกแต่งคู่ตูน</li>
-                                <li>งานวาดสติกเกอร์เฟส ไอจี / สติกเกอร์ไลน์</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <span class="font-bold text-brand-text block mb-2 border-t border-brand-cream pt-2"><i class="fa-solid fa-pen-clip"></i> งานเขียน, การบ้าน, งานลอก</span>
-                            <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px]">
-                                <div class="flex justify-between"><span>สไลด์นำเสนอ</span><span>หน้าละ 20.-</span></div>
-                                <div class="flex justify-between"><span>อินโฟกราฟิก</span><span>เริ่ม 75.-</span></div>
-                                <div class="flex justify-between"><span>Resume</span><span>เริ่ม 100.-</span></div>
-                                <div class="flex justify-between"><span>ป๊อปอัพ/เล่มเล็ก</span><span>เริ่ม 50.-</span></div>
-                                <div class="flex justify-between"><span>แผ่นพับ 3-6 ช่อง</span><span>เริ่ม 80.-</span></div>
-                                <div class="flex justify-between"><span>งานพิมพ์/เขียน</span><span>65-150.-</span></div>
-                                <div class="col-span-2 mt-1 text-brand-subtext font-bold">📝 งานลอก</div>
-                                <div class="flex justify-between"><span>สมุด</span><span>หน้าละ 10.-</span></div>
-                                <div class="flex justify-between"><span>รายงาน</span><span>หน้าละ 15.-</span></div>
-                                <div class="flex justify-between"><span>กระดาษ A4</span><span>หน้าละ 20.-</span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="font-bold text-brand-text block mb-2 border-t border-brand-cream pt-2"><i class="fa-solid fa-compass-drafting"></i> งานออกแบบ (มีข้อมูล/ไม่มีข้อมูล)</span>
-                            <div class="flex justify-between text-[11px] mb-1"><span>โปสเตอร์ / มายแมพ</span><span>60 / 65.-</span></div>
-                            <div class="flex justify-between text-[11px] mb-1"><span>แผ่นพับ</span><span>70 / 80.-</span></div>
-                            <div class="flex justify-between text-[11px]"><span>เรซูเม่</span><span>60.-</span></div>
-                        </div>
-                        <div class="bg-brand-light rounded-xl p-2 text-center text-[10px] font-bold text-brand-main">
-                            ประสบการณ์ 5 ปี ดูแลงานตลอดเทอม 100%<br>รับจดงาน / ทำการบ้าน / แก้ 0 ร มส<br>
-                            ส่งพัสดุทั่วประเทศ (Flash/ไปรษณีย์)
-                        </div>
-                    </div>
-                </div>
-
+                <span class="text-[10px] mt-1">คิว</span>
+            </div>
+            <div class="bg-[#FFFFF0] text-theme-text rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm text-center border border-white/50 col-span-1">
+                <span class="text-[9px] font-bold uppercase text-theme-text mb-1">ความสำเร็จวันนี้</span>
+                <i class="fa-solid fa-asterisk text-theme-card text-2xl my-1 animate-spin-slow"></i>
+                <span class="text-[10px] font-bold bg-theme-light px-2 py-0.5 rounded-full mt-1"><span id="stat-percent">0</span>% (<span id="stat-done">0</span>/<span id="stat-total">0</span>)</span>
             </div>
         </div>
 
-        <div id="page-website" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="btn-jelly w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-brand-text backdrop-blur-md shadow-sm cursor-pointer border border-white" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-text/70">Website Services</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        รับทำเว็บร้าน <i class="fa-solid fa-laptop-code ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
+        <div class="flex gap-2 items-center">
+            <div class="flex-1 glass-panel rounded-full px-4 py-2 text-sm text-white/90 shadow-sm flex items-center gap-2">
+                <i class="fa-solid fa-bullhorn text-theme-accent"></i>
+                <marquee scrollamount="3" class="text-xs font-medium">Morning kubb ทุกคน~ วันนี้เริ่มรันคิวแล้วน้า 🧸✨</marquee>
             </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6">
-                    <div class="text-center mb-4">
-                        <span class="bg-brand-light text-brand-main text-[10px] font-bold px-3 py-1 rounded-full border border-brand-main/20">HOT DEAL <i class="fa-solid fa-fire text-brand-text ml-1"></i></span>
-                        <h3 class="text-lg font-bold text-brand-text mt-3 mb-1">เขียนโค้ดเว็บร้านค้า</h3>
-                        <p class="text-xs text-brand-subtext">รวบรวมรายละเอียดจบในที่เดียว</p>
-                    </div>
-                    
-                    <div class="bg-brand-light/20 rounded-xl p-4 border border-brand-light space-y-2 mb-4">
-                        <div class="flex justify-between items-center border-b border-brand-light pb-2">
-                            <span class="text-sm font-medium text-brand-text">รายละเอียด + โลโก้</span>
-                            <span class="text-lg font-bold text-brand-main">129.-</span>
-                        </div>
-                        <ul class="text-xs text-brand-subtext space-y-2 pt-2">
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-plus text-brand-main mt-0.5"></i> เพิ่มรูปแบนเนอร์ รูปละ 10.-</li>
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> แก้ไขข้อมูลหลังส่งตรวจสอบ ฟรี 1 ครั้ง</li>
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-0.5"></i> แก้เพิ่ม: ข้อความจุดละ 5.- / รูปจุดละ 25.-</li>
-                            <li class="flex items-start gap-2"><i class="fa-solid fa-clock text-brand-text mt-0.5"></i> ระยะเวลา 2-5 วัน (ปกติรับลิงก์ 6-8 ชม.)</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-brand-cream/30 p-3 rounded-xl mb-4 text-[10px] text-brand-text border border-brand-cream">
-                        <span class="font-bold block mb-1">กติกาการสั่งทำเว็บ:</span>
-                        - ไม่รับทำตามเว็บร้านอื่น (ชอบร้านไหนทำร้านนั้น)<br>
-                        - บรีฟเป็นรูปได้ แต่ต้องเขียนรายละเอียดชัดเจน<br>
-                        - แนบลิงก์เรฟที่ชอบ / ส่งรูปภาพผ่าน Google Drive<br>
-                        - รับมัดจำ ผ่อนครบได้เว็บ โอนแล้วไม่คืนเงินทุกกรณี
-                    </div>
-                    
-                    <button onclick="switchTab('page-contact', 3)" class="btn-jelly w-full bg-brand-main hover:bg-[#D9779B] text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-pink-300 transition-all text-sm flex items-center justify-center gap-2">
-                        ทักแชทสั่งทำเลย <i class="fa-regular fa-paper-plane"></i>
-                    </button>
-                </div>
+            <div class="flex gap-1">
+                <a href="#" class="w-8 h-8 glass-panel rounded-full flex items-center justify-center hover:bg-white/30 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                <a href="#" class="w-8 h-8 glass-panel rounded-full flex items-center justify-center hover:bg-white/30 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
             </div>
         </div>
 
-        <div id="page-goodnotes" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="btn-jelly w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-brand-text backdrop-blur-md shadow-sm cursor-pointer border border-white" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-text/70">Premium Store</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        แอปพรีเมียม <i class="fa-solid fa-cart-shopping ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-5 relative">
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-1 rounded-full text-xs font-bold shadow-md flex items-center gap-1">
-                        <i class="fa-solid fa-play"></i> Netflix
-                    </div>
-                    <p class="text-[10px] text-brand-subtext text-center mt-3 mb-4">สินค้ารับเคลมกรณีโดนปิด</p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <div class="text-sm font-bold text-brand-text mb-2"><i class="fa-solid fa-mobile-screen"></i> เข้าได้ทุกอุปกรณ์ (ยกเว้นทีวี)</div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div class="border border-brand-light rounded-xl p-2 text-center relative bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">01 วัน</div><div class="text-brand-main font-bold">15฿</div>
-                                </div>
-                                <div class="border border-brand-light rounded-xl p-2 text-center relative bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">07 วัน</div><div class="text-brand-main font-bold">45฿</div>
-                                </div>
-                                <div class="border border-brand-main rounded-xl p-2 text-center relative bg-brand-light/50 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <span class="bg-red-500 text-white text-[9px] px-2 py-0.5 rounded-full badge-bounce absolute -top-2 -right-2 font-bold shadow-sm">ยอดนิยม</span>
-                                    <div class="text-xs font-bold text-brand-text">30 วัน</div><div class="text-red-500 font-bold">115฿</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-brand-light pt-3">
-                            <div class="text-sm font-bold text-brand-text mb-2"><i class="fa-solid fa-tv"></i> เฉพาะทีวีเท่านั้น</div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div class="border border-brand-light rounded-xl p-2 text-center bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">01 วัน</div><div class="text-brand-main font-bold">20฿</div>
-                                </div>
-                                <div class="border border-brand-main rounded-xl p-2 text-center relative bg-brand-light/50 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <span class="bg-red-500 text-white text-[9px] px-2 py-0.5 rounded-full badge-bounce absolute -top-2 -right-2 font-bold shadow-sm">ยอดนิยม</span>
-                                    <div class="text-xs font-bold text-brand-text">07 วัน</div><div class="text-red-500 font-bold">55฿</div>
-                                </div>
-                                <div class="border border-brand-light rounded-xl p-2 text-center bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">30 วัน</div><div class="text-brand-main font-bold">145฿</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-brand-light pt-3">
-                            <div class="text-sm font-bold text-brand-text mb-2"><i class="fa-solid fa-users"></i> จอเสริม (ทุกอุปกรณ์)</div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div class="border border-brand-light rounded-xl p-2 text-center bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">01 วัน</div><div class="text-brand-main font-bold">35฿</div>
-                                </div>
-                                <div class="border border-brand-light rounded-xl p-2 text-center bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">07 วัน</div><div class="text-brand-main font-bold">65฿</div>
-                                </div>
-                                <div class="border border-brand-light rounded-xl p-2 text-center bg-brand-light/20 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                                    <div class="text-xs font-bold text-brand-text">30 วัน</div><div class="text-brand-main font-bold">165฿</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-brand-text text-white p-3 rounded-xl text-center btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div class="font-bold text-sm"><i class="fa-solid fa-crown text-yellow-400"></i> Netflix 4K จอส่วนตัว</div>
-                            <div class="text-[10px] mt-1 opacity-80">ปิดเคลมตลอดการใช้งาน (รอเคลมไม่เกิน 48 ชม.)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-[24px] shadow-app border border-[#EFE5E2] p-5 relative mt-8">
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#00dc64] text-white px-4 py-1 rounded-full text-xs font-bold shadow-md flex items-center gap-1">
-                        <i class="fa-solid fa-film"></i> IQIYI GOLD
-                    </div>
-                    <p class="text-[10px] text-red-500 font-bold text-center mt-3 mb-3">* ห้ามกดอัพเกรด ห้ามเข้าทีวี ร้านไม่รับเคลม</p>
-                    
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="border border-brand-cream rounded-xl p-2 flex justify-between items-center bg-[#F5ECE9]/30 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div><div class="text-xs font-bold">7 วัน (÷4)</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">15฿</div>
-                        </div>
-                        <div class="border border-brand-cream rounded-xl p-2 flex justify-between items-center bg-[#F5ECE9]/30 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div><div class="text-xs font-bold">30 วัน (÷4)</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">25฿</div>
-                        </div>
-                        <div class="border border-brand-cream rounded-xl p-2 flex justify-between items-center bg-[#F5ECE9]/30 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div><div class="text-xs font-bold">30 วัน (÷3)</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">35฿</div>
-                        </div>
-                        <div class="border border-[#00dc64] rounded-xl p-2 flex justify-between items-center bg-[#00dc64]/10 relative btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <span class="bg-red-500 text-white text-[8px] px-1.5 py-0.5 rounded-full badge-bounce absolute -top-2 -right-1 font-bold">ยอดนิยม</span>
-                            <div><div class="text-xs font-bold">30 วัน (÷2)</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">48฿</div>
-                        </div>
-                        <div class="border border-brand-cream rounded-xl p-2 flex justify-between items-center bg-[#F5ECE9]/30 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div><div class="text-xs font-bold">ส่วนตัว 30 วัน</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">90฿</div>
-                        </div>
-                        <div class="border border-brand-cream rounded-xl p-2 flex justify-between items-center bg-[#F5ECE9]/30 btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div><div class="text-xs font-bold">90 วัน (÷4)</div></div>
-                            <div class="text-[#00dc64] font-bold text-sm">70฿</div>
-                        </div>
-                        <div class="col-span-2 border border-[#00dc64] rounded-xl p-3 flex justify-between items-center bg-[#00dc64]/10 relative btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <span class="bg-red-500 text-white text-[9px] px-2 py-0.5 rounded-full badge-bounce absolute -top-2 -right-2 font-bold shadow-sm">ยอดนิยม</span>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-fire text-red-500"></i> <div class="text-sm font-bold text-brand-text">90 วัน (÷2)</div></div>
-                            <div class="text-[#00dc64] font-bold text-lg">145฿</div>
-                        </div>
-                        <div class="col-span-2 border border-brand-cream rounded-xl p-3 flex justify-between items-center bg-brand-text text-white btn-jelly cursor-pointer" onclick="switchTab('page-contact', 3)">
-                            <div class="text-sm font-bold"><i class="fa-solid fa-calendar-days"></i> 365 วัน (÷4)</div>
-                            <div class="text-yellow-400 font-bold text-lg">200฿</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button onclick="switchTab('page-contact', 3)" class="btn-jelly w-full bg-brand-text hover:bg-[#3A2821] text-white font-bold py-4 rounded-xl shadow-lg mt-4 text-lg flex items-center justify-center gap-2 animate-pulse">
-                    <i class="fa-solid fa-cart-arrow-down"></i> สั่งซื้อแอปพรีเมียม
-                </button>
-            </div>
+        <div class="glass-panel rounded-2xl p-1 flex mt-4 shadow-sm text-sm font-medium relative">
+            <button onclick="filterTasks('all')" class="flex-1 text-theme-text bg-white rounded-xl py-2 shadow-sm transition-all" id="tab-all">ทั้งหมด</button>
+            <button onclick="filterTasks('pending')" class="flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all" id="tab-pending">กำลังทำ</button>
+            <button onclick="filterTasks('done')" class="flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all" id="tab-done">เสร็จแล้ว</button>
         </div>
 
-        <div id="page-course" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="btn-jelly w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-brand-text backdrop-blur-md shadow-sm cursor-pointer border border-white" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-text/70">Learning Class</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        คอร์สสอนทำเว็บ <i class="fa-solid fa-graduation-cap ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6">
-                    <div class="text-center mb-4">
-                        <span class="bg-[#F5ECE9] text-brand-text text-[10px] font-bold px-3 py-1 rounded-full border border-[#EFE5E2]">BEST SELLER <i class="fa-solid fa-fire text-brand-main ml-1"></i></span>
-                        <h3 class="text-lg font-bold text-brand-text mt-3 mb-1">คอร์สสอนทำ “เว็บร้าน”</h3>
-                        <p class="text-[11px] text-brand-subtext leading-relaxed">
-                            จาก 0 <i class="fa-solid fa-arrow-right mx-1 text-[9px]"></i> ทำเว็บใช้งานได้จริง!<br>
-                            ไม่ต้องมีพื้นฐาน ไม่ต้องงมเอง <i class="fa-solid fa-sparkles text-brand-main ml-1"></i>
-                        </p>
-                    </div>
-                    <div class="bg-brand-light/30 border border-brand-light rounded-xl p-3 mb-4 text-center">
-                        <span class="text-brand-subtext text-[11px]">เข้าได้ตลอดชีพในราคาเพียง</span><br>
-                        <span class="text-brand-main font-bold text-2xl">459.-</span>
-                    </div>
-                    <button onclick="switchTab('page-contact', 3)" class="btn-jelly w-full bg-brand-text hover:bg-[#3A2821] text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-[#EFE5E2] transition-all text-sm flex items-center justify-center gap-2">
-                        ทักแชทสมัครเรียนเลย <i class="fa-solid fa-hand-sparkles ml-1"></i>
-                    </button>
-                </div>
-            </div>
+        <div class="text-[11px] font-bold tracking-widest uppercase opacity-80 mt-6 mb-2 pl-2 flex justify-between items-center">
+            <span>🌸 Today's Task</span>
+            <span class="opacity-70 font-normal">อัปเดตล่าสุด: <span id="last-update">กำลังโหลด...</span></span>
         </div>
 
-        <div id="page-contact" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="btn-jelly w-8 h-8 bg-white/50 rounded-full flex items-center justify-center text-brand-text backdrop-blur-md shadow-sm cursor-pointer border border-white" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-brand-text font-outfit text-xl font-bold tracking-wide brand-title">BEBBY</div>
-                    <div class="w-8"></div>
-                </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-sm font-medium text-brand-text/70">Contact Us</h1>
-                    <div class="text-2xl font-bold mt-1 text-brand-text flex justify-center items-center">
-                        ช่องทางติดต่อ <i class="fa-regular fa-comments ml-2 text-white drop-shadow-sm"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-8 flex justify-center gap-8">
-                    <a href="https://www.facebook.com/share/1Dw2GW5XZL/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center gap-2 group btn-jelly">
-                        <div class="w-16 h-16 rounded-full border-2 border-brand-light bg-brand-light/30 text-brand-main flex items-center justify-center text-3xl group-hover:bg-[#8A6F65] group-hover:text-white group-hover:border-[#8A6F65] transition-all shadow-sm">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-brand-text group-hover:text-[#8A6F65] transition-colors">Facebook</span>
-                    </a>
-                    <a href="https://lin.ee/5auqs5N" target="_blank" class="flex flex-col items-center gap-2 group btn-jelly">
-                        <div class="w-16 h-16 rounded-full border-2 border-brand-light bg-brand-light/30 text-brand-main flex items-center justify-center text-3xl group-hover:bg-brand-text group-hover:text-white group-hover:border-brand-text transition-all shadow-sm">
-                            <i class="fa-brands fa-line"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-brand-text group-hover:text-brand-text transition-colors">Line</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
-            <div class="flex justify-between items-end pb-2">
-                <div class="flex flex-col items-center gap-1 btn-jelly cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <i class="fa-solid fa-house text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-semibold">หน้าแรก</span>
-                </div>
-                <div class="flex flex-col items-center gap-1 btn-jelly cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-website', 1)" id="nav-item-1">
-                    <i class="fa-solid fa-laptop-code text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">รับทำเว็บ</span>
-                </div>
-                <div class="relative w-1/4 flex justify-center btn-jelly" onclick="switchTab('page-services', -1)">
-                    <div class="absolute -top-10 w-14 h-14 bg-gradient-to-tr from-brand-main to-[#D9779B] rounded-full flex items-center justify-center text-white text-2xl shadow-lg shadow-pink-300/50 border-4 border-white cursor-pointer transform hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-                    <span class="text-[9px] font-bold text-brand-main mt-5">บริการออกแบบ</span>
-                </div>
-                <div class="flex flex-col items-center gap-1 btn-jelly cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors relative" onclick="switchTab('page-goodnotes', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-cart-shopping text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">แอปพรีเมียม</span>
-                </div>
-                <div class="flex flex-col items-center gap-1 btn-jelly cursor-pointer w-1/4 text-brand-subtext hover:text-brand-main transition-colors" onclick="switchTab('page-contact', 3)" id="nav-item-3">
-                    <i class="fa-regular fa-comment-dots text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">ติดต่อ</span>
-                </div>
+        <div id="queue-container" class="space-y-3">
+            <div class="text-center py-10">
+                <i class="fa-solid fa-spinner fa-spin text-3xl mb-2"></i>
+                <p class="text-sm">กำลังโหลดคิวจาก Google Sheets...</p>
             </div>
         </div>
 
     </div>
 
+    <div class="fixed bottom-0 w-full max-w-md left-1/2 transform -translate-x-1/2 p-4 z-50">
+        <div class="bg-theme-text/80 backdrop-blur-md rounded-full flex justify-around p-2 shadow-lg border border-white/20">
+            <button class="w-12 h-12 bg-white text-theme-text rounded-full flex items-center justify-center text-xl shadow-inner transform -translate-y-4 border-4 border-theme-bg"><i class="fa-solid fa-house"></i></button>
+            <button class="w-12 h-12 text-white/70 hover:text-white flex items-center justify-center text-xl"><i class="fa-solid fa-calendar-days"></i></button>
+            <button class="w-12 h-12 text-white/70 hover:text-white flex items-center justify-center text-xl"><i class="fa-solid fa-file-invoice"></i></button>
+        </div>
+    </div>
+
     <script>
-        // --- 1. Tab Switching & Sparkle Effect ---
-        function switchTab(pageId, navIndex) {
-            // Sparkle Effect on screen center
-            createSparkle();
-
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            if (navIndex >= 0) {
-                for (let i = 0; i <= 3; i++) {
-                    const item = document.getElementById(`nav-item-${i}`);
-                    if (item) {
-                        if (i === navIndex) {
-                            item.classList.remove('text-brand-subtext');
-                            item.classList.add('text-brand-main');
-                            item.querySelector('span').classList.replace('font-medium', 'font-semibold');
-                        } else {
-                            item.classList.remove('text-brand-main');
-                            item.classList.add('text-brand-subtext');
-                            item.querySelector('span').classList.replace('font-semibold', 'font-medium');
-                        }
-                    }
-                }
-            } else {
-                for (let i = 0; i <= 3; i++) {
-                    const item = document.getElementById(`nav-item-${i}`);
-                    if (item) {
-                        item.classList.remove('text-brand-main');
-                        item.classList.add('text-brand-subtext');
-                        item.querySelector('span').classList.replace('font-semibold', 'font-medium');
-                    }
-                }
-            }
-        }
-
-        // --- 2. Floating Emojis on Click ---
-        const emojis = ['💖', '✨', '🎀', '🧸', '🌸', '🌷', '🍦', '🍡'];
-        function spawnEmoji(e) {
-            // ไม่ให้เด้งเวลากดปุ่มที่มี btn-jelly เพื่อไม่ให้กวนสายตาเกินไป
-            if(e.target.closest('.btn-jelly')) return; 
-
-            const emojiEl = document.createElement('div');
-            emojiEl.className = 'floating-emoji';
-            emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            emojiEl.style.left = e.clientX + 'px';
-            emojiEl.style.top = e.clientY + 'px';
-            document.body.appendChild(emojiEl);
-            
-            setTimeout(() => { emojiEl.remove(); }, 1000);
-        }
-
-        // --- 3. Sparkle Effect Function ---
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle-effect';
-            sparkle.style.width = '100px';
-            sparkle.style.height = '100px';
-            sparkle.style.left = '50%';
-            sparkle.style.top = '50%';
-            sparkle.style.transform = 'translate(-50%, -50%)';
-            document.body.appendChild(sparkle);
-            setTimeout(() => { sparkle.remove(); }, 600);
-        }
-
-        // --- 4. Confetti "BEBBY" Initialization ---
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('confetti').classList.add('confetti-active');
-                fetchQueueData(); // ดึงข้อมูลคิวตอนโหลดหน้าเว็บ
-            }, 500);
-        };
-
-        // --- 5. Google Sheets API Fetch (Queue System) ---
-        const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbximGxrL6vCsaX0egYmNlofmdG22yRfEfDRa1TjGzVyg8ymUe_BYTI2oJLFDUf3-gQMVQ/exec';
+        // 🛑 นำ URL API ของ Google Apps Script มาใส่ตรงนี้
+        const API_URL = 'ใส่_URL_WEB_APP_ของคุณที่นี่'; 
         
-        async function fetchQueueData() {
+        let allTasks = [];
+
+        // ตัวอย่างข้อมูลจำลอง (Mock Data) ระหว่างรอต่อ API จริง
+        // ให้เห็นภาพว่าถ้าดึงข้อมูลมา หน้าตาจะเป็นแบบไหน
+        const mockData = [
+            ["Q ที่", "Date", "Platform", "Account Name", "Order", "Type Design", "Status", "Progress", "Icon"],
+            ["Q1", "08/03/69", "FACEBOOK", "น้องมายด์", "ป้ายบัญชี", "มินิมอล", "ส่งงานแล้ว", "100", "✅"],
+            ["Q2", "08/03/69", "LINE", "คุณเอ", "ปกเพจ", "น่ารัก", "กำลังแก้ตัวงาน", "75", "🐰"],
+            ["Q3", "09/03/69", "IG", "Mochi friends", "ลายน้ำ", "พาสเทล", "เริ่มปั้นงาน", "30", "🧸"],
+            ["Q4", "10/03/69", "FACEBOOK", "ลูกค้าVIP", "ป้ายเรท", "หรูหรา", "รอคิว", "0", "⏳"]
+        ];
+
+        async function loadData() {
             try {
-                // จำลองข้อมูลระหว่างรอ API หรือถ้า API เชื่อมไม่ได้
-                // ในการใช้งานจริงจะดึงจาก API
-                // const response = await fetch(SHEET_API_URL);
+                // 1. ถ้าเชื่อม API แล้ว ให้เอาคอมเมนต์ 2 บรรทัดล่างออก แล้วลบบรรทัด mockData ทิ้ง
+                // const response = await fetch(API_URL);
                 // const data = await response.json();
                 
-                // --- ระบบสุ่มจำลองตัวเลข (ลบออกได้ถ้า API สมบูรณ์) ---
-                const mockTotal = Math.floor(Math.random() * 10) + 5;
-                const mockDone = Math.floor(Math.random() * mockTotal);
-                const mockWait = mockTotal - mockDone;
-                const percent = (mockDone / mockTotal) * 100;
+                const data = mockData; // จำลองข้อมูล
                 
-                document.getElementById('q-current').innerText = `Q${mockDone + 1}`;
-                document.getElementById('q-total').innerText = mockTotal;
-                document.getElementById('q-waiting').innerText = mockWait;
-                document.getElementById('q-progress').style.width = `${percent}%`;
+                // ข้ามแถวแรก (หัวข้อ) และเก็บข้อมูลไว้
+                allTasks = data.slice(1).map(row => ({
+                    q: row[0],
+                    date: row[1],
+                    platform: row[2],
+                    name: row[3],
+                    order: row[4],
+                    design: row[5],
+                    status: row[6],
+                    progress: parseInt(row[7]) || 0, // เปอร์เซ็นต์ความคืบหน้า (0-100)
+                    icon: row[8] || '🐰' // อีโมจิวิ่งบนหลอด
+                }));
+
+                // อัปเดตเวลา
+                const now = new Date();
+                document.getElementById('last-update').innerText = now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
+
+                calculateStats();
+                renderTasks('all');
 
             } catch (error) {
-                console.error("Error fetching queue:", error);
-                document.getElementById('q-current').innerText = "ขัดข้อง";
+                console.error("Error loading data:", error);
+                document.getElementById('queue-container').innerHTML = '<p class="text-center">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>';
             }
         }
 
-        // Toggle Views
-        function toggleQueueView(view) {
-            const btnList = document.getElementById('view-list-btn');
-            const btnCal = document.getElementById('view-cal-btn');
-            const display = document.getElementById('queue-display-area');
+        function calculateStats() {
+            // คำนวณความคืบหน้าของวันนี้
+            const total = allTasks.length;
+            const done = allTasks.filter(t => t.progress === 100).length;
+            const waiting = allTasks.filter(t => t.progress === 0).length;
+            const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+            document.getElementById('stat-total').innerText = total;
+            document.getElementById('stat-done').innerText = done;
+            document.getElementById('stat-percent').innerText = percent;
+            document.getElementById('stat-waiting').innerText = waiting;
             
-            if(view === 'list') {
-                btnList.className = "btn-jelly px-2 py-1 bg-brand-light text-brand-main rounded text-[10px] font-bold";
-                btnCal.className = "btn-jelly px-2 py-1 text-brand-subtext hover:bg-brand-light rounded text-[10px]";
-                display.innerHTML = `
-                    <div class="flex justify-between items-center text-xs mb-1">
-                        <span class="text-brand-subtext">กำลังดำเนินการ:</span>
-                        <span class="font-bold text-brand-main" id="q-current">Q3</span>
-                    </div>
-                    <div class="w-full bg-brand-light rounded-full h-1.5 mb-2 overflow-hidden">
-                        <div class="bg-brand-main h-1.5 rounded-full relative overflow-hidden" style="width: 45%" id="q-progress">
-                            <div class="absolute top-0 left-0 w-full h-full bg-white/30 animate-pulse"></div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between text-[10px] text-brand-subtext">
-                        <span>คิวทั้งหมด: <span id="q-total">8</span></span>
-                        <span>รอคิว: <span id="q-waiting">5</span></span>
-                    </div>`;
-            } else {
-                btnCal.className = "btn-jelly px-2 py-1 bg-brand-light text-brand-main rounded text-[10px] font-bold";
-                btnList.className = "btn-jelly px-2 py-1 text-brand-subtext hover:bg-brand-light rounded text-[10px]";
-                display.innerHTML = `
-                    <div class="text-center py-2 text-xs text-brand-subtext flex flex-col items-center">
-                        <i class="fa-regular fa-calendar-check text-2xl text-brand-main mb-2"></i>
-                        มุมมองปฏิทิน<br>สามารถดูคิวละเอียดได้ที่ปุ่มด้านล่าง
-                    </div>`;
+            // หาวันที่คิวถัดไป (คิวแรกที่ยังไม่เสร็จ)
+            const nextTask = allTasks.find(t => t.progress < 100);
+            if(nextTask) {
+                // สมมติว่าแยก วัน กับ เดือน ออกจากกันเพื่อความสวยงาม (ต้องปรับตาม Format วันที่ใน Sheet ของคุณ)
+                document.getElementById('stat-next-date').innerText = nextTask.date.split('/')[0] || '-';
+                document.getElementById('stat-next-month').innerText = "คิวถัดไป"; 
             }
         }
+
+        function filterTasks(type) {
+            // เปลี่ยนสีปุ่ม Tab
+            ['all', 'pending', 'done'].forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if(tab === type) {
+                    btn.className = "flex-1 text-theme-text bg-white rounded-xl py-2 shadow-sm transition-all";
+                } else {
+                    btn.className = "flex-1 text-white hover:bg-white/10 rounded-xl py-2 transition-all";
+                }
+            });
+            renderTasks(type);
+        }
+
+        function renderTasks(filterType) {
+            const container = document.getElementById('queue-container');
+            container.innerHTML = '';
+
+            let filtered = allTasks;
+            if (filterType === 'pending') {
+                filtered = allTasks.filter(t => t.progress < 100);
+            } else if (filterType === 'done') {
+                filtered = allTasks.filter(t => t.progress === 100);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="text-center py-6 text-white/70">ไม่มีรายการในหมวดหมู่นี้</div>';
+                return;
+            }
+
+            filtered.forEach(task => {
+                // เลือกสีการ์ดตามสถานะ (เสร็จแล้วให้สีจางลงนิดนึง)
+                const cardBg = task.progress === 100 ? 'bg-theme-card/60' : 'bg-theme-card';
+                const opacity = task.progress === 100 ? 'opacity-80' : 'opacity-100';
+
+                const html = `
+                <div class="${cardBg} ${opacity} rounded-3xl p-4 shadow-sm border border-white/20 relative overflow-hidden transition-all hover:scale-[1.01]">
+                    
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-md w-fit mb-1">${task.platform}</span>
+                            <span class="font-bold text-white text-base">${task.name} <span class="text-xs font-normal opacity-80">(${task.order})</span></span>
+                        </div>
+                        <div class="bg-white/20 px-2 py-1 rounded-md text-[10px] font-bold text-white flex items-center gap-1">
+                            <i class="fa-regular fa-calendar"></i> ${task.date}
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="flex justify-between text-xs font-medium mb-1 text-white/90">
+                            <span>${task.status}</span>
+                            <span>${task.progress}%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: ${task.progress}%">
+                                <span class="progress-icon">${task.icon}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // เริ่มโหลดข้อมูลเมื่อเปิดหน้าเว็บ
+        window.onload = loadData;
     </script>
 </body>
 </html>
